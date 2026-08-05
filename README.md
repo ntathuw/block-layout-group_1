@@ -11,8 +11,7 @@ Bài tập Block Layout: vẽ block layout (tay + draw.io) cho mobile & desktop,
 | Vai | Họ tên | GitHub | Email |
 |---|---|---|---|
 | Leader | Anh Thư | @ntathuw | ntathuw5@gmail.com |
-
-| Dev | Minh Phúc | | trminhphuc1504@gmail.com |
+| Dev | Minh Phúc |  _(điền) | trminhphuc1504@gmail.com |
 | Dev | Nguyên Phúc | _(điền)_ | phamhuunguyenphuc2007@gmail.com |
 ---
 
