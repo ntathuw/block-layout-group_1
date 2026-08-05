@@ -1,0 +1,15 @@
+# Đặt file draw.io v1 vào đây
+#
+# Tên file bắt buộc:
+#   layout-v1.drawio   ← FILE GỐC, BẮT BUỘC COMMIT (không chỉ commit PNG)
+#   mobile-v1.png      ← export từ page "Mobile"
+#   desktop-v1.png     ← export từ page "Desktop"
+#
+# Cách làm:
+#   1. Tạo 1 file .drawio với 2 page: "Mobile" và "Desktop"
+#   2. Mỗi block = 1 hình chữ nhật, tên class ở giữa
+#   3. Màu nhất quán + legend ở góc trang
+#   4. Ghi số đo lên cạnh (width %, height px)
+#   5. File > Export as PNG, zoom 200%, transparent = off
+#
+# Xoá file .gitkeep này sau khi đã có file thật.
