@@ -1,0 +1,25 @@
+# Bí mật — TUYỆT ĐỐI không commit
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node (nếu sau này dùng)
+node_modules/
+*.log
+npm-debug.log*
+
+# draw.io file tạm
+*.bkp
+*.dtmp
