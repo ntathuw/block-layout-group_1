@@ -1,81 +1,90 @@
-# Block List — GitHub Library
+# Block List & Naming Convention — GitHub Library
 
-> **Đây là nguồn sự thật.** Bản vẽ tay, draw.io, class trong HTML và prompt gửi AI đều phải dùng đúng tên ở đây.
-> Nguồn vẽ: `design/v2/drawio/Blocklayout-BEM-Github(v2).drawio` (desktop + mobile).
+> Chốt trong MOM-02 ngày 06/08/2026. 
 
-## Breakpoint
+## Quy ước đặt tên
 
-| Loại | Kích thước |
-|---|---|
-| Mobile | ≤ 767px (thiết kế ở 375px) |
-| Desktop | ≥ 768px (container 1200px) |
+Dùng **BEM**, kebab-case, tiếng Anh.
 
-## Inventory class (khớp Draw.io V2 + code thực tế)
+| Loại | Cú pháp | Ví dụ |
+|---|---|---|
+| Block | `.block` | `.repo-card` |
+| Element | `.block__element` | `.repo-card__title` |
+| Modifier | `.block--modifier` | `.repo-card--mobile` · `.repo-card__badge--public` |
 
-### Layout shell
-| Class | Ghi chú |
-|---|---|
-| `header` | bọc `site-header` + `sub-nav` |
-| `site-header` | `__hamburger`, `__logo`, `__heading`, `__search`, `__search-bar`, `__nav`, `__avatar` |
-| `site-header__nav-item` | element con của `__nav` (không có trên drawio, giữ) |
-| `site-header__nav-dot` | chấm xanh inbox (không có trên drawio, giữ) |
-| `sub-nav` | `sub-nav_nav1` (1 underscore, theo drawio), `sub-nav__nav2..5`, `sub-nav__hamburger` |
-| `left-side` / `center` / `right-side` | cột khung |
-| `main-layout` | flex cột trái + `right-info` |
+- Chỉ 1 cấp element: `.repo-card__title` ✅ — `.repo-card__header__title` ❌
+- Modifier luôn đi kèm class gốc: `class="repo-card repo-card--mobile"`
+- Không tự chế block ngoài danh sách dưới
 
-### Profile
-| Class | Ghi chú |
-|---|---|
-| `Page-title` | |
-| `Profile-avatar` / `Profile-info` / `Profile-action` | |
-| `Profile-info__heading` / `Profile-info__meta` | |
-| `Profile-action__follow-btn` | |
+---
 
-### Popular repositories
-| Class | Ghi chú |
-|---|---|
-| `popular-repos` | |
-| `popular-repos__title` | |
-| `popular-repos__card` | đổi tên từ `popularrepo-card` |
-| `popular-repos__card__heading` | |
-| `popular-repos__card__description` | |
-| `popular-repos__card__meta` | |
-| `popular-repos__card__badge` | |
+## Danh sách block
 
-### Repositories section
-| Class | Ghi chú |
-|---|---|
-| `sub-heading` / `sub-heading__title` | |
-| `search-bar` | `__icon`, `__input`, `__nav1`, `__nav2`, `__nav3` |
-| `repo-list` | |
-| `repo-card` | `__body`, `__header`, `__title`, `__description`, `__meta`, `__badge`, `__lang`, `__sparkline` |
+| # | Block | Vai trò | Desktop | Mobile |
+|---|---|---|---|---|
+| 1 | `.site-header` | Thanh đầu trang | flex, logo + nav + avatar | logo + hamburger |
+| 2 | `.page-title` | Tiêu đề trang | heading + count cùng hàng | gộp 1 dòng, font nhỏ hơn |
+| 3 | `.popular-repos` | Khối "Popular repositories" | grid 2 cột | xếp dọc 1 cột |
+| 4 | `.search-bar` | Ô tìm kiếm | input + nút filter | chỉ input |
+| 5 | `.main-layout` | Container 2 cột | `flex-direction: row` | `flex-direction: column` |
+| 6 | `.sidebar-filter` | Bộ lọc | cột trái 25%, 3 nhóm mở sẵn | full width, thu gọn + nút toggle |
+| 7 | `.repo-list` / `.repo-card` | Danh sách repo | cột phải 75% | full width |
+| 8 | `.pagination` | Phân trang | đầy đủ số trang | rút gọn (1 … 5) |
+| 9 | `.site-footer` | Chân trang | link hàng ngang | link xếp dọc |
 
-### Right info (cột phải)
-| Class | Ghi chú |
-|---|---|
-| `right-info` | sticky desktop |
-| `right-info_people` | 1 underscore, không có trên drawio, giữ |
-| `right-info__heading` / `right-info__description` / `right-info__meta` | |
+---
 
-### Footer
-| Class | Ghi chú |
-|---|---|
-| `site-footer` | |
-| `site-footer__logo` / `site-footer__copyright` / `site-footer__links` | |
+## Bảng tra nhanh — toàn bộ class
 
-### Utility
-| Class | Ghi chú |
-|---|---|
-| `sr-only` | a11y |
+```
+.site-header                    .site-header--mobile
+  .site-header__logo
+  .site-header__nav
+  .site-header__avatar
+  .site-header__hamburger
 
-## Đã xóa / không dùng
+.page-title                     .page-title--mobile
+  .page-title__heading
+  .page-title__count
 
-| Class | Lý do |
-|---|---|
-| `pagination` | design không có; đã xóa |
-| `fitter-btn` | dư; chỉ còn `search-bar__nav3` |
-| `sidebar-filter` | không dùng (block-list cũ) |
-| `repo-card__desc` | gộp thành `repo-card__description` |
+.popular-repos                  .popular-repos--mobile
+  .popular-repos__list
+  .popular-card
+    .popular-card__title
+    .popular-card__badge--public
+    .popular-card__description
+    .popular-card__meta
+
+.search-bar                     .search-bar--mobile
+  .search-bar__input
+  .search-bar__filter-btn
+
+.main-layout
+
+.sidebar-filter                 .sidebar-filter--mobile
+  .sidebar-filter__group
+  .sidebar-filter__toggle-btn
+
+.repo-list
+  .repo-card                    .repo-card--mobile
+    .repo-card__header
+    .repo-card__title
+    .repo-card__badge--public
+    .repo-card__description
+    .repo-card__meta
+
+.pagination                     .pagination--mobile
+  .pagination__btn--prev
+  .pagination__item
+  .pagination__btn--next
+
+.site-footer                    .site-footer--mobile
+  .site-footer__links
+  .site-footer__copyright
+```
+
+---
+
 
 ## Quy ước đặt tên
 
