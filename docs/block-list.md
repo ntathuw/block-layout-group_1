@@ -1,56 +1,87 @@
-# Block List — GitHub Library
+# Block List & Naming Convention — GitHub Library
 
-> **Đây là nguồn sự thật.** Bản vẽ tay, draw.io, class trong HTML và prompt gửi AI đều phải dùng đúng tên ở đây.
-> Chốt trong buổi họp MOM-01. Mọi thay đổi phải ghi vào `design/vX/CHANGELOG.md`.
-
-## Breakpoint
-
-| Loại | Kích thước |
-|---|---|
-| Mobile | ≤ 767px (thiết kế ở 375px) |
-| Desktop | ≥ 768px (container 1200px) |
-
-## Danh sách block
-
-| # | Tên class | Nội dung chứa bên trong | Desktop | Mobile |
-|---|---|---|---|---|
-| 1 | `site-header` | logo, nav, avatar user | full width, cao ~64px | full width, gộp nav thành hamburger |
-| 2 | `search-bar` | ô tìm kiếm, nút filter | full width trong container | full width, ẩn nút filter phụ |
-| 3 | `page-title` | tiêu đề trang, số lượng repo | trái | trái, font nhỏ hơn |
-| 4 | `sidebar-filter` | nhóm filter: language, type, sort | cột trái, 25% | xếp trên `repo-list`, full width, thu gọn |
-| 5 | `repo-list` | danh sách `repo-card` | cột phải, 75% | full width, xếp dọc |
-| 6 | `repo-card` | tên repo, mô tả, ngôn ngữ, sao, ngày cập nhật | 1 card / hàng | 1 card / hàng, padding nhỏ hơn |
-| 7 | `pagination` | số trang, nút prev/next | căn giữa | căn giữa, rút gọn số trang |
-| 8 | `site-footer` | link, copyright | full width, 3 cột | full width, xếp dọc |
-
-## Quyết định layout
-
-| # | Quyết định | Lý do |
-|---|---|---|
-| 1 | `sidebar-filter` nằm **bên trái**, chiếm 25% desktop | Giống GitHub gốc |
-| 2 | Breakpoint 768px | Chuẩn phổ biến, khớp iPad dọc |
-| 3 | Container 1200px, gutter 24px | Vừa màn hình 1366px trở lên |
-| 4 | Dùng **flexbox**, không dùng grid | Thống nhất một kỹ thuật cho dễ review |
+> Chốt trong MOM-02 ngày 06/08/2026. 
 
 ## Quy ước đặt tên
 
-- kebab-case, tiếng Anh: `repo-card`, `sidebar-filter`
-- Phần tử con thêm hậu tố: `repo-card__title`, `repo-card__meta`
-- **Không tự chế block mới.** Cần block mới → nêu trong buổi họp, cập nhật file này trước, rồi mới code.
+Dùng **BEM**, kebab-case, tiếng Anh.
 
-## Checklist đối chiếu (dùng ở GL-17)
+| Loại | Cú pháp | Ví dụ |
+|---|---|---|
+| Block | `.block` | `.repo-card` |
+| Element | `.block__element` | `.repo-card__title` |
+| Modifier | `.block--modifier` | `.repo-card--mobile` · `.repo-card__badge--public` |
 
-| Block | Desktop khớp? | Mobile khớp? | Ghi chú |
-|---|---|---|---|
-| site-header | ☐ | ☐ | |
-| search-bar | ☐ | ☐ | |
-| page-title | ☐ | ☐ | |
-| sidebar-filter | ☐ | ☐ | |
-| repo-list | ☐ | ☐ | |
-| repo-card | ☐ | ☐ | |
-| pagination | ☐ | ☐ | |
-| site-footer | ☐ | ☐ | |
+- Chỉ 1 cấp element: `.repo-card__title` ✅ — `.repo-card__header__title` ❌
+- Modifier luôn đi kèm class gốc: `class="repo-card repo-card--mobile"`
+- Không tự chế block ngoài danh sách dưới
 
 ---
 
-> ⚠️ Bảng trên là **đề xuất khởi điểm**. Cả nhóm phải mở trang GitHub Library thật, đối chiếu và chốt lại trong MOM-01 trước khi Designer bắt đầu vẽ.
+## Danh sách block
+
+| # | Block | Vai trò | Desktop | Mobile |
+|---|---|---|---|---|
+| 1 | `.site-header` | Thanh đầu trang | flex, logo + nav + avatar | logo + hamburger |
+| 2 | `.page-title` | Tiêu đề trang | heading + count cùng hàng | gộp 1 dòng, font nhỏ hơn |
+| 3 | `.popular-repos` | Khối "Popular repositories" | grid 2 cột | xếp dọc 1 cột |
+| 4 | `.search-bar` | Ô tìm kiếm | input + nút filter | chỉ input |
+| 5 | `.main-layout` | Container 2 cột | `flex-direction: row` | `flex-direction: column` |
+| 6 | `.sidebar-filter` | Bộ lọc | cột trái 25%, 3 nhóm mở sẵn | full width, thu gọn + nút toggle |
+| 7 | `.repo-list` / `.repo-card` | Danh sách repo | cột phải 75% | full width |
+| 8 | `.pagination` | Phân trang | đầy đủ số trang | rút gọn (1 … 5) |
+| 9 | `.site-footer` | Chân trang | link hàng ngang | link xếp dọc |
+
+---
+
+## Bảng tra nhanh — toàn bộ class
+
+```
+.site-header                    .site-header--mobile
+  .site-header__logo
+  .site-header__nav
+  .site-header__avatar
+  .site-header__hamburger
+
+.page-title                     .page-title--mobile
+  .page-title__heading
+  .page-title__count
+
+.popular-repos                  .popular-repos--mobile
+  .popular-repos__list
+  .popular-card
+    .popular-card__title
+    .popular-card__badge--public
+    .popular-card__description
+    .popular-card__meta
+
+.search-bar                     .search-bar--mobile
+  .search-bar__input
+  .search-bar__filter-btn
+
+.main-layout
+
+.sidebar-filter                 .sidebar-filter--mobile
+  .sidebar-filter__group
+  .sidebar-filter__toggle-btn
+
+.repo-list
+  .repo-card                    .repo-card--mobile
+    .repo-card__header
+    .repo-card__title
+    .repo-card__badge--public
+    .repo-card__description
+    .repo-card__meta
+
+.pagination                     .pagination--mobile
+  .pagination__btn--prev
+  .pagination__item
+  .pagination__btn--next
+
+.site-footer                    .site-footer--mobile
+  .site-footer__links
+  .site-footer__copyright
+```
+
+---
+
