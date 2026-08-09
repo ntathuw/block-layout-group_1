@@ -312,6 +312,7 @@ main#main-content {
 
 .popular-repos {
   display: flex;
+  flex: 1 1 auto;
   flex-wrap: wrap;
   gap: 16px;
   min-width: 0;
@@ -446,13 +447,6 @@ main#main-content {
   display: flex;
   align-items: flex-start;
   gap: 24px;
-  min-width: 0;
-}
-
-.main-layout > div {
-  display: flex;
-  flex: 1 1 72%;
-  flex-direction: column;
   min-width: 0;
 }
 
@@ -606,6 +600,14 @@ main#main-content {
   color: var(--muted);
 }
 
+.site-footer__links a {
+  color: var(--muted);
+}
+
+.site-footer__links a:hover {
+  color: var(--text);
+}
+
 .site-footer__copyright {
   margin: 0;
   white-space: nowrap;
@@ -686,16 +688,48 @@ main#main-content {
     white-space: nowrap;
   }
 
+  .sub-nav {
+    display: flex;
+    align-items: center;
+  }
+
   .sub-nav > div {
     display: flex;
+    flex: 1 1 auto;
     align-items: center;
     gap: 4px;
     overflow-x: auto;
     padding: 4px 12px;
   }
 
-  .sub-nav details {
+  .sub-nav > div .sub-nav__nav3,
+  .sub-nav > div .sub-nav__nav4,
+  .sub-nav > div .sub-nav__nav5 {
     display: none;
+  }
+
+  .sub-nav details {
+    display: block;
+    flex: 0 0 auto;
+    width: auto;
+    margin-left: auto;
+    padding: 4px 12px 4px 0;
+  }
+
+  .sub-nav__hamburger {
+    display: flex;
+    align-items: center;
+    min-height: 0;
+    padding: 4px 0 4px 16px;
+    color: var(--muted);
+    font-size: 14px;
+    border-left: 1px solid var(--border);
+  }
+
+  .sub-nav details[open] > a {
+    display: block;
+    padding: 6px 0;
+    color: var(--text);
   }
 
   main#main-content {
@@ -772,7 +806,9 @@ main#main-content {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 8px;
-    padding: 12px;
+    padding: 0;
+    background: transparent;
+    border: none;
   }
 
   .search-bar label {
@@ -791,7 +827,7 @@ main#main-content {
   }
 
   .search-bar__input {
-    flex: 1 1 240px;
+    flex: 1 0 100%;
     min-width: 0;
   }
 
@@ -807,7 +843,6 @@ main#main-content {
     flex-direction: column;
   }
 
-  .main-layout > div,
   .repo-list,
   .right-info {
     flex: 0 1 auto;
@@ -844,8 +879,17 @@ main#main-content {
   }
 
   .site-footer__links {
+    order: 1;
     justify-content: center;
     gap: 8px 12px;
+  }
+
+  .site-footer__logo {
+    order: 2;
+  }
+
+  .site-footer__copyright {
+    order: 3;
   }
 
   .site-footer__links a {
