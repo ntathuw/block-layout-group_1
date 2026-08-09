@@ -50,7 +50,7 @@ Không thêm element BEM mới. Dòng ngôn ngữ dùng lại `right-info__meta`
 - Đổi toàn bộ token trong `:root` sang dark theme theo GitHub: nền tối, surface tối, chữ sáng, viền tối, link sáng. Giữ `:focus-visible`, contrast đọc được, không đổi cấu trúc DOM.
 
 ### 3.5 Bản vẽ v2 + tài liệu
-- Sửa file gốc v2 (`Blocklayout-BEM-Github(v2).drawio` + export `Blocklayout-BEM-Github(V2).drawio.png`): đổi mọi nhãn `.sidebar-info`, `.sidebar-info_people`, `.sidebar-info__heading`, `.sidebar-info__description`, `.sidebar-info__meta` thành tên `.right-info*` tương ứng; sửa cấu trúc header trong sơ đồ để `.sub-nav` nằm trong `.header` nếu bản vẽ chưa thể hiện.
+- Sửa file gốc v2 (`Blocklayout-BEM-Github(v2).drawio` + export `Blocklayout-BEM-Github(V2).drawio.png`): đổi mọi nhãn `.sidebar-info`, `.sidebar-info_people`, `.sidebar-info__heading`, `.sidebar-info__description`, `.sidebar-info__meta` thành tên `.right-info*` tương ứng. Cấu trúc header trong bản vẽ đã thể hiện `.header` bao gồm `.site-header` và `.sub-nav` nên chỉ đổi nhãn class, không di chuyển block.
 - Copy `.drawio` và `.png` vào `design/v2/drawio/` của repository này.
 - **Xóa toàn bộ** `design/v1/` (đã được thay bằng v2) để tránh conflict.
 - Cập nhật tài liệu đang tham chiếu v1/`.sidebar-info`:
