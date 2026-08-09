@@ -26,11 +26,10 @@ Bài tập Block Layout: vẽ block layout (tay + draw.io) cho mobile & desktop,
 │   ├── block-list.md          # danh sách block + naming (nguồn sự thật)
 │   └── meeting-minutes/       # biên bản họp mỗi buổi
 ├── design/
-│   ├── v1/
-│   │   ├── hand/              # ảnh chụp bản vẽ tay
-│   │   ├── drawio/            # file .drawio gốc + PNG export
-│   │   └── CHANGELOG.md
-│   └── v2/                    # chỉ dùng khi phải sửa layout
+│   └── v2/
+│       ├── hand/              # ảnh chụp bản vẽ tay
+│       ├── drawio/            # file .drawio gốc + PNG export
+│       └── CHANGELOG.md
 ├── ai-history/
 │   ├── REPORT.md              # báo cáo tổng hợp cuối
 │   ├── prompt-library.md      # prompt chuẩn nhóm chốt dùng
@@ -47,8 +46,7 @@ Bài tập Block Layout: vẽ block layout (tay + draw.io) cho mobile & desktop,
 
 | Phiên bản | Mobile | Desktop | File gốc |
 |---|---|---|---|
-| v1 | `design/v1/hand/mobile-v1.jpg` · `design/v1/drawio/mobile-v1.png` | `design/v1/hand/desktop-v1.jpg` · `design/v1/drawio/desktop-v1.png` | `design/v1/drawio/layout-v1.drawio` |
-| v2 | _(nếu có)_ | _(nếu có)_ | _(nếu có)_ |
+| v2 | `design/v2/hand/mobile-v2.jpg` · `design/v2/drawio/mobile-v2.png` | `design/v2/hand/desktop-v2.jpg` · `design/v2/drawio/desktop-v2.png` | `design/v2/drawio/Blocklayout-BEM-Github(v2).drawio` |
 
 Danh sách block và quy ước đặt tên: [`docs/block-list.md`](docs/block-list.md)
 

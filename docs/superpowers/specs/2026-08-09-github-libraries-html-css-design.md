@@ -9,7 +9,7 @@ Xây dựng bản mô phỏng tĩnh của [GitHub Libraries](https://github.com/
 
 ## 2. Phạm vi và nguồn chuẩn
 
-- Bám đúng cấu trúc và thứ tự trực quan trong `E:\SET-2026\Block-Github\block-layout-group_1\design\v1\drawio\Blocklayout-BEM-Github(v2).drawio`.
+- Bám đúng cấu trúc và thứ tự trực quan trong `design/v2/drawio/Blocklayout-BEM-Github(v2).drawio`.
 - Draw.io là nguồn ưu tiên khi có mâu thuẫn với `docs/block-list.md`.
 - Chỉ bổ sung block `.pagination` từ `docs/block-list.md`; không thêm các block chỉ có trong `block-list.md` nhưng không có trong Draw.io, gồm `.sidebar-filter`.
 - Dấu chấm đứng trước tên trong nhãn Draw.io chỉ là ký hiệu selector, không ghi vào thuộc tính HTML `class`. Ngoài quy ước đó, giữ nguyên tuyệt đối hoa thường, dấu gạch dưới, dấu gạch đôi và lỗi chính tả.
@@ -27,7 +27,7 @@ Tất cả tên dưới đây phải xuất hiện ít nhất một lần trong 
 | Hồ sơ và tiêu đề | `Page-title`, `Profile-avatar`, `Profile-info`, `Profile-info__heading`, `Profile-info__meta`, `Profile-action`, `Profile-action__follow-btn` |
 | Nội dung phổ biến | `popular-repos`, `popular-repos__title`, `popularrepo-card`, `popularrepo-card__heading`, `popularrepo-card__description`, `popularrepo-card__meta`, `popularrepo-card__badge` |
 | Tìm kiếm và danh sách | `sub-heading`, `sub-heading__title`, `sub-heading__languages`, `search-bar`, `search-bar__icon`, `search-bar__input`, `search-bar__nav1`, `search-bar__nav2`, `search-bar__nav3`, `fitter-btn`, `repo-list`, `repo-card`, `repo-card__title`, `repo-card__header`, `repo-card__desc`, `repo-card__description`, `repo-card__meta`, `repo-card__badge` |
-| Thông tin phụ và footer | `sidebar-info`, `sidebar-info_people`, `sidebar-info__heading`, `sidebar-info__description`, `sidebar-info__meta`, `site-footer`, `site-footer__logo`, `site-footer__links`, `site-footer__copyright` |
+| Thông tin phụ và footer | `right-info`, `right-info_people`, `right-info__heading`, `right-info__description`, `right-info__meta`, `site-footer`, `site-footer__logo`, `site-footer__links`, `site-footer__copyright` |
 | Block bổ sung | `pagination` |
 
 `.pagination` là block mới duy nhất; không tạo thêm utility class, component class hoặc biến thể class ngoài danh sách trên.
@@ -36,10 +36,10 @@ Tất cả tên dưới đây phải xuất hiện ít nhất một lần trong 
 
 ### Desktop — từ 768px trở lên
 
-- Toàn trang dùng semantic landmarks: `header` cho `.header`, `nav` cho `.sub-nav`, `main#main-content` cho nội dung, `aside` cho `.sidebar-info`, `footer` cho `.site-footer`.
+- Toàn trang dùng semantic landmarks: `header` cho `.header`, `nav` cho `.sub-nav`, `main#main-content` cho nội dung, `aside` cho `.right-info`, `footer` cho `.site-footer`.
 - `.site-header` nằm trước `.sub-nav`. Header hiển thị logo, heading, icon, tìm kiếm, avatar và hamburger theo đúng tên class Draw.io.
 - Khu vực nội dung giữ thứ tự `.left-side`, `.center`, `.right-side`; phần nội dung chính trong `.center` đi theo thứ tự `.Page-title`, hồ sơ `.Profile-*`, `.popular-repos`, `.sub-heading`, `.search-bar`, `.main-layout` và `.repo-list`.
-- `.main-layout` dùng Flexbox để đặt `.repo-list` cạnh `.sidebar-info`, không dùng CSS Grid. Danh sách repo là vùng chính; sidebar là vùng phụ theo tỷ lệ thể hiện trong Draw.io.
+- `.main-layout` dùng Flexbox để đặt `.repo-list` cạnh `.right-info`, không dùng CSS Grid. Danh sách repo là vùng chính; sidebar là vùng phụ theo tỷ lệ thể hiện trong Draw.io.
 - `.pagination` nằm sau `.repo-list`, căn giữa theo chiều ngang.
 - Container nội dung có `max-width: 1200px`, gutter ngang `24px`, căn giữa viewport.
 - Footer nằm sau toàn bộ nội dung; `.site-footer__logo`, `.site-footer__copyright`, `.site-footer__links` xếp thành các vùng ngang.
@@ -48,7 +48,7 @@ Tất cả tên dưới đây phải xuất hiện ít nhất một lần trong 
 
 - Chuyển toàn bộ bố cục sang một cột theo thứ tự đọc: header, điều hướng, tiêu đề/hồ sơ, nội dung phổ biến, tìm kiếm, repo list, pagination, footer.
 - `.left-side`, `.center`, `.right-side` không được tạo chiều rộng cố định gây tràn; các vùng co về `width: 100%`.
-- `.main-layout` đổi thành Flexbox một cột; `.sidebar-info` nằm sau `.repo-list` trong thứ tự DOM và thứ tự đọc.
+- `.main-layout` đổi thành Flexbox một cột; `.right-info` nằm sau `.repo-list` trong thứ tự DOM và thứ tự đọc.
 - Nav desktop được thu gọn bằng CSS/native HTML; dùng `details/summary` không cần JavaScript, với `.sub-nav__hamburger` trên phần tử `summary`.
 - Giảm padding card và kích thước chữ hợp lý; `.pagination` vẫn căn giữa và rút gọn số trang hiển thị.
 - Không đặt kích thước tối thiểu, margin âm hoặc phần tử tuyệt đối khiến trang rộng hơn viewport.
@@ -86,7 +86,7 @@ Tất cả tên dưới đây phải xuất hiện ít nhất một lần trong 
 Người triển khai/reviewer kiểm tra:
 
 1. Mở `src/index.html` trong trình duyệt và xác nhận file tải được chỉ với asset cục bộ.
-2. Đối chiếu DOM với toàn bộ inventory ở mục 3; mỗi tên class phải có mặt đúng chính tả, kể cả `Page-title`, `fitter-btn`, `sidebar-info_people` và `sub-nav_nav1`.
+2. Đối chiếu DOM với toàn bộ inventory ở mục 3; mỗi tên class phải có mặt đúng chính tả, kể cả `Page-title`, `fitter-btn`, `right-info_people` và `sub-nav_nav1`.
 3. Quan sát tại viewport lần lượt `1200px`, `768px`, `767px` và `375px`; xác nhận chuyển layout đúng breakpoint.
 4. Ở cả bốn viewport, xác nhận không có thanh cuộn ngang và nội dung không bị cắt.
 5. Dùng Tab để đi qua link, form control và điều khiển native; xác nhận landmark, label, skip link và focus visible.

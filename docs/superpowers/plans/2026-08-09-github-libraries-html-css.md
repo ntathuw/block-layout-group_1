@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Xây dựng bản mô phỏng tĩnh GitHub Libraries bằng `src/index.html` semantic và `src/css/style.css` thuần, khớp Draw.io v1 ở desktop và responsive mobile.
+**Goal:** Xây dựng bản mô phỏng tĩnh GitHub Libraries bằng `src/index.html` semantic và `src/css/style.css` thuần, khớp Draw.io v2 ở desktop và responsive mobile.
 
 **Architecture:** HTML chỉ chứa một trang tĩnh với landmark semantic, DOM theo thứ tự Draw.io và toàn bộ class contract đã duyệt. CSS mobile-first ở mức reset/base, bổ sung desktop từ `768px` và mobile tại `max-width: 767px`; Flexbox là kỹ thuật layout duy nhất. Điều hướng mobile dùng native `details/summary`, không có JavaScript.
 
@@ -26,7 +26,7 @@
 
 **Files:**
 - Create: `src/index.html`
-- Read-only prerequisite: `CONTRIBUTING.md`, `docs/superpowers/specs/2026-08-09-github-libraries-html-css-design.md`, `E:\SET-2026\Block-Github\block-layout-group_1\design\v1\drawio\Blocklayout-BEM-Github(v2).drawio`
+- Read-only prerequisite: `CONTRIBUTING.md`, `docs/superpowers/specs/2026-08-09-github-libraries-html-css-design.md`, `design/v2/drawio/Blocklayout-BEM-Github(v2).drawio`
 
 **Interfaces:**
 - Consumes: Draw.io v1 hierarchy, approved spec sections 2–7, and the `design-v1` tag gate from `CONTRIBUTING.md`.
@@ -65,7 +65,7 @@
   5. `.center` contains, in order: `.Page-title`; one profile section with `.Profile-avatar`, `.Profile-info` containing `.Profile-info__heading` and `.Profile-info__meta`, and `.Profile-action` containing `.Profile-action__follow-btn`; `.popular-repos`; `.sub-heading`; `.search-bar`; `.main-layout`; and `.pagination`.
   6. `.popular-repos` contains `.popular-repos__title` and one or more `.popularrepo-card` elements. Each card exposes `.popularrepo-card__heading`, `.popularrepo-card__description`, `.popularrepo-card__meta`, and `.popularrepo-card__badge` without renaming `popularrepo`.
   7. `.sub-heading` contains `.sub-heading__title` and `.sub-heading__languages`. The following `.search-bar` is a static search/filter presentation: its icon uses `.search-bar__icon`, its labeled input uses `.search-bar__input`, and its three navigation/filter controls use `.search-bar__nav1`, `.search-bar__nav2`, and `.search-bar__nav3`; the filter control uses the exact spelling `.fitter-btn`.
-  8. `.main-layout` contains `.repo-list` before `<aside class="sidebar-info">`. Each `.repo-card` contains `.repo-card__header`, `.repo-card__title`, one of the exact description contracts `.repo-card__desc` or `.repo-card__description`, `.repo-card__meta`, and `.repo-card__badge`. The aside exposes `.sidebar-info_people`, `.sidebar-info__heading`, `.sidebar-info__description`, and `.sidebar-info__meta`.
+  8. `.main-layout` contains `.repo-list` before `<aside class="right-info">`. Each `.repo-card` contains `.repo-card__header`, `.repo-card__title`, one of the exact description contracts `.repo-card__desc` or `.repo-card__description`, `.repo-card__meta`, and `.repo-card__badge`. The aside exposes `.right-info_people`, `.right-info__heading`, `.right-info__description`, and `.right-info__meta`.
   9. `.pagination` follows `.main-layout` and contains named static page controls. On desktop it can show previous, pages 1–5, and next; mobile CSS may hide the middle numeric links without JavaScript.
   10. `<footer class="site-footer">` follows all main content and contains the three horizontal regions `.site-footer__logo`, `.site-footer__copyright`, and `.site-footer__links`. Footer links use local fragment targets only.
 
@@ -81,7 +81,7 @@
   | Profile/title | `Page-title`, `Profile-avatar`, `Profile-info`, `Profile-info__heading`, `Profile-info__meta`, `Profile-action`, `Profile-action__follow-btn` |
   | Popular content | `popular-repos`, `popular-repos__title`, `popularrepo-card`, `popularrepo-card__heading`, `popularrepo-card__description`, `popularrepo-card__meta`, `popularrepo-card__badge` |
   | Search/list | `sub-heading`, `sub-heading__title`, `sub-heading__languages`, `search-bar`, `search-bar__icon`, `search-bar__input`, `search-bar__nav1`, `search-bar__nav2`, `search-bar__nav3`, `fitter-btn`, `repo-list`, `repo-card`, `repo-card__title`, `repo-card__header`, `repo-card__desc`, `repo-card__description`, `repo-card__meta`, `repo-card__badge` |
-  | Aside/footer | `sidebar-info`, `sidebar-info_people`, `sidebar-info__heading`, `sidebar-info__description`, `sidebar-info__meta`, `site-footer`, `site-footer__logo`, `site-footer__links`, `site-footer__copyright` |
+  | Aside/footer | `right-info`, `right-info_people`, `right-info__heading`, `right-info__description`, `right-info__meta`, `site-footer`, `site-footer__logo`, `site-footer__links`, `site-footer__copyright` |
   | Approved addition | `pagination` |
 
 - [ ] **Step 3: Verify the HTML contract with Python standard library before starting CSS.**
@@ -100,7 +100,7 @@
   Page-title Profile-avatar Profile-info Profile-info__heading Profile-info__meta Profile-action Profile-action__follow-btn
   popular-repos popular-repos__title popularrepo-card popularrepo-card__heading popularrepo-card__description popularrepo-card__meta popularrepo-card__badge
   sub-heading sub-heading__title sub-heading__languages search-bar search-bar__icon search-bar__input search-bar__nav1 search-bar__nav2 search-bar__nav3 fitter-btn repo-list repo-card repo-card__title repo-card__header repo-card__desc repo-card__description repo-card__meta repo-card__badge
-  sidebar-info sidebar-info_people sidebar-info__heading sidebar-info__description sidebar-info__meta site-footer site-footer__logo site-footer__links site-footer__copyright pagination""".split())
+  right-info right-info_people right-info__heading right-info__description right-info__meta site-footer site-footer__logo site-footer__links site-footer__copyright pagination""".split())
 
   class Check(HTMLParser):
       def __init__(self):
@@ -171,7 +171,7 @@
   - `.sub-nav` is a horizontal navigation row. `.sub-nav__hamburger` remains available as the summary control but is visually secondary on desktop; links using all five navigation classes remain visible and named.
   - `main#main-content` is centered with `max-width: 1200px` and `padding-inline: 24px`; its direct `.left-side`, `.center`, `.right-side` children remain in that order. `.center` is the flexible content region; side wrappers have no fixed width that can force overflow.
   - `.Page-title`, the profile elements, `.popular-repos`, `.sub-heading`, and `.search-bar` occupy the center column in DOM order. The profile row uses Flexbox for avatar, info, and action; `.Profile-info` can grow while `.Profile-action__follow-btn` remains a clearly named control.
-  - `.main-layout` is a horizontal Flexbox row. `.repo-list` is the primary flexible region, `.sidebar-info` is the secondary region at the Draw.io-like smaller proportion, and both have `min-width: 0`. Never replace this with Grid.
+  - `.main-layout` is a horizontal Flexbox row. `.repo-list` is the primary flexible region, `.right-info` is the secondary region at the Draw.io-like smaller proportion, and both have `min-width: 0`. Never replace this with Grid.
   - `.repo-card` is a vertical card; `.repo-card__header` aligns title and badge without absolute positioning. `.popularrepo-card` follows the same readable heading/description/meta/badge relationship.
   - `.pagination` is a block after `.main-layout`, centered horizontally. `.site-footer` follows main content and its `.site-footer__logo`, `.site-footer__copyright`, and `.site-footer__links` form three horizontal regions.
 
@@ -207,12 +207,12 @@
 - Read-only contract: `src/index.html` from Task 1
 
 **Interfaces:**
-- Consumes: `.sub-nav` with native `<details open><summary class="sub-nav__hamburger">`, `.main-layout` with `.repo-list` before `.sidebar-info`, and the labeled/semantic controls from Task 1.
+- Consumes: `.sub-nav` with native `<details open><summary class="sub-nav__hamburger">`, `.main-layout` with `.repo-list` before `.right-info`, and the labeled/semantic controls from Task 1.
 - Produces: `@media (max-width: 767px)` rules for 767px and 375px, visible keyboard focus, usable native disclosure behavior, and a one-column reading flow without changing any approved class token.
 
 - [ ] **Step 1: Add the mobile one-column contract at `max-width: 767px`.**
 
-  Set `.left-side`, `.center`, and `.right-side` to `width: 100%` with flexible sizing and no fixed minimum. Set `.main-layout` to `flex-direction: column`; keep `.repo-list` before `.sidebar-info` in both DOM and visual order, with each at `width: 100%`. Reduce card padding and type sizes only enough to preserve readable text. Keep `.pagination` centered and hide only the middle numeric links using structural selectors so previous/first/last/next remain available; do not add a pagination modifier class.
+  Set `.left-side`, `.center`, and `.right-side` to `width: 100%` with flexible sizing and no fixed minimum. Set `.main-layout` to `flex-direction: column`; keep `.repo-list` before `.right-info` in both DOM and visual order, with each at `width: 100%`. Reduce card padding and type sizes only enough to preserve readable text. Keep `.pagination` centered and hide only the middle numeric links using structural selectors so previous/first/last/next remain available; do not add a pagination modifier class.
 
   Keep every box within the viewport through `box-sizing`, `max-width: 100%`, `min-width: 0`, wrapping, and flexible gaps. Do not use a minimum width, negative margin, absolute positioning, or a layout rule that depends on viewport overflow.
 
@@ -271,9 +271,9 @@
 
   In browser responsive tools, inspect exactly `1200px`, `768px`, `767px`, and `375px`. At each size, mark every applicable item below as pass/fail:
 
-  - Desktop `1200px`: centered max-width container, 24px gutters, horizontal header/nav/footer, `.repo-list` beside `.sidebar-info`, centered `.pagination`.
+  - Desktop `1200px`: centered max-width container, 24px gutters, horizontal header/nav/footer, `.repo-list` beside `.right-info`, centered `.pagination`.
   - Desktop `768px`: same desktop mode; no accidental mobile collapse before the breakpoint.
-  - Mobile `767px`: one column, `.repo-list` before `.sidebar-info`, native `details/summary` navigation, centered reduced pagination.
+  - Mobile `767px`: one column, `.repo-list` before `.right-info`, native `details/summary` navigation, centered reduced pagination.
   - Mobile `375px`: same one-column rules with wrapped repository text and usable controls.
   - All four sizes: no horizontal scrollbar, clipped content, fixed-width side region, negative-margin spill, or viewport overflow.
   - Press Tab through skip link, navigation links, search input, filter controls, follow control, pagination, and footer links; confirm every stop has a visible `:focus-visible` indicator and a clear accessible name.
@@ -297,7 +297,7 @@
   Page-title Profile-avatar Profile-info Profile-info__heading Profile-info__meta Profile-action Profile-action__follow-btn
   popular-repos popular-repos__title popularrepo-card popularrepo-card__heading popularrepo-card__description popularrepo-card__meta popularrepo-card__badge
   sub-heading sub-heading__title sub-heading__languages search-bar search-bar__icon search-bar__input search-bar__nav1 search-bar__nav2 search-bar__nav3 fitter-btn repo-list repo-card repo-card__title repo-card__header repo-card__desc repo-card__description repo-card__meta repo-card__badge
-  sidebar-info sidebar-info_people sidebar-info__heading sidebar-info__description sidebar-info__meta site-footer site-footer__logo site-footer__links site-footer__copyright pagination""".split())
+  right-info right-info_people right-info__heading right-info__description right-info__meta site-footer site-footer__logo site-footer__links site-footer__copyright pagination""".split())
 
   class Check(HTMLParser):
       def __init__(self):
@@ -403,11 +403,11 @@
 - [ ] `repo-card__description` appears in the DOM.
 - [ ] `repo-card__meta` appears in the DOM.
 - [ ] `repo-card__badge` appears in the DOM.
-- [ ] `sidebar-info` appears as the `aside` region.
-- [ ] `sidebar-info_people` appears in the DOM with the exact single underscore spelling.
-- [ ] `sidebar-info__heading` appears in the DOM.
-- [ ] `sidebar-info__description` appears in the DOM.
-- [ ] `sidebar-info__meta` appears in the DOM.
+- [ ] `right-info` appears as the `aside` region.
+- [ ] `right-info_people` appears in the DOM with the exact single underscore spelling.
+- [ ] `right-info__heading` appears in the DOM.
+- [ ] `right-info__description` appears in the DOM.
+- [ ] `right-info__meta` appears in the DOM.
 - [ ] `site-footer` appears as the `footer` region.
 - [ ] `site-footer__logo` appears in the DOM.
 - [ ] `site-footer__links` appears in the DOM.
@@ -425,7 +425,7 @@
 - [ ] `details/summary` provides the mobile navigation control without JavaScript.
 - [ ] Desktop at `1200px` uses the centered `max-width: 1200px` container, 24px gutter, horizontal regions, Flexbox `.main-layout`, repo list beside sidebar, and centered pagination.
 - [ ] Desktop at `768px` remains in desktop mode with no premature mobile collapse.
-- [ ] Mobile at `767px` is one column, keeps `.repo-list` before `.sidebar-info`, and keeps pagination centered/reduced.
+- [ ] Mobile at `767px` is one column, keeps `.repo-list` before `.right-info`, and keeps pagination centered/reduced.
 - [ ] Mobile at `375px` wraps long content and keeps all controls usable.
 - [ ] There is no horizontal overflow, horizontal scrollbar, clipped content, fixed minimum width, negative-margin spill, or absolute-positioned layout at `1200px`, `768px`, `767px`, or `375px`.
 - [ ] All icons/logos are inline SVG or all other assets are relative local paths; there are no CDN, font, iframe, `@import`, HTTP, or HTTPS resources.
