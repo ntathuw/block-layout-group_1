@@ -1,12 +1,12 @@
-# Mobile: sub-nav 2+1, Repositories block, footer order — Plan (handoff)
+# Layout gaps: mobile sub-nav/repos/footer + desktop right-info beside Popular — Plan (handoff)
 
 > **For agentic workers:** Plan only until assigned. REQUIRED SUB-SKILL when executing: superpowers:executing-plans or subagent-driven-development.
 
-**Goal:** Sửa 3 vùng mobile còn lệch so với GitHub gốc theo cặp ảnh user chụp.
+**Goal:** Sửa (A) 3 vùng mobile còn lệch + (B) **desktop**: `.right-info` phải đứng **cạnh Popular repositories**, không cạnh Repositories/repo-list.
 
 **Architecture:** Chỉ `src/index.html` + `src/css/style.css`. Không JS. Giữ class BEM đã chốt; chỉ CSS + markup tối thiểu.
 
-**Tech Stack:** HTML + CSS. Mobile: `@media (max-width: 767px)`, target 375px.
+**Tech Stack:** HTML + CSS. Mobile: `@media (max-width: 767px)`, target 375px. Desktop: `>= 768px`, 1200px.
 
 ---
 
@@ -197,16 +197,95 @@ Desktop hiện tại: logo | © | links ngang. Reorder DOM có thể cần CSS d
 
 ---
 
-## 4. Thứ tự thực thi (handoff)
+## 3b. Desktop: `.right-info` cạnh Popular (không cạnh Repositories)
+
+### Gốc (user image-1 desktop)
+```
+┌────────────────────────────┬─────────────────┐
+│ Popular repositories       │ People          │
+│ [card] [card]              │ Top languages   │
+│ [card] [card]              │ Report abuse    │
+│ [card] [card]              │                 │
+└────────────────────────────┴─────────────────┘
+  (Repositories / search / repo-list nằm DƯỚI hàng này, full width)
+```
+- Cột phải (People / Top languages / Report abuse) **align top với “Popular repositories”**.
+- Grid popular 2 cột card; sidebar sticky/tĩnh bên phải **cùng hàng** với popular.
+
+### Clone (user image-2 desktop)
+```
+Repositories + search bar (full width)
+┌────────────────────────────┬─────────────────┐
+│ repo-list (facebook/react…)│ People / langs  │
+│ pagination                 │                 │
+└────────────────────────────┴─────────────────┘
+```
+- `.right-info` nằm **trong** `.main-layout` cạnh `.repo-list` → visual “kế Repositories”.
+
+### Nguyên nhân DOM hiện tại (`src/index.html`)
+
+Thứ tự trong `.center`:
+
+1. `.Page-title` + profile  
+2. `.popular-repos` ← full width, **không** có sibling right-info  
+3. `.sub-heading` + `.search-bar`  
+4. `.main-layout`  
+   - cột trái: `.repo-list` + `.pagination`  
+   - cột phải: **`.right-info`** ← sai vị trí so với gốc  
+
+### Cải thiện (recommended)
+
+**T0 — Desktop layout restructure (ưu tiên cao khi giao 1 lần)**
+
+| # | Việc | File |
+|---|------|------|
+| 1 | Tách `.right-info` **ra khỏi** `.main-layout` (không còn sibling của `.repo-list`) | HTML |
+| 2 | Bọc **cùng hàng desktop**: `.popular-repos` + `.right-info` trong 1 wrapper flex | HTML |
+| 3 | Wrapper class: **ưu tiên không class mới** — dùng element/structure có sẵn nếu được; nếu cần 1 wrapper, dùng class đã có trong contract nếu khớp, **hoặc** chấp nhận wrapper vô danh + style `.center > .popular-with-aside` chỉ khi group đồng ý class mới. **Recommended lazy:** reuse `.main-layout` **một lần** cho hàng Popular+right-info, và **không** dùng `.main-layout` cho repo-list (repo-list full width dưới). | HTML + CSS |
+| 4 | CSS desktop (`>=768`): hàng Popular+aside = `display:flex; align-items:flex-start; gap:24px`; popular `flex:1 1 auto` (grid 2 cột card giữ nguyên); right-info `flex:0 0 ~280px` / `1 1 28%` | CSS |
+| 5 | CSS: `.repo-list` + pagination + sub-heading + search-bar = **full width** dưới hàng popular (không chia cột với right-info) | CSS |
+| 6 | Mobile: vẫn 1 cột — popular trước; right-info sau pagination (hoặc sau popular — bám thứ tự đọc gốc mobile). Không để right-info chen giữa search và list nếu không khớp mobile plan | CSS + DOM order |
+| 7 | Optional: `position: sticky; top: …` cho `.right-info` desktop (gốc GitHub sticky) — nice-to-have | CSS |
+
+**DOM gợi ý (sau refactor):**
+
+```html
+<div class="center">
+  profile…
+  <!-- Hàng 1 desktop: popular | right-info -->
+  <div class="main-layout">  <!-- reuse: flex row desktop, column mobile -->
+    <section class="popular-repos">…cards…</section>
+    <aside class="right-info">…People / languages…</aside>
+  </div>
+
+  <div class="sub-heading">Repositories…</div>
+  <form class="search-bar">…</form>
+  <section class="repo-list">…</section>
+  <nav class="pagination">…</nav>
+</div>
+```
+
+**Lưu ý:**
+- Hiện `.main-layout > div` bọc repo-list+pagination — sau refactor có thể **bỏ** wrapper div thừa nếu không cần.
+- Class contract: `main-layout`, `popular-repos`, `right-info`, `repo-list`, `pagination` đều phải còn trong DOM.
+- Draw.io v2: desktop group `.right-info` cạnh popular (x=1323) — **đồng bộ** với refactor này; nếu drawio còn vẽ right-info cạnh repo-list thì cập nhật nhãn/vị trí (optional, cùng PR design).
+
+**Không làm:** absolute positioning right-info “nhảy” lên popular (dễ vỡ responsive). Ưu tiên **đổi DOM + flex**.
+
+---
+
+## 4. Thứ tự thực thi (handoff — 1 lần giao)
 
 | Task | Scope | Done when |
 |------|--------|-----------|
-| **T1** | Sub-nav 2 trái \| More phải + divider + ẩn tab thừa | 375px khớp image-1 pattern |
-| **T2** | Repositories: ẩn subtitle, unbox search-bar, input full rồi 3 filter dưới | khớp image-4 |
-| **T3** | Footer: order links → logo+©; muted links; compact | khớp image-5 |
-| **T4** | QA 375 / 767 / 1200 — không regress desktop header | no overflow ngang |
+| **T0** | Desktop: right-info cạnh Popular; repo-list full width dưới | 1200px khớp image-1 desktop (user) |
+| **T1** | Sub-nav 2 trái \| More phải + divider + ẩn tab thừa | 375px khớp sub-nav 2+1 |
+| **T2** | Repositories: ẩn subtitle, unbox search-bar, input full rồi 3 filter dưới | khớp repos gốc mobile |
+| **T3** | Footer: order links → logo+©; muted links; compact | khớp footer gốc mobile |
+| **T4** | QA 375 / 767 / 1200 | no overflow; desktop T0 không regress mobile |
 
 **Commits gợi ý:**
+- `fix: place right-info beside popular repos on desktop`
 - `fix: mobile sub-nav primary tabs and More`
 - `fix: mobile repositories search unboxed layout`
 - `fix: mobile footer order and muted links`
@@ -215,12 +294,13 @@ Desktop hiện tại: logo | © | links ngang. Reorder DOM có thể cần CSS d
 
 ## 5. Acceptance checklist
 
+- [ ] **Desktop 1200:** `.right-info` (People / Top languages / Report abuse) **cạnh** `.popular-repos`, align top; **không** cạnh `.repo-list` / dưới search Repositories.
+- [ ] **Desktop:** `.repo-list` + pagination full width **dưới** hàng popular+aside.
 - [ ] Sub-nav mobile: Overview + Repositories (trái), More ▾ (phải), có divider; **không** dàn Languages/People/About trên hàng chính.
-- [ ] Repositories: không subtitle Browse…; search full width 1 hàng; Type/Language/Sort hàng dưới, không box to bao ngoài.
-- [ ] Footer: People/languages/Report abuse (right-info) phía trên; rồi links muted wrap; rồi logo + © dưới.
-- [ ] Links footer không xanh nổi (muted).
-- [ ] Desktop 1200 không vỡ (sub-nav 5 tab hoặc More ẩn đúng).
-- [ ] Không JS; class contract giữ; `git diff --check` sạch.
+- [ ] Repositories mobile: không subtitle Browse…; search full width 1 hàng; Type/Language/Sort hàng dưới, không box to bao ngoài.
+- [ ] Footer mobile: links muted wrap rồi logo + © dưới; right-info phía trên footer.
+- [ ] Mobile 1 cột: thứ tự đọc hợp lý (popular → … → list → pagination → right-info hoặc theo plan mobile).
+- [ ] Không JS; class contract giữ (`main-layout`, `right-info`, `popular-repos`, …); `git diff --check` sạch.
 
 ---
 
@@ -230,6 +310,7 @@ Desktop hiện tại: logo | © | links ngang. Reorder DOM có thể cần CSS d
 - Không implement dropdown More bằng JS (chỉ `details/summary`).
 - Không bắt buộc badge “6” nếu không muốn thêm span — optional.
 - Không pixel-perfect sparkline repo list.
+- Không absolute-hack right-info.
 
 ---
 
@@ -237,14 +318,15 @@ Desktop hiện tại: logo | © | links ngang. Reorder DOM có thể cần CSS d
 
 | File | Thay đổi |
 |------|----------|
-| `src/index.html` | sub-nav structure (More details); optional title icon; footer child order; optional badge 6 |
-| `src/css/style.css` | `@media (max-width: 767px)` sub-nav, search-bar, sub-heading, site-footer; có thể base footer order |
+| `src/index.html` | **T0:** move `.right-info` cạnh `.popular-repos` (reuse `.main-layout`); sub-nav More; footer child order; optional badge 6 / title icon |
+| `src/css/style.css` | **T0:** desktop flex popular\|aside; repo-list full width; mobile column; + mobile sub-nav / search-bar / footer |
 
 ---
 
 ## 8. Ghi chú nhanh cho người thực thi
 
-1. **Sub-nav** là lỗi cấu trúc (2+1 vs dàn ngang) — sửa trước, screenshot so image-1.
-2. **Repositories** chủ yếu CSS unbox + flex basis 100% cho input — tránh đụng desktop `.search-bar` boxed.
-3. **Footer** dễ lệch desktop nếu reorder DOM — test 1200 ngay sau T3.
-4. Ảnh gốc mobile: image-1 (sub-nav), image-4 (repos), image-5 (people+footer). Clone: image-2, image-3, image-6.
+1. **T0 desktop right-info** là lỗi **cấu trúc DOM** (aside trong `.main-layout` với repo-list) — sửa trước hoặc cùng batch; screenshot 1200 so user image-1.
+2. **Sub-nav** mobile 2+1 vs dàn ngang — screenshot 375.
+3. **Repositories** mobile: CSS unbox + `flex: 1 0 100%` input — đừng phá desktop boxed search.
+4. **Footer** reorder DOM → test desktop 1200 ngay.
+5. Ảnh: desktop right-info gốc = user image-1 (popular+people); clone sai = image-2 (repos+people). Mobile: sub-nav / repos / footer theo plan §1–3.
