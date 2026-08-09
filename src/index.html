@@ -69,7 +69,7 @@
         <a class="sub-nav__nav5" href="#footer-links">About</a>
       </div>
       <details>
-        <summary class="sub-nav__hamburger">Explore libraries</summary>
+        <summary class="sub-nav__hamburger">More ▾</summary>
         <a class="sub-nav_nav1" href="#popular">Overview</a>
         <a class="sub-nav__nav2" href="#repositories">Repositories</a>
         <a class="sub-nav__nav3" href="#languages">Languages</a>
@@ -99,6 +99,7 @@
         </div>
       </section>
 
+      <div class="main-layout">
       <section class="popular-repos" id="popular" aria-labelledby="popular-title">
         <h2 class="popular-repos__title" id="popular-title">Popular repositories</h2>
         <article class="popularrepo-card">
@@ -119,6 +120,27 @@
         </article>
       </section>
 
+        <aside class="right-info" id="people" aria-labelledby="right-info-title">
+          <div class="right-info_people" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M5.5 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM0 13.5C0 10.46 2.46 8 5.5 8S11 10.46 11 13.5V15H0Zm11.8.5v-1c0-1.58-.56-3.03-1.5-4.16A4.5 4.5 0 0 1 16 13.2v.8Z"/>
+            </svg>
+          </div>
+          <h2 class="right-info__heading" id="right-info-title">People</h2>
+          <p class="right-info__description">Libraries are maintained by people and organizations building software in the open.</p>
+          <p class="right-info__meta">Over 100 million developers contribute on GitHub.</p>
+          <hr>
+          <h2 class="right-info__heading">Top languages</h2>
+          <ul>
+            <li class="right-info__meta" style="--dot-color:#f1e05a">JavaScript</li>
+            <li class="right-info__meta" style="--dot-color:#3178c6">TypeScript</li>
+            <li class="right-info__meta" style="--dot-color:#3572A5">Python</li>
+            <li class="right-info__meta" style="--dot-color:#f34b7d">C++</li>
+          </ul>
+          <a href="#report-abuse">Report abuse</a>
+        </aside>
+      </div>
+
       <div class="sub-heading" id="languages">
         <h2 class="sub-heading__title" id="repositories">Repositories</h2>
         <p class="sub-heading__languages">Browse 12,348 public repositories across popular languages</p>
@@ -135,9 +157,7 @@
         <button class="search-bar__nav3 fitter-btn" type="button">Sort ▾</button>
       </form>
 
-      <div class="main-layout">
-        <div>
-          <section class="repo-list" aria-label="Repository results">
+      <section class="repo-list" aria-label="Repository results">
           <article class="repo-card" id="react">
             <header class="repo-card__header">
               <h3 class="repo-card__title"><a href="#react">facebook / react</a></h3>
@@ -162,50 +182,22 @@
             <p class="repo-card__description">An open source machine learning framework for everyone.</p>
             <p class="repo-card__meta">C++ · ★ 191k · Apache-2.0 · 79.1k forks · Updated 3 days ago</p>
           </article>
-          </section>
+      </section>
 
-          <nav class="pagination" aria-label="Repository result pages">
-            <a id="page-previous" href="#page-previous" aria-label="Previous page">Previous</a>
-            <a id="page-1" href="#page-1" aria-current="page">1</a>
-            <a id="page-2" href="#page-2">2</a>
-            <a id="page-3" href="#page-3">3</a>
-            <a id="page-4" href="#page-4">4</a>
-            <a id="page-5" href="#page-5">5</a>
-            <a id="page-next" href="#page-next" aria-label="Next page">Next</a>
-          </nav>
-        </div>
-
-        <aside class="right-info" id="people" aria-labelledby="right-info-title">
-          <div class="right-info_people" aria-hidden="true">
-            <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
-              <path fill="currentColor" d="M5.5 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM0 13.5C0 10.46 2.46 8 5.5 8S11 10.46 11 13.5V15H0Zm11.8.5v-1c0-1.58-.56-3.03-1.5-4.16A4.5 4.5 0 0 1 16 13.2v.8Z"/>
-            </svg>
-          </div>
-          <h2 class="right-info__heading" id="right-info-title">People</h2>
-          <p class="right-info__description">Libraries are maintained by people and organizations building software in the open.</p>
-          <p class="right-info__meta">Over 100 million developers contribute on GitHub.</p>
-          <hr>
-          <h2 class="right-info__heading">Top languages</h2>
-          <ul>
-            <li class="right-info__meta" style="--dot-color:#f1e05a">JavaScript</li>
-            <li class="right-info__meta" style="--dot-color:#3178c6">TypeScript</li>
-            <li class="right-info__meta" style="--dot-color:#3572A5">Python</li>
-            <li class="right-info__meta" style="--dot-color:#f34b7d">C++</li>
-          </ul>
-          <a href="#report-abuse">Report abuse</a>
-        </aside>
-      </div>
+      <nav class="pagination" aria-label="Repository result pages">
+        <a id="page-previous" href="#page-previous" aria-label="Previous page">Previous</a>
+        <a id="page-1" href="#page-1" aria-current="page">1</a>
+        <a id="page-2" href="#page-2">2</a>
+        <a id="page-3" href="#page-3">3</a>
+        <a id="page-4" href="#page-4">4</a>
+        <a id="page-5" href="#page-5">5</a>
+        <a id="page-next" href="#page-next" aria-label="Next page">Next</a>
+      </nav>
     </div>
     <div class="right-side" aria-hidden="true"></div>
   </main>
 
   <footer class="site-footer">
-    <a class="site-footer__logo" href="#main-content" aria-label="GitHub home">
-      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-        <path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/>
-      </svg>
-    </a>
-    <p class="site-footer__copyright">© 2026 GitHub, Inc.</p>
     <nav class="site-footer__links" id="footer-links" aria-label="Footer links">
       <a id="terms" href="#terms">Terms</a>
       <a id="privacy" href="#privacy">Privacy</a>
@@ -218,6 +210,12 @@
       <a id="cookies" href="#cookies">Manage cookies</a>
       <a id="do-not-share" href="#do-not-share">Do not share my personal information</a>
     </nav>
+    <a class="site-footer__logo" href="#main-content" aria-label="GitHub home">
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <path fill="currentColor" d="M12 .7a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.72 1.27 3.38.97.1-.75.4-1.27.74-1.56-2.57-.29-5.27-1.28-5.27-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.58.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.71 5.38-5.29 5.67.42.36.79 1.06.79 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/>
+      </svg>
+    </a>
+    <p class="site-footer__copyright">© 2026 GitHub, Inc.</p>
   </footer>
 </body>
 </html>
