@@ -104,23 +104,11 @@ main:focus-visible {
   outline-offset: 2px;
 }
 
-body > a[href="#main-content"] {
-  display: block;
-  width: max-content;
-  max-width: calc(100% - 24px);
-  margin: 8px 12px;
-  padding: 6px 10px;
-  color: var(--link);
-  font-weight: 600;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-}
-
 .header {
   width: 100%;
   color: var(--header-text);
   background: var(--header);
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .site-header {
@@ -197,8 +185,7 @@ body > a[href="#main-content"] {
 
 .sub-nav {
   width: 100%;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border-muted);
+  background: transparent;
 }
 
 .sub-nav > div,
