@@ -175,8 +175,12 @@ main:focus-visible {
   padding: 0 6px;
   color: var(--header-text);
   background: transparent;
-  border: 1px solid #484f58;
+  border: 0;
   box-shadow: none;
+}
+
+.site-header__nav-item:first-child {
+  display: none;
 }
 
 .site-header__nav-item:hover {
@@ -297,13 +301,13 @@ main#main-content {
 }
 
 .Profile-action__follow-btn {
-  color: #ffffff;
-  background: var(--success);
-  border-color: rgba(31, 35, 40, 0.15);
+  color: var(--text);
+  background: transparent;
+  border-color: var(--border);
 }
 
 .Profile-action__follow-btn:hover {
-  background: #2ea043;
+  background: var(--surface-muted);
 }
 
 .popular-repos {
@@ -333,8 +337,16 @@ main#main-content {
 }
 
 .popularrepo-card__heading {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 16px;
+}
+
+.popularrepo-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .popularrepo-card__description {
@@ -516,13 +528,16 @@ main#main-content {
 }
 
 .right-info ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
   margin: 0 0 8px;
   padding: 0;
   list-style: none;
 }
 
 .right-info ul .right-info__meta {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 2px 0;
@@ -544,7 +559,7 @@ main#main-content {
 }
 
 .right-info a {
-  color: var(--link);
+  color: var(--muted);
   font-size: 12px;
 }
 
@@ -637,49 +652,50 @@ main#main-content {
   }
 
   .site-header {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     padding: 12px;
   }
 
+  .site-header__icon {
+    display: none;
+  }
+
   .site-header__search-bar {
-    flex: 1 0 100%;
-    order: 2;
-    max-width: none;
-    margin-left: 0;
+    display: none;
   }
 
   .site-header__nav {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .site-header__nav-item:first-child {
+    display: inline-flex;
+  }
+
+  .site-header__nav-item:not(:first-child):not(:last-child) {
     display: none;
   }
 
   .site-header__heading {
     flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .sub-nav > div {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 4px 12px;
   }
 
   .sub-nav details {
-    display: block;
-    padding: 8px 12px 12px;
-  }
-
-  .sub-nav__hamburger {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 8px 12px;
-    color: var(--text);
-    font-size: 14px;
-    background: var(--surface-muted);
-    border: 1px solid var(--border);
-  }
-
-  .sub-nav details[open] > a {
-    display: block;
-    margin-top: 4px;
+    display: none;
   }
 
   main#main-content {
@@ -702,21 +718,33 @@ main#main-content {
     min-width: 0;
   }
 
+  .Page-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .Page-title + section {
-    flex-wrap: wrap;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
   }
 
   .Profile-info {
-    flex: 1 1 calc(100% - 80px);
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .Profile-action {
-    flex: 1 0 100%;
+    flex: 0 0 auto;
   }
 
   .Profile-action__follow-btn {
-    width: 100%;
+    width: auto;
   }
 
   .popular-repos {
@@ -740,22 +768,39 @@ main#main-content {
   }
 
   .search-bar {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
     padding: 12px;
+  }
+
+  .search-bar label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .search-bar__icon {
     display: none;
   }
 
-  .search-bar__input,
+  .search-bar__input {
+    flex: 1 1 240px;
+    min-width: 0;
+  }
+
   .search-bar__nav1,
   .search-bar__nav2,
   .search-bar__nav3,
   .fitter-btn {
-    flex: 0 1 auto;
-    width: 100%;
+    flex: 0 0 auto;
+    width: auto;
   }
 
   .main-layout {
@@ -776,6 +821,10 @@ main#main-content {
     padding: 16px;
   }
 
+  .right-info_people {
+    display: none;
+  }
+
   .repo-card__header {
     flex-wrap: wrap;
   }
@@ -787,20 +836,22 @@ main#main-content {
   }
 
   .site-footer {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
     padding: 24px 12px;
+    text-align: center;
   }
 
   .site-footer__links {
-    justify-content: flex-start;
+    justify-content: center;
+    gap: 8px 12px;
   }
 
   .site-footer__links a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    padding: 8px 0;
+    padding: 6px 0;
   }
 }

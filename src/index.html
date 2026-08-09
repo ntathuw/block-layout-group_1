@@ -27,6 +27,11 @@
       </span>
       <input class="site-header__search-bar" type="search" placeholder="Type / to search" aria-label="Search GitHub">
       <nav class="site-header__nav" aria-label="User menu">
+        <button type="button" class="site-header__nav-item" aria-label="Search">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path fill="currentColor" d="M11.5 10.5 15 14l-1 1-3.5-3.5a6 6 0 1 1 1-1ZM6.5 11a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/>
+          </svg>
+        </button>
         <button type="button" class="site-header__nav-item" aria-label="Copilot">
           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
             <path fill="currentColor" d="M4 1.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm5.5 1.5a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM0 11.5a4 4 0 0 1 8 0V13H0Z"/>
@@ -57,7 +62,7 @@
     </div>
     <nav class="sub-nav" aria-label="Libraries navigation">
       <div>
-        <a class="sub-nav_nav1" href="#popular">Popular</a>
+        <a class="sub-nav_nav1" href="#popular">Overview</a>
         <a class="sub-nav__nav2" href="#repositories">Repositories</a>
         <a class="sub-nav__nav3" href="#languages">Languages</a>
         <a class="sub-nav__nav4" href="#people">People</a>
@@ -65,7 +70,7 @@
       </div>
       <details>
         <summary class="sub-nav__hamburger">Explore libraries</summary>
-        <a class="sub-nav_nav1" href="#popular">Popular</a>
+        <a class="sub-nav_nav1" href="#popular">Overview</a>
         <a class="sub-nav__nav2" href="#repositories">Repositories</a>
         <a class="sub-nav__nav3" href="#languages">Languages</a>
         <a class="sub-nav__nav4" href="#people">People</a>
@@ -85,8 +90,9 @@
           <path fill="#fff" d="M32 14a18 18 0 0 0-5.7 35.1c.9.2 1.2-.4 1.2-.9v-3.5c-5.1 1.1-6.1-2.2-6.1-2.2-.9-2.1-2-2.7-2-2.7-1.7-1.2.1-1.1.1-1.1 1.8.1 2.8 1.9 2.8 1.9 1.6 2.8 4.3 2 5.3 1.5.2-1.2.7-2 1.2-2.5-4.1-.5-8.3-2-8.3-8.9 0-2 .7-3.6 1.9-4.9-.2-.5-.8-2.3.2-4.8 0 0 1.5-.5 5 1.9a17.2 17.2 0 0 1 9 0c3.5-2.4 5-1.9 5-1.9 1 2.5.4 4.3.2 4.8a7 7 0 0 1 1.9 4.9c0 6.9-4.3 8.4-8.4 8.9.7.6 1.3 1.7 1.3 3.4v5.2c0 .5.3 1.1 1.3.9A18 18 0 0 0 32 14Z"/>
         </svg>
         <div class="Profile-info">
-          <h2 class="Profile-info__heading" id="profile-name">GitHub</h2>
+          <h2 class="Profile-info__heading" id="profile-name">Libraries</h2>
           <p class="Profile-info__meta">Build and discover open source libraries used by developers worldwide.</p>
+          <p class="Profile-info__meta">9 followers · github.com/libraries</p>
         </div>
         <div class="Profile-action">
           <button class="Profile-action__follow-btn" type="button">Follow</button>
@@ -96,19 +102,25 @@
       <section class="popular-repos" id="popular" aria-labelledby="popular-title">
         <h2 class="popular-repos__title" id="popular-title">Popular repositories</h2>
         <article class="popularrepo-card">
-          <h3 class="popularrepo-card__heading"><a href="#repositories">react</a></h3>
+          <header>
+            <h3 class="popularrepo-card__heading"><a href="#repositories">react</a></h3>
+            <span class="repo-card__badge">Public</span>
+          </header>
           <p class="popularrepo-card__description">The library for web and native user interfaces.</p>
-          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 238k · Updated recently</p>
+          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 238k · 41.3k forks</p>
         </article>
         <article class="popularrepo-card">
-          <h3 class="popularrepo-card__heading"><a href="#repositories">bootstrap</a></h3>
+          <header>
+            <h3 class="popularrepo-card__heading"><a href="#repositories">bootstrap</a></h3>
+            <span class="repo-card__badge">Public</span>
+          </header>
           <p class="popularrepo-card__description">A powerful, extensible frontend toolkit.</p>
-          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 173k · Updated yesterday</p>
+          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 173k · 78.4k forks</p>
         </article>
       </section>
 
       <div class="sub-heading" id="languages">
-        <h2 class="sub-heading__title" id="repositories">All repositories</h2>
+        <h2 class="sub-heading__title" id="repositories">Repositories</h2>
         <p class="sub-heading__languages">Browse 12,348 public repositories across popular languages</p>
       </div>
 
@@ -118,9 +130,9 @@
           <path fill="currentColor" d="M11.5 10.5 15 14l-1 1-3.5-3.5a6 6 0 1 1 1-1ZM6.5 11a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z"/>
         </svg>
         <input class="search-bar__input" id="repository-search" name="q" type="search" placeholder="Find a repository…">
-        <button class="search-bar__nav1" type="button">Type: All</button>
-        <button class="search-bar__nav2" type="button">Language: All</button>
-        <button class="search-bar__nav3 fitter-btn" type="button">Sort: Stars</button>
+        <button class="search-bar__nav1" type="button">Type ▾</button>
+        <button class="search-bar__nav2" type="button">Language ▾</button>
+        <button class="search-bar__nav3 fitter-btn" type="button">Sort ▾</button>
       </form>
 
       <div class="main-layout">
@@ -132,7 +144,7 @@
               <span class="repo-card__badge">Public</span>
             </header>
             <p class="repo-card__desc">A declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
-            <p class="repo-card__meta">JavaScript · ★ 238k · Updated 2 hours ago</p>
+            <p class="repo-card__meta">JavaScript · ★ 238k · MIT · 41.3k forks · Updated 2 hours ago</p>
           </article>
           <article class="repo-card" id="vue">
             <header class="repo-card__header">
@@ -140,7 +152,7 @@
               <span class="repo-card__badge">Public</span>
             </header>
             <p class="repo-card__description">An approachable, performant and versatile framework for building web user interfaces.</p>
-            <p class="repo-card__meta">TypeScript · ★ 49.8k · Updated yesterday</p>
+            <p class="repo-card__meta">TypeScript · ★ 49.8k · MIT · 8.7k forks · Updated yesterday</p>
           </article>
           <article class="repo-card" id="tensorflow">
             <header class="repo-card__header">
@@ -148,7 +160,7 @@
               <span class="repo-card__badge">Public</span>
             </header>
             <p class="repo-card__description">An open source machine learning framework for everyone.</p>
-            <p class="repo-card__meta">C++ · ★ 191k · Updated 3 days ago</p>
+            <p class="repo-card__meta">C++ · ★ 191k · Apache-2.0 · 79.1k forks · Updated 3 days ago</p>
           </article>
           </section>
 
