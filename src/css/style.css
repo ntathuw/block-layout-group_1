@@ -1,19 +1,19 @@
 :root {
-  --canvas: #f6f8fa;
-  --surface: #ffffff;
-  --surface-muted: #f6f8fa;
-  --border: #d0d7de;
-  --border-muted: #d8dee4;
-  --text: #1f2328;
-  --muted: #59636e;
-  --link: #0969da;
-  --link-hover: #0550ae;
-  --header: #25292e;
+  --canvas: #0d1117;
+  --surface: #0d1117;
+  --surface-muted: #161b22;
+  --border: #30363d;
+  --border-muted: #21262d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --link: #58a6ff;
+  --link-hover: #79c0ff;
+  --header: #161b22;
   --header-text: #ffffff;
-  --success: #1f883d;
-  --focus: #0969da;
+  --success: #238636;
+  --focus: #2f81f7;
   --radius: 6px;
-  --shadow: 0 1px 0 rgba(31, 35, 40, 0.04);
+  --shadow: 0 1px 0 rgba(1, 4, 9, 0.4);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   color: var(--text);
   background: var(--canvas);
@@ -83,7 +83,7 @@ button {
 }
 
 button:hover {
-  background: #eef1f4;
+  background: #21262d;
 }
 
 input {
@@ -142,7 +142,7 @@ body > a[href="#main-content"] {
   height: 36px;
   color: var(--header-text);
   background: transparent;
-  border: 1px solid #57606a;
+  border: 1px solid #484f58;
   border-radius: var(--radius);
 }
 
@@ -173,12 +173,12 @@ body > a[href="#main-content"] {
 .site-header__search-bar {
   flex: 1 1 auto;
   color: var(--header-text);
-  background: #2f343b;
-  border-color: #57606a;
+  background: #21262d;
+  border-color: #484f58;
 }
 
 .site-header__search-bar::placeholder {
-  color: #c9d1d9;
+  color: #8b949e;
 }
 
 .site-header__avatar {
@@ -304,7 +304,7 @@ main#main-content {
 }
 
 .Profile-action__follow-btn:hover {
-  background: #1a7f37;
+  background: #2ea043;
 }
 
 .popular-repos {
@@ -347,7 +347,7 @@ main#main-content {
 
 .popularrepo-card__meta,
 .repo-card__meta,
-.sidebar-info__meta {
+.right-info__meta {
   margin: 0;
   color: var(--muted);
   font-size: 12px;
@@ -485,16 +485,13 @@ main#main-content {
   overflow-wrap: anywhere;
 }
 
-.sidebar-info {
+.right-info {
   flex: 1 1 28%;
   min-width: 0;
-  padding: 20px;
-  background: var(--surface-muted);
-  border: 1px solid var(--border-muted);
-  border-radius: var(--radius);
+  padding: 4px 0;
 }
 
-.sidebar-info_people {
+.right-info_people {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -502,19 +499,54 @@ main#main-content {
   height: 40px;
   margin-bottom: 12px;
   color: var(--link);
-  background: #ddf4ff;
+  background: rgba(56, 139, 253, 0.15);
   border-radius: 50%;
 }
 
-.sidebar-info__heading {
-  margin: 0 0 8px;
-  font-size: 17px;
+.right-info__heading {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.sidebar-info__description {
-  margin: 0 0 16px;
+.right-info__description {
+  margin: 0 0 8px;
   color: var(--muted);
+  font-size: 12px;
   overflow-wrap: anywhere;
+}
+
+.right-info ul {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.right-info ul .right-info__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0;
+}
+
+.right-info ul .right-info__meta::before {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  content: "";
+  background: var(--dot-color, #8b949e);
+  border-radius: 50%;
+}
+
+.right-info hr {
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid var(--border-muted);
+}
+
+.right-info a {
+  color: var(--link);
+  font-size: 12px;
 }
 
 .pagination {
@@ -544,8 +576,8 @@ main#main-content {
 .site-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  gap: 16px 24px;
   width: 100%;
   max-width: 1200px;
   min-width: 0;
@@ -727,14 +759,14 @@ main#main-content {
 
   .main-layout > div,
   .repo-list,
-  .sidebar-info {
+  .right-info {
     flex: 0 1 auto;
     width: 100%;
     min-width: 0;
   }
 
   .repo-card,
-  .sidebar-info,
+  .right-info,
   .popularrepo-card {
     padding: 16px;
   }
