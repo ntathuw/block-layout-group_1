@@ -33,25 +33,24 @@
       </label>
       <span class="site-header__avatar" role="img" aria-label="Signed in user avatar">GH</span>
     </div>
+    <nav class="sub-nav" aria-label="Libraries navigation">
+      <div>
+        <a class="sub-nav_nav1" href="#popular">Popular</a>
+        <a class="sub-nav__nav2" href="#repositories">Repositories</a>
+        <a class="sub-nav__nav3" href="#languages">Languages</a>
+        <a class="sub-nav__nav4" href="#people">People</a>
+        <a class="sub-nav__nav5" href="#footer-links">About</a>
+      </div>
+      <details>
+        <summary class="sub-nav__hamburger">Explore libraries</summary>
+        <a class="sub-nav_nav1" href="#popular">Popular</a>
+        <a class="sub-nav__nav2" href="#repositories">Repositories</a>
+        <a class="sub-nav__nav3" href="#languages">Languages</a>
+        <a class="sub-nav__nav4" href="#people">People</a>
+        <a class="sub-nav__nav5" href="#footer-links">About</a>
+      </details>
+    </nav>
   </header>
-
-  <nav class="sub-nav" aria-label="Libraries navigation">
-    <div>
-      <a class="sub-nav_nav1" href="#popular">Popular</a>
-      <a class="sub-nav__nav2" href="#repositories">Repositories</a>
-      <a class="sub-nav__nav3" href="#languages">Languages</a>
-      <a class="sub-nav__nav4" href="#people">People</a>
-      <a class="sub-nav__nav5" href="#footer-links">About</a>
-    </div>
-    <details>
-      <summary class="sub-nav__hamburger">Explore libraries</summary>
-      <a class="sub-nav_nav1" href="#popular">Popular</a>
-      <a class="sub-nav__nav2" href="#repositories">Repositories</a>
-      <a class="sub-nav__nav3" href="#languages">Languages</a>
-      <a class="sub-nav__nav4" href="#people">People</a>
-      <a class="sub-nav__nav5" href="#footer-links">About</a>
-    </details>
-  </nav>
 
   <main id="main-content" tabindex="-1">
     <div class="left-side" aria-hidden="true"></div>
@@ -142,15 +141,24 @@
           </nav>
         </div>
 
-        <aside class="sidebar-info" id="people" aria-labelledby="sidebar-title">
-          <div class="sidebar-info_people" aria-hidden="true">
+        <aside class="right-info" id="people" aria-labelledby="right-info-title">
+          <div class="right-info_people" aria-hidden="true">
             <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true">
               <path fill="currentColor" d="M5.5 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm5-1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM0 13.5C0 10.46 2.46 8 5.5 8S11 10.46 11 13.5V15H0Zm11.8.5v-1c0-1.58-.56-3.03-1.5-4.16A4.5 4.5 0 0 1 16 13.2v.8Z"/>
             </svg>
           </div>
-          <h2 class="sidebar-info__heading" id="sidebar-title">Open source community</h2>
-          <p class="sidebar-info__description">Libraries are maintained by people and organizations building software in the open.</p>
-          <p class="sidebar-info__meta">Over 100 million developers contribute on GitHub.</p>
+          <h2 class="right-info__heading" id="right-info-title">People</h2>
+          <p class="right-info__description">Libraries are maintained by people and organizations building software in the open.</p>
+          <p class="right-info__meta">Over 100 million developers contribute on GitHub.</p>
+          <hr>
+          <h2 class="right-info__heading">Top languages</h2>
+          <ul>
+            <li class="right-info__meta" style="--dot-color:#f1e05a">JavaScript</li>
+            <li class="right-info__meta" style="--dot-color:#3178c6">TypeScript</li>
+            <li class="right-info__meta" style="--dot-color:#3572A5">Python</li>
+            <li class="right-info__meta" style="--dot-color:#f34b7d">C++</li>
+          </ul>
+          <a href="#report-abuse">Report abuse</a>
         </aside>
       </div>
     </div>
@@ -170,6 +178,11 @@
       <a id="security" href="#security">Security</a>
       <a id="status" href="#status">Status</a>
       <a id="help" href="#help">Help</a>
+      <a id="community" href="#community">Community</a>
+      <a id="docs" href="#docs">Docs</a>
+      <a id="contact" href="#contact">Contact</a>
+      <a id="cookies" href="#cookies">Manage cookies</a>
+      <a id="do-not-share" href="#do-not-share">Do not share my personal information</a>
     </nav>
   </footer>
 </body>
