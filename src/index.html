@@ -110,21 +110,21 @@
         <div>
         <section class="popular-repos" id="popular" aria-labelledby="popular-title">
         <h2 class="popular-repos__title" id="popular-title">Popular repositories</h2>
-        <article class="popularrepo-card">
+        <article class="popular-repos__card">
           <header>
-            <h3 class="popularrepo-card__heading"><a href="#repositories">react</a></h3>
-            <span class="repo-card__badge">Public</span>
+            <h3 class="popular-repos__card__heading"><a href="#repositories">react</a></h3>
+            <span class="popular-repos__card__badge">Public</span>
           </header>
-          <p class="popularrepo-card__description">The library for web and native user interfaces.</p>
-          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 238k · 41.3k forks</p>
+          <p class="popular-repos__card__description">The library for web and native user interfaces.</p>
+          <p class="popular-repos__card__meta"><span class="popular-repos__card__badge">JavaScript</span> ★ 238k · 41.3k forks</p>
         </article>
-        <article class="popularrepo-card">
+        <article class="popular-repos__card">
           <header>
-            <h3 class="popularrepo-card__heading"><a href="#repositories">bootstrap</a></h3>
-            <span class="repo-card__badge">Public</span>
+            <h3 class="popular-repos__card__heading"><a href="#repositories">bootstrap</a></h3>
+            <span class="popular-repos__card__badge">Public</span>
           </header>
-          <p class="popularrepo-card__description">A powerful, extensible frontend toolkit.</p>
-          <p class="popularrepo-card__meta"><span class="popularrepo-card__badge">JavaScript</span> ★ 173k · 78.4k forks</p>
+          <p class="popular-repos__card__description">A powerful, extensible frontend toolkit.</p>
+          <p class="popular-repos__card__meta"><span class="popular-repos__card__badge">JavaScript</span> ★ 173k · 78.4k forks</p>
         </article>
       </section>
 
@@ -140,7 +140,7 @@
         <input class="search-bar__input" id="repository-search" name="q" type="search" placeholder="Find a repository…">
         <button class="search-bar__nav1" type="button">Type ▾</button>
         <button class="search-bar__nav2" type="button">Language ▾</button>
-        <button class="search-bar__nav3 fitter-btn" type="button">Sort ▾</button>
+        <button class="search-bar__nav3" type="button">Sort ▾</button>
       </form>
 
       <section class="repo-list" aria-label="Repository results">
@@ -150,7 +150,10 @@
                 <h3 class="repo-card__title"><a href="#react">facebook / react</a></h3>
                 <span class="repo-card__badge">Public</span>
               </header>
-              <p class="repo-card__desc">A declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
+              <p class="repo-card__description">A declarative, efficient, and flexible JavaScript library for building user interfaces.</p>
+              <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
+                <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,28 12,24 24,26 36,18 48,20 60,12 72,16 84,8 96,14 108,10 120,12"/>
+              </svg>
               <p class="repo-card__meta">
                 <span class="repo-card__lang" style="--dot-color:#f1e05a">JavaScript</span>
                 <span><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> 238k</span>
@@ -161,9 +164,6 @@
                 <span>Updated 2 hours ago</span>
               </p>
             </div>
-            <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
-              <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,28 12,24 24,26 36,18 48,20 60,12 72,16 84,8 96,14 108,10 120,12"/>
-            </svg>
           </article>
           <article class="repo-card" id="vue">
             <div class="repo-card__body">
@@ -172,6 +172,9 @@
                 <span class="repo-card__badge">Public</span>
               </header>
               <p class="repo-card__description">An approachable, performant and versatile framework for building web user interfaces.</p>
+              <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
+                <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,22 12,20 24,24 36,10 48,14 60,6 72,18 84,12 96,16 108,8 120,14"/>
+              </svg>
               <p class="repo-card__meta">
                 <span class="repo-card__lang" style="--dot-color:#3178c6">TypeScript</span>
                 <span><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> 49.8k</span>
@@ -182,9 +185,6 @@
                 <span>Updated yesterday</span>
               </p>
             </div>
-            <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
-              <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,22 12,20 24,24 36,10 48,14 60,6 72,18 84,12 96,16 108,8 120,14"/>
-            </svg>
           </article>
           <article class="repo-card" id="tensorflow">
             <div class="repo-card__body">
@@ -193,6 +193,9 @@
                 <span class="repo-card__badge">Public</span>
               </header>
               <p class="repo-card__description">An open source machine learning framework for everyone.</p>
+              <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
+                <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,26 12,22 24,24 36,20 48,22 60,14 72,18 84,10 96,16 108,12 120,8"/>
+              </svg>
               <p class="repo-card__meta">
                 <span class="repo-card__lang" style="--dot-color:#f34b7d">C++</span>
                 <span><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg> 191k</span>
@@ -203,9 +206,6 @@
                 <span>Updated 3 days ago</span>
               </p>
             </div>
-            <svg class="repo-card__sparkline" viewBox="0 0 120 36" width="120" height="36" aria-hidden="true">
-              <polyline fill="none" stroke="#3fb950" stroke-width="1.5" points="0,26 12,22 24,24 36,20 48,22 60,14 72,18 84,10 96,16 108,12 120,8"/>
-            </svg>
           </article>
       </section>
 

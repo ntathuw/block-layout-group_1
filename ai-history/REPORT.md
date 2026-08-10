@@ -11,10 +11,11 @@
 ## 1. Tổng quan
 
 - **Model điều phối chính:** `openai/gpt-5.6-sol`.
-- **Tổng số lần dùng AI trong phạm vi hạng mục/worktree này:** **2 lần**.
+- **Tổng số lần dùng AI trong phạm vi hạng mục/worktree này:** **3 lần**.
   - **Lần 1:** log Buổi 16 hiện có tại [`logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md`](logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md).
   - **Lần 2:** log độc lập tại [`logs/2026-08-09_MPhuc_github-libraries-html-css.md`](logs/2026-08-09_MPhuc_github-libraries-html-css.md).
-- Các log Draw.io cũ là hoạt động của **hạng mục/branch khác**, không thuộc phạm vi đếm của worktree này. Vì vậy tổng số vẫn là **2**.
+  - **Lần 3:** log độc lập tại [`logs/2026-08-10_MPhuc_github-libraries-fixes.md`](logs/2026-08-10_MPhuc_github-libraries-fixes.md).
+- Các log Draw.io cũ là hoạt động của **hạng mục/branch khác**, không thuộc phạm vi đếm của worktree này. Vì vậy tổng số vẫn là **3**.
 - **Thời gian bắt đầu lần 2:** không được hệ thống ghi nhận chính xác.
 - **Mục đích:** chuyển layout GitHub Libraries sang HTML semantic/CSS thuần; giữ exact class names theo hợp đồng visual/class; bổ sung pagination; triển khai responsive desktop/mobile và hoàn tất review.
 - AI không thay thế quyết định của nhóm: các lựa chọn A/B/C do người dùng xác nhận; reviewer, UI QA và arbiter là các cổng đánh giá độc lập.
@@ -42,6 +43,7 @@
 |---|---|---|---|---|---|
 | 1 | 09/08/2026 | MPhuc | Viết tài liệu Buổi 16 về Block Layout/BEM, tạo spec/plan và chuẩn bị worktree cho hạng mục HTML/CSS | 100% | [log](logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md) |
 | 2 | 09/08/2026 | MPhuc | Dựng GitHub Libraries bằng HTML/CSS theo Draw.io V2 bên ngoài worktree hiện tại, giữ 61 class, thêm pagination, responsive và hoàn tất review | 100% final output sau 3 vòng review | [log](logs/2026-08-09_MPhuc_github-libraries-html-css.md) |
+| 3 | 10/08/2026 | MPhuc | Fix theo feedback: right-info sticky + bỏ pagination, footer theo gốc, section Repositories (search/filter + bỏ Browse), header icons/search, repo meta + sparkline, align BEM với Draw.io V2 (desktop/mobile sửa tay), mobile header/sparkline/footer; push branch | 100% (mỗi nhóm plan + spec duyệt trước khi code) | [log](logs/2026-08-10_MPhuc_github-libraries-fixes.md) |
 
 ### Cách hiểu tỷ lệ `% dùng được`
 
@@ -126,3 +128,21 @@ Chi tiết đầy đủ, gồm context công khai, transcript 14 lượt, models
 - **Acceptance/review:** exact 61 classes; UI QA Edge 151 tại `1200x900`, `768x900`, `767x900`, `375x812`; không overflow; `details` dùng được bằng keyboard; reviewer approved; arbiter approve; testbench evidence được tổng hợp.
 - **Git provenance:** Draw.io V2 bên ngoài worktree hiện tại là contract; `design-v1` tại `bd97589` và merge `1832ee6` chỉ đưa artifact repository V1 vào ancestry gate, không đại diện cho V2.
 - **Trạng thái:** branch exact đã tồn tại; PR/MR **pending**, chưa tuyên bố đã tạo.
+
+---
+
+## 7. Lần sử dụng AI thứ 3 trong hạng mục HTML/CSS
+
+Chi tiết đầy đủ, gồm context công khai, transcript 14 lượt, models/tools, quyết định, lỗi và evidence nằm trong log độc lập:
+
+[`ai-history/logs/2026-08-10_MPhuc_github-libraries-fixes.md`](logs/2026-08-10_MPhuc_github-libraries-fixes.md)
+
+### Tóm tắt được chấp nhận
+
+- **Mục tiêu:** thu hẹp lệch visual giữa clone và bản gốc theo feedback; align BEM với Draw.io V2 do người dùng sửa tay (desktop + mobile).
+- **Context:** 6 spec mới `2026-08-10-*.md`; `design/v2/drawio` (drawio + PNG sửa tay); `docs/block-list.md` viết lại; `src/index.html` + `src/css/style.css`.
+- **Lựa chọn:** giữ `right-info_people`/`repo-card__title`/`repo-card__body`; bỏ pagination; bỏ Help; bỏ dòng Browse; giữ `.site-header__nav`; rename `popularrepo-card*` → `popular-repos__card*`, `repo-card__desc` → `repo-card__description`, xóa `fitter-btn`; sparkline vào giữa description/meta; mobile header search tròn + ẩn nav; footer mobile order links→logo→©.
+- **Implementation:** 6 nhóm thay đổi; mỗi nhóm plan + spec duyệt trước khi code; commit `a12bf60`, `ee3bc8e` + nhóm chưa commit (BEM align, mobile header/sparkline/footer).
+- **Acceptance/review:** `git diff --check` sạch; rg xác nhận xóa sạch `popularrepo-card*`/`repo-card__desc`/`fitter-btn`/`pagination`/Browse/Help/`site-header__icon`; class giữ nguyên theo yêu cầu; BEM khớp Draw.io V2 sửa tay.
+- **Git:** toàn bộ thay đổi (src, docs, specs, drawio sửa tay) được commit và **push lên branch** `SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website` tại remote `origin`.
+- **Trạng thái:** đã push branch; không tuyên bố PR/MR.
