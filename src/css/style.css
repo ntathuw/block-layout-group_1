@@ -350,7 +350,7 @@ main#main-content {
   font-size: 20px;
 }
 
-.popularrepo-card {
+.popular-repos__card {
   display: flex;
   flex: 1 1 320px;
   flex-direction: column;
@@ -362,12 +362,12 @@ main#main-content {
   box-shadow: var(--shadow);
 }
 
-.popularrepo-card__heading {
+.popular-repos__card__heading {
   margin: 0;
   font-size: 16px;
 }
 
-.popularrepo-card > header {
+.popular-repos__card > header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -375,14 +375,14 @@ main#main-content {
   margin-bottom: 8px;
 }
 
-.popularrepo-card__description {
+.popular-repos__card__description {
   flex: 1 1 auto;
   margin: 0 0 16px;
   color: var(--muted);
   overflow-wrap: anywhere;
 }
 
-.popularrepo-card__meta,
+.popular-repos__card__meta,
 .repo-card__meta,
 .right-info__meta {
   margin: 0;
@@ -390,7 +390,7 @@ main#main-content {
   font-size: 12px;
 }
 
-.popularrepo-card__badge,
+.popular-repos__card__badge,
 .repo-card__badge {
   display: inline-flex;
   align-items: center;
@@ -405,7 +405,7 @@ main#main-content {
   border-radius: 999px;
 }
 
-.popularrepo-card__badge::before {
+.popular-repos__card__badge::before {
   width: 9px;
   height: 9px;
   margin-right: 5px;
@@ -461,8 +461,7 @@ main#main-content {
 
 .search-bar__nav1,
 .search-bar__nav2,
-.search-bar__nav3,
-.fitter-btn {
+.search-bar__nav3 {
   flex: 0 0 auto;
   white-space: nowrap;
   background: #21262d;
@@ -491,10 +490,8 @@ main#main-content {
 }
 
 .repo-card {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
   min-width: 0;
   padding: 20px;
   background: var(--surface);
@@ -508,6 +505,7 @@ main#main-content {
   flex: 1 1 auto;
   flex-direction: column;
   min-width: 0;
+  padding-right: 136px;
 }
 
 .repo-card__header {
@@ -525,7 +523,6 @@ main#main-content {
   overflow-wrap: anywhere;
 }
 
-.repo-card__desc,
 .repo-card__description {
   margin: 10px 0 12px;
   color: var(--muted);
@@ -558,8 +555,10 @@ main#main-content {
 }
 
 .repo-card__sparkline {
-  flex: 0 0 auto;
-  margin-top: 8px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #3fb950;
 }
 
@@ -711,17 +710,28 @@ main#main-content {
     padding: 12px;
   }
 
-  .site-header__search,
+  .site-header__search {
+    display: inline-flex;
+    flex: 0 0 32px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-left: auto;
+    border: 1px solid #484f58;
+    border-radius: 50%;
+  }
+
+  .site-header__search svg {
+    position: static;
+    color: var(--header-text);
+  }
+
   .site-header__search-bar {
     display: none;
   }
 
   .site-header__nav {
-    display: flex;
-    flex: 0 0 auto;
-  }
-
-  .site-header__nav-item:not(:last-child) {
     display: none;
   }
 
@@ -831,7 +841,7 @@ main#main-content {
   }
 
   .popular-repos__title,
-  .popularrepo-card {
+  .popular-repos__card {
     flex-basis: auto;
     width: 100%;
   }
@@ -864,8 +874,7 @@ main#main-content {
 
   .search-bar__nav1,
   .search-bar__nav2,
-  .search-bar__nav3,
-  .fitter-btn {
+  .search-bar__nav3 {
     flex: 0 0 auto;
     width: auto;
   }
@@ -887,18 +896,20 @@ main#main-content {
 
   .repo-card,
   .right-info,
-  .popularrepo-card {
+  .popular-repos__card {
     padding: 16px;
   }
 
-  .repo-card {
-    flex-wrap: wrap;
+  .repo-card__body {
+    padding-right: 0;
   }
 
   .repo-card__sparkline {
+    position: static;
+    transform: none;
     width: 100%;
     max-width: 120px;
-    margin-left: auto;
+    margin: 0 0 12px;
   }
 
   .right-info_people {
@@ -918,8 +929,17 @@ main#main-content {
   }
 
   .site-footer__links {
+    order: 1;
     justify-content: center;
     gap: 8px 12px;
+  }
+
+  .site-footer__logo {
+    order: 2;
+  }
+
+  .site-footer__copyright {
+    order: 3;
   }
 
   .site-footer__links a {
