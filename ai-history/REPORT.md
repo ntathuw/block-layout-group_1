@@ -94,22 +94,22 @@ Các log Draw.io cũ thuộc branch/hạng mục thiết kế trước đó; ch�
 
 ## 5. Bài học rút ra
 
+1. Khi nguồn contract là Draw.io V2 bên ngoài worktree hiện tại, inventory class phải được coi là hợp đồng; không tự sửa spelling hoặc “cải thiện” BEM.
 2. Phải tách provenance visual/class V2 khỏi Git ancestry artifact V1: tag `design-v1` và merge `1832ee6` chỉ phục vụ gate lịch sử, không phải nguồn thay thế.
 3. Cần kiểm tra gate Git và ancestry trước khi sửa `src/`.
 4. Responsive native phải được kiểm tra ở cả `768px` và `767px`; `details/summary` cần tách khỏi nav desktop khi hai chế độ có hành vi hiển thị khác nhau.
 5. Acceptance nên ghi bằng evidence nhị phân: 61 class, bốn viewport, không overflow, keyboard path, local resources và verdict độc lập.
-1. Khi nguồn contract là Draw.io V2 bên ngoài worktree hiện tại, inventory class phải được coi là hợp đồng; không tự sửa spelling hoặc “cải thiện” BEM.
 
 ---
 
 ## Nguyên tắc nhóm đã tuân thủ
 
-- ✅ Không tuyên bố PR/MR đã tạo khi chưa có evidence; trạng thái hiện tại là **PR pending**.
-- ✅ Không commit trong lúc thực thi plan HTML/CSS; merge Git V1 chỉ thực hiện sau khi người dùng duyệt.
+- ✅ AI viết/gợi ý, người đọc hiểu và sửa; không copy-paste thẳng vào commit mà không review.
+- ✅ Log và report ghi theo phạm vi hạng mục; không cộng nhầm log Draw.io cũ.
 - ✅ Không ghi credential, API key, email hoặc secret vào báo cáo/log.
 - ✅ Prompt nêu nguồn contract V2, danh sách class và ràng buộc kỹ thuật đã chốt.
-- ✅ Log và report ghi theo phạm vi hạng mục; không cộng nhầm log Draw.io cũ.
-- ✅ AI viết/gợi ý, người đọc hiểu và sửa; không copy-paste thẳng vào commit mà không review.
+- ✅ Không commit trong lúc thực thi plan HTML/CSS; merge Git V1 chỉ thực hiện sau khi người dùng duyệt.
+- ✅ Không tuyên bố PR/MR đã tạo khi chưa có evidence; trạng thái hiện tại là **PR pending**.
 
 ---
 
