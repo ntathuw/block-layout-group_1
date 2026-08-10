@@ -2,58 +2,51 @@
 
 ## 1. Nhánh
 
-Đặt tên theo mã ticket:
-
 ```
-SET26-<số ticket>/<TênNgười>/<mô-tả-ngắn>
-```
-
-Ví dụ: `SET26-5/NguyenPhuc/Desktop-block-layout`
-
-```
-main   ← chỉ nhận merge qua PR, luôn chạy được
+main            ← chỉ nhận merge qua PR, luôn chạy được
+ ├── design     ← bản vẽ (Designer)
+ ├── code       ← HTML/CSS (Dev)
+ └── ai-history ← log AI (ai cũng push được)
 ```
 
-## 2. THỨ TỰ — luật bắt buộc
+## 2. THỨ TỰ COMMIT — luật bắt buộc
 
-Đề bài chấm trực tiếp phần này: **bản vẽ phải đứng trước code.**
-
-Áp dụng ở 2 chỗ:
-
-### a. Thứ tự commit trong nhánh của mình
-
-Không commit vào `src/` trước khi bản vẽ tương ứng đã được commit.
-
-### b. Thứ tự merge vào `main` — quan trọng nhất
-
-Leader merge theo đúng thứ tự dưới đây, không đảo:
+Đề bài chấm trực tiếp phần này. Thứ tự đúng:
 
 ```
-1. docs:    block-list + naming convention
-2. design:  bản vẽ tay (mobile + desktop)
-3. design:  draw.io + PNG export
-4. feat:    HTML/CSS                          ← code bắt đầu từ đây
+1. chore: init repo structure
+2. docs: define block list and naming convention
+3. design: add hand-drawn block layout v1 (mobile + desktop)   ← ẢNH VẼ TAY
+4. design: add draw.io block layout v1 + png export            ← DRAW.IO
+   >>> git tag design-v1 <<<
+5. feat: add html skeleton following block layout v1           ← CODE BẮT ĐẦU TỪ ĐÂY
+6. feat: add css reset and design tokens
+7. feat: add desktop styles
+8. feat: add mobile responsive styles
    --- chỉ khi cần sửa layout ---
-5. design:  bản vẽ v2  →  refactor: sửa code theo v2
-6. docs:    AI history report + meeting minutes
+9.  design: add hand-drawn layout v2 (<lý do>)
+10. design: add draw.io layout v2 + png export
+    >>> git tag design-v2 <<<
+11. refactor: update layout to match design v2
+12. docs: AI history report
+13. docs: meeting minutes
+    >>> git tag final <<<
 ```
-
-Bản vẽ v2 phải merge **trước** commit sửa code theo v2.
-
-**Kiểm tra trước khi nộp:**
-
-```bash
-git checkout main && git pull
-git log --oneline --graph main
-```
-
-→ commit `design:` đầu tiên phải nằm **dưới** commit `feat:` đầu tiên trong log.
 
 **Ba điều cấm:**
 
-1. ❌ Merge nhánh code vào `main` khi nhánh design chưa merge.
+1. ❌ Commit vào `src/` khi tag `design-v1` chưa tồn tại.
 2. ❌ Gộp ảnh vẽ tay chung một commit với code.
 3. ❌ Chỉ commit PNG mà thiếu file `.drawio` gốc.
+
+**Trước khi code, Dev chạy:**
+
+```bash
+git checkout main && git pull
+git log --oneline --decorate | grep design-v1   # phải thấy tag
+```
+
+Không thấy → chưa được code.
 
 ## 3. Commit message
 

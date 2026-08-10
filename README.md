@@ -80,7 +80,7 @@ types: design | feat | fix | refactor | docs | chore
 ```
 
 > ⚠️ **Luật quan trọng nhất:** commit bản vẽ (tay + draw.io) **phải đứng trước** mọi commit code trong `src/`.
-> Nhánh design phải được merge vào `main` trước nhánh code. Xem mục 2 trong [`CONTRIBUTING.md`](CONTRIBUTING.md).
+> Không ai được commit vào `src/` khi tag `design-v1` chưa tồn tại.
 
 ---
 

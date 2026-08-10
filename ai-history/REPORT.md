@@ -10,6 +10,7 @@
 
 ## 1. Tổng quan
 
+<<<<<<< HEAD
 - **Model điều phối chính:** `openai/gpt-5.6-sol`.
 - **Tổng số lần dùng AI trong phạm vi hạng mục/worktree này:** **3 lần**.
   - **Lần 1:** log Buổi 16 hiện có tại [`logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md`](logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md).
@@ -36,14 +37,26 @@
 - `design-v1`/`1832ee6` **không phải Draw.io V2 và không thay thế nguồn contract V2**. Đây là distinction bắt buộc khi đọc Git history và tài liệu triển khai.
 
 ---
+=======
+- **Model dùng:** DeepSeek-chat
+- **Tổng số lần dùng AI:** ___ lần
+- **Dùng cho việc gì:** _(ví dụ: sinh HTML skeleton, sinh CSS từng block, debug lệch layout)_
+- **Không dùng AI cho:** _(ví dụ: vẽ layout, quyết định block, viết MOM)_
+>>>>>>> 54cd3be (Merge remote-tracking branch 'origin/SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website' into SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website)
 
 ## 2. Bảng thống kê
 
 | # | Ngày | Người | Mục đích | % dùng được | Link log |
 |---|---|---|---|---|---|
+<<<<<<< HEAD
 | 1 | 09/08/2026 | MPhuc | Viết tài liệu Buổi 16 về Block Layout/BEM, tạo spec/plan và chuẩn bị worktree cho hạng mục HTML/CSS | 100% | [log](logs/2026-08-09_MPhuc_buoi16-block-layout-bem.md) |
 | 2 | 09/08/2026 | MPhuc | Dựng GitHub Libraries bằng HTML/CSS theo Draw.io V2 bên ngoài worktree hiện tại, giữ 61 class, thêm pagination, responsive và hoàn tất review | 100% final output sau 3 vòng review | [log](logs/2026-08-09_MPhuc_github-libraries-html-css.md) |
 | 3 | 10/08/2026 | MPhuc | Fix theo feedback: right-info sticky + bỏ pagination, footer theo gốc, section Repositories (search/filter + bỏ Browse), header icons/search, repo meta + sparkline, align BEM với Draw.io V2 (desktop/mobile sửa tay), mobile header/sparkline/footer; push branch | 100% (mỗi nhóm plan + spec duyệt trước khi code) | [log](logs/2026-08-10_MPhuc_github-libraries-fixes.md) |
+=======
+| 1 | 06/08 | B | Draw.io → HTML skeleton | | [log](logs/2026-08-06_B_drawio-to-html.md) |
+| 2 | 08/08 | C | CSS flexbox cho site-header | | [log](logs/2026-08-08_C_flexbox-header.md) |
+| 3 | | | | | |
+>>>>>>> 54cd3be (Merge remote-tracking branch 'origin/SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website' into SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website)
 
 ### Cách hiểu tỷ lệ `% dùng được`
 
@@ -57,6 +70,7 @@ Các log Draw.io cũ thuộc branch/hạng mục thiết kế trước đó; ch�
 
 ## 3. Ba prompt hiệu quả nhất
 
+<<<<<<< HEAD
 ### Prompt #1 — Khóa nguồn chuẩn và exact class contract
 
 > “Giữ nguyên tuyệt đối class Draw.io kể cả lỗi.”
@@ -76,11 +90,37 @@ Các log Draw.io cũ thuộc branch/hạng mục thiết kế trước đó; ch�
 **Vì sao hiệu quả:** biến yêu cầu giao diện thành các tiêu chí có thể review: local resources, không overflow, đúng breakpoint và keyboard path.
 
 ---
+=======
+### Prompt #1 — _(tên)_
+
+```
+(dán prompt)
+```
+
+**Vì sao hiệu quả:** _(ví dụ: phần CONSTRAINT chặn AI tự chế block, nên output khớp block-list ngay lần đầu)_
+
+### Prompt #2 — _(tên)_
+
+```
+(dán prompt)
+```
+
+**Vì sao hiệu quả:**
+
+### Prompt #3 — _(tên)_
+
+```
+(dán prompt)
+```
+
+**Vì sao hiệu quả:**
+>>>>>>> 54cd3be (Merge remote-tracking branch 'origin/SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website' into SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website)
 
 ## 4. Ba lần AI sai và cách nhóm xử lý
 
 | # | Vấn đề phát hiện | Nhóm phát hiện bằng cách nào | Đã sửa thế nào |
 |---|---|---|---|
+<<<<<<< HEAD
 | 1 | Gate ancestry chưa đáp ứng trước khi code: artifact repository V1 cần được đưa vào lịch sử; artifact V1 này không phải nguồn Draw.io V2 bên ngoài worktree hiện tại. | Đối chiếu `CONTRIBUTING.md` với Git context; tag thiết kế chưa thuộc ancestry của nhánh triển khai. | Người dùng cho phép tạo tag `design-v1` tại `bd97589`, sau đó duyệt merge tạo `1832ee6`. Ghi rõ merge này chỉ đưa artifact V1 vào worktree để thỏa gate, không biến V1 thành contract V2. |
 | 2 | Vòng triển khai đầu tiên có lỗi mobile ở `details`, thứ tự đọc và hamburger. | Reviewer/UI QA kiểm tra responsive, thứ tự repo-list/sidebar và native control ở viewport mobile. | Điều chỉnh DOM/CSS để mobile dùng `details/summary`, giữ thứ tự đọc một cột và bảo đảm hamburger dùng được bằng bàn phím. |
 | 3 | Vòng thứ hai làm desktop nav bị ẩn bởi quy tắc native `details`. | UI QA kiểm tra riêng desktop và phát hiện nav desktop bị ảnh hưởng bởi vùng mobile. | Tách vùng desktop `div` và vùng mobile `details`; vòng thứ ba đạt PASS ở desktop/mobile, không overflow và giữ keyboard behavior. |
@@ -99,11 +139,25 @@ Các log Draw.io cũ thuộc branch/hạng mục thiết kế trước đó; ch�
 3. Cần kiểm tra gate Git và ancestry trước khi sửa `src/`.
 4. Responsive native phải được kiểm tra ở cả `768px` và `767px`; `details/summary` cần tách khỏi nav desktop khi hai chế độ có hành vi hiển thị khác nhau.
 5. Acceptance nên ghi bằng evidence nhị phân: 61 class, bốn viewport, không overflow, keyboard path, local resources và verdict độc lập.
+=======
+| 1 | | | |
+| 2 | | | |
+| 3 | | | |
+
+## 5. Bài học rút ra
+
+1. _(ví dụ: phải dán danh sách block vào CONTEXT, không thì AI tự chế block mới)_
+2. _(ví dụ: AI hay dùng grid dù đã yêu cầu flexbox — cần nhắc lại trong CONSTRAINT)_
+3. _(ví dụ: output dài thì AI bỏ qua ràng buộc ở cuối prompt, nên đặt CONSTRAINT trước FORMAT)_
+4.
+5.
+>>>>>>> 54cd3be (Merge remote-tracking branch 'origin/SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website' into SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website)
 
 ---
 
 ## Nguyên tắc nhóm đã tuân thủ
 
+<<<<<<< HEAD
 - ✅ AI viết/gợi ý, người đọc hiểu và sửa; không copy-paste thẳng vào commit mà không review.
 - ✅ Log và report ghi theo phạm vi hạng mục; không cộng nhầm log Draw.io cũ.
 - ✅ Không ghi credential, API key, email hoặc secret vào báo cáo/log.
@@ -146,3 +200,9 @@ Chi tiết đầy đủ, gồm context công khai, transcript 14 lượt, models
 - **Acceptance/review:** `git diff --check` sạch; rg xác nhận xóa sạch `popularrepo-card*`/`repo-card__desc`/`fitter-btn`/`pagination`/Browse/Help/`site-header__icon`; class giữ nguyên theo yêu cầu; BEM khớp Draw.io V2 sửa tay.
 - **Git:** toàn bộ thay đổi (src, docs, specs, drawio sửa tay) được commit và **push lên branch** `SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website` tại remote `origin`.
 - **Trạng thái:** đã push branch; không tuyên bố PR/MR.
+=======
+- ✅ AI viết, người đọc hiểu và sửa — không copy-paste thẳng vào commit
+- ✅ Log ngay sau khi dùng, không dồn tới cuối tuần
+- ✅ API key để trong `.env`, không commit, không dán vào log
+- ✅ Mọi prompt đều kèm danh sách block đã chốt
+>>>>>>> 54cd3be (Merge remote-tracking branch 'origin/SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website' into SET2026-11/12-Build-the-HTML-CSS-for-the-GitHub-website)
