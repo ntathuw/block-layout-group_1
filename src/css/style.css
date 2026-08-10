@@ -132,8 +132,7 @@ main:focus-visible {
   border-radius: var(--radius);
 }
 
-.site-header__logo,
-.site-header__icon {
+.site-header__logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -187,21 +186,15 @@ main:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 2px;
   min-width: 32px;
   min-height: 32px;
   padding: 0 6px;
-  color: var(--header-text);
+  position: relative;
+  color: #f0f6fc;
   background: transparent;
   border: 0;
   box-shadow: none;
-}
-
-.site-header__nav-item:first-child {
-  display: none;
-}
-
-.site-header__nav-item {
-  position: relative;
 }
 
 .site-header__nav-item:hover {
@@ -499,13 +492,22 @@ main#main-content {
 
 .repo-card {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   min-width: 0;
   padding: 20px;
   background: var(--surface);
   border: 1px solid var(--border-muted);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.repo-card__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .repo-card__header {
@@ -525,9 +527,40 @@ main#main-content {
 
 .repo-card__desc,
 .repo-card__description {
-  margin: 10px 0 18px;
+  margin: 10px 0 12px;
   color: var(--muted);
   overflow-wrap: anywhere;
+}
+
+.repo-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.repo-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.repo-card__lang::before {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  content: "";
+  background: var(--dot-color, #8b949e);
+  border-radius: 50%;
+}
+
+.repo-card__sparkline {
+  flex: 0 0 auto;
+  margin-top: 8px;
+  color: #3fb950;
 }
 
 .right-info {
@@ -678,10 +711,6 @@ main#main-content {
     padding: 12px;
   }
 
-  .site-header__icon {
-    display: none;
-  }
-
   .site-header__search,
   .site-header__search-bar {
     display: none;
@@ -692,11 +721,7 @@ main#main-content {
     flex: 0 0 auto;
   }
 
-  .site-header__nav-item:first-child {
-    display: inline-flex;
-  }
-
-  .site-header__nav-item:not(:first-child):not(:last-child) {
+  .site-header__nav-item:not(:last-child) {
     display: none;
   }
 
@@ -864,6 +889,16 @@ main#main-content {
   .right-info,
   .popularrepo-card {
     padding: 16px;
+  }
+
+  .repo-card {
+    flex-wrap: wrap;
+  }
+
+  .repo-card__sparkline {
+    width: 100%;
+    max-width: 120px;
+    margin-left: auto;
   }
 
   .right-info_people {
