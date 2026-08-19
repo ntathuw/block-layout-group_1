@@ -490,6 +490,10 @@ main#main-content {
   box-shadow: var(--shadow);
 }
 
+.repo-card:last-child {
+  border-bottom: none;
+}
+
 .repo-card__body {
   display: flex;
   flex: 1 1 auto;
@@ -555,7 +559,7 @@ main#main-content {
   flex: 0 0 296px;
   min-width: 0;
   padding: 4px 0;
-  position: sticky;
+  position: relative;
   top: 24px;
   z-index: 1;
 }
@@ -931,5 +935,12 @@ main#main-content {
   }
   .site-footer__logo {
       order: 1;
+  }
+
+  .site-footer__links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 6px 0;
   }
 }
