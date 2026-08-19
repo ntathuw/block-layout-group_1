@@ -560,8 +560,6 @@ main#main-content {
   min-width: 0;
   padding: 4px 0;
   position: relative;
-  top: 24px;
-  z-index: 1;
 }
 
 .right-info_people {
