@@ -50,8 +50,6 @@ input {
 img {
   max-width: 100%;
 }
-
-/* Task 2 — page shell + card container */
 .login-page {
   display: flex;
   flex-direction: column;
@@ -62,9 +60,9 @@ img {
 .login-page__main {
   display: flex;
   flex: 1 1 auto;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 32px 16px;
+  padding: 40px 16px;
 }
 
 .login-card {
@@ -73,7 +71,6 @@ img {
   padding: 16px;
 }
 
-/* Task 3 — card header: logo + title */
 .login-card__header {
   margin-bottom: 16px;
   text-align: center;
@@ -93,11 +90,10 @@ img {
 .login-card__title {
   margin: 0;
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: -0.5px;
 }
 
-/* Task 4 — form: labels + inputs */
 .login-form__field {
   margin-bottom: 16px;
 }
@@ -142,7 +138,6 @@ img {
   box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
 }
 
-/* Task 5 — submit button */
 .login-form__submit {
   width: 100%;
   min-height: 40px;
@@ -166,25 +161,20 @@ img {
   outline-offset: 2px;
 }
 
-/* Task 6 — divider + oauth */
 .login-card__divider {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   margin: 16px 0;
-  border: 0;
-  border-top: 1px solid var(--border-muted);
-  text-align: center;
-}
-
-.login-card__divider::before {
-  content: "or";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 0 16px;
   color: var(--muted);
   font-size: 12px;
-  background: var(--canvas);
+}
+
+.login-card__divider::before,
+.login-card__divider::after {
+  content: "";
+  flex: 1 1 auto;
+  border-top: 1px solid var(--border-muted);
 }
 
 .login-oauth {
@@ -221,22 +211,19 @@ img {
   flex: 0 0 auto;
 }
 
-/* Task 7 — card footer: register + passkey */
 .login-card__footer {
-  margin-top: 16px;
+  margin-top: 24px;
   text-align: center;
 }
 
 .login-card__register {
-  margin: 0 -16px;
-  padding: 16px;
-  border-top: 1px solid var(--border-muted);
   font-size: 14px;
   text-align: center;
 }
 
 .login-card__register-text {
-  color: var(--muted);
+  color: var( --text);
+  font-weight: 600;
 }
 
 .login-card__passkey {
@@ -249,7 +236,6 @@ img {
   color: var(--link);
 }
 
-/* site-footer — link row */
 .site-footer {
   display: flex;
   flex-wrap: wrap;
@@ -258,6 +244,7 @@ img {
   padding: 24px 16px;
   color: var(--muted);
   font-size: 12px;
+  background-color:#151b23;
 }
 
 .site-footer__item {
@@ -267,4 +254,21 @@ img {
 
 .site-footer__item:hover {
   color: var(--text);
+}
+
+@media (max-width: 767px) {
+  .login-page__main {
+    padding: 24px 16px;
+  }
+
+  .login-form__input,
+  .login-form__submit,
+  .login-oauth__provider {
+    min-height: 44px;
+  }
+
+  .site-footer {
+    padding: 16px 12px;
+    gap: 8px 12px;
+  }
 }
