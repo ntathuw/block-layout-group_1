@@ -97,6 +97,130 @@ img {
   letter-spacing: -0.5px;
 }
 
+/* Task 4 — form: labels + inputs */
+.login-form__field {
+  margin-bottom: 16px;
+}
+
+.login-form__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-form__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.login-form__label-row .login-form__label {
+  margin-bottom: 0;
+}
+
+.login-form__forgot {
+  font-size: 12px;
+}
+
+.login-form__input {
+  width: 100%;
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text);
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.login-form__input:focus {
+  border-color: var(--focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
+}
+
+/* Task 5 — submit button */
+.login-form__submit {
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--success);
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.login-form__submit:hover {
+  background: #2ea043;
+}
+
+.login-form__submit:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Task 6 — divider + oauth */
+.login-card__divider {
+  position: relative;
+  margin: 16px 0;
+  border: 0;
+  border-top: 1px solid var(--border-muted);
+  text-align: center;
+}
+
+.login-card__divider::before {
+  content: "or";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  background: var(--canvas);
+}
+
+.login-oauth {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-oauth__provider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.login-oauth__provider:hover {
+  background: #21262d;
+}
+
+.login-oauth__logo {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
 /* site-footer — link row */
 .site-footer {
   display: flex;
