@@ -21,6 +21,10 @@ export default class AAccount {
     this.#password = value;
   }
 
+  checkPassword(input) {
+    return this.#password === input;
+  }
+
   get role() {
     return this.#role;
   }

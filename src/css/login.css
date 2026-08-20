@@ -161,6 +161,26 @@ img {
   outline-offset: 2px;
 }
 
+.login-form__message {
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.login-form__message--error {
+  color: #ff7b72;
+  background: rgba(248, 81, 73, 0.15);
+  border-color: #f85149;
+}
+
+.login-form__message--success {
+  color: #3fb950;
+  background: rgba(46, 160, 67, 0.15);
+  border-color: #3fb950;
+}
+
 .login-card__divider {
   display: flex;
   align-items: center;

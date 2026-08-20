@@ -12,6 +12,8 @@
 
         <form class="login-form">
 
+          <!-- <p class="login-form__message login-form__message--error" hidden="hidden"></p> -->
+          <!-- <p class="login-form__message login-form__message--success" hidden="hidden"></p> -->
 
           <div class="login-form__field">
             <label class="login-form__label" for="login-username"></label>
