@@ -17,9 +17,7 @@ export default class AUser {
     return this.#userId;
   }
 
-  set userId(value) {
-    this.#userId = value;
-  }
+
 
   get accountId() {
     return this.#accountId;
