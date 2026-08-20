@@ -34,4 +34,8 @@ form.addEventListener('submit', (event) => {
   }
 
   showMessage(SUCCESS_MESSAGE, 'success');
+
+  // Dang nhap thanh cong -> chuyen sang trang chu.
+  // replace() thay vi href(): bam Back se khong quay lai trang login.
+  window.location.replace('index.html');
 });
