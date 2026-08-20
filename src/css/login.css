@@ -224,6 +224,7 @@ img {
 /* Task 7 — card footer: register + passkey */
 .login-card__footer {
   margin-top: 16px;
+  text-align: center;
 }
 
 .login-card__register {
@@ -239,26 +240,13 @@ img {
 }
 
 .login-card__passkey {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 40px;
+  gap: 6px;
   margin-top: 16px;
-  padding: 5px 16px;
   font-size: 14px;
   font-weight: 600;
-  color: var(--text);
-  background: var(--surface-muted);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-}
-
-.login-card__passkey:hover {
-  background: #21262d;
+  color: var(--link);
 }
 
 /* site-footer — link row */
