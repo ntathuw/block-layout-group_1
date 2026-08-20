@@ -50,3 +50,69 @@ input {
 img {
   max-width: 100%;
 }
+
+/* Task 2 — page shell + card container */
+.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--canvas);
+}
+
+.login-page__main {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 340px;
+  padding: 16px;
+}
+
+/* Task 3 — card header: logo + title */
+.login-card__header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.login-card__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.login-card__logo svg {
+  display: block;
+  fill: var(--text);
+}
+
+.login-card__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+/* site-footer — link row */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  padding: 24px 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.site-footer__item {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.site-footer__item:hover {
+  color: var(--text);
+}
