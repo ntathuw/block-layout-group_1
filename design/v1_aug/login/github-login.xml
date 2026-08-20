@@ -1,0 +1,61 @@
+<body class="login-page">
+
+  <main class="login-page__main">
+    <div class="login-card">
+
+      <header class="login-card__header">
+        <div class="login-card__logo"></div>
+        <h1 class="login-card__title"></h1>
+      </header>
+
+      <div class="login-card__body">
+
+        <form class="login-form">
+
+          <!-- <p class="login-form__error" hidden="hidden"></p> -->
+
+          <div class="login-form__field">
+            <label class="login-form__label" for="login-username"></label>
+            <input class="login-form__input" id="login-username" name="username"
+                   type="text" autocomplete="username" autocapitalize="off" spellcheck="false" />
+          </div>
+
+          <div class="login-form__field">
+            <div class="login-form__label-row">
+              <label class="login-form__label" for="login-password"></label>
+              <a class="login-form__forgot" href="#"></a>
+            </div>
+            <input class="login-form__input" id="login-password" name="password"
+                   type="password" autocomplete="current-password" />
+          </div>
+
+          <button class="login-form__submit" type="submit"></button>
+        </form>
+
+        <hr class="login-card__divider" />
+
+        <div class="login-oauth">
+          <button class="login-oauth__provider" type="button">
+            <img class="login-oauth__logo" src="" alt="" />
+            <span class="login-oauth__text"></span>
+          </button>
+          <button class="login-oauth__provider" type="button">
+            <img class="login-oauth__logo" src="" alt="" />
+            <span class="login-oauth__text"></span>
+          </button>
+        </div>
+
+      </div>
+
+      <footer class="login-card__footer">
+        <div class="login-card__register">
+          <span class="login-card__register-text"></span>
+          <a class="login-card__register-link" href="#"></a>
+        </div>
+        <button class="login-card__passkey" type="button"></button>
+      </footer>
+
+    </div>
+  </main>
+
+</body>

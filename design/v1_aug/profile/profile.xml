@@ -1,0 +1,186 @@
+<body class="profile-page">
+
+  <header class="header">
+    <div class="header__top">
+
+      <div class="header__brand">
+        <a class="header__logo" href="#"></a>
+        <button class="header__menu" type="button"></button>
+      </div>
+
+      <div class="header__search-group">
+        <label class="header__search-label" for="global-search"></label>
+        <input class="header__search" id="global-search" type="search" autocomplete="off" />
+      </div>
+
+      <div class="header__actions">
+        <button class="header__utility-icon" type="button"></button>
+        <!-- header__utility-icon x 5 -->
+        <img class="header__user-avatar" src="" alt="" />
+      </div>
+
+    </div>
+
+    <nav class="profile-nav">
+      <a class="profile-nav__item profile-nav__item--overview" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--repositories" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--projects" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--packages" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--stars" href="#"></a>
+    </nav>
+  </header>
+
+
+  <div class="main">
+
+    <aside class="sidebar">
+
+      <div class="sidebar__identity">
+        <img class="sidebar__avatar" src="" alt="" />
+        <h1 class="sidebar__name-bg"></h1>
+        <p class="sidebar__username-bg"></p>
+        <p class="sidebar__bio-bg"></p>
+      </div>
+
+      <div class="sidebar__actions">
+        <button class="sidebar__edit-btn" type="button"></button>
+        <p class="sidebar__follow-icon"></p>
+        <a class="sidebar__link-icon" href="#"></a>
+        <a class="sidebar__link-icon" href="#"></a>
+      </div>
+
+      <hr class="sidebar__divider" />
+
+      <section class="achievement">
+        <h2 class="achievement__title-bg"></h2>
+        <div class="achievement__badge-grid">
+          <img class="achievement__badge" src="" alt="" />
+          <!-- achievement__badge x 5 -->
+        </div>
+      </section>
+
+    </aside>
+
+
+    <section class="main-content">
+
+      <section class="repo-spacer">
+        <h2 class="repo-spacer__title"></h2>
+        <button class="repo-spacer__customize-btn" type="button"></button>
+
+        <ul class="repo">
+          <li class="repo-card">
+            <a class="repo-card__name" href="#"></a>
+            <span class="repo-card__visibility"></span>
+            <span class="repo-card__language"></span>
+          </li>
+          <!-- repo-card x 6 -->
+        </ul>
+      </section>
+
+
+      <section class="contribution">
+
+        <div class="contribution__content">
+
+          <section class="contribution-graph">
+            <h2 class="contribution-graph__count"></h2>
+            <button class="contribution-graph__settings" type="button"></button>
+            <div class="contribution-graph__calendar"></div>
+          </section>
+
+          <section class="contribution-activity">
+            <h2 class="contribution-activity__title-icon"></h2>
+
+            <div class="contribution-activity__period">
+              <h3 class="contribution-activity__period-header"></h3>
+
+              <!-- activity-item dang 1: nhieu dong repo + meta -->
+              <article class="activity-item">
+                <div class="activity-item__icon"></div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title"></h4>
+                    <button class="activity-item__expand-btn" type="button"></button>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#"></a>
+                      <span class="activity-item__meta"></span>
+                    </div>
+                    <!-- activity-item__line x 3 -->
+                  </div>
+                </div>
+              </article>
+
+              <!-- activity-item dang 2: dong co them ngon ngu va ngay -->
+              <article class="activity-item">
+                <div class="activity-item__icon"></div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title"></h4>
+                    <button class="activity-item__expand-btn" type="button"></button>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#"></a>
+                      <span class="activity-item__language"></span>
+                      <span class="activity-item__date"></span>
+                    </div>
+                    <!-- activity-item__line x 3 -->
+                  </div>
+                </div>
+              </article>
+
+              <!-- activity-item dang 3: chua activity-card -->
+              <article class="activity-item">
+                <div class="activity-item__icon"></div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title"></h4>
+                    <span class="activity-item__date"></span>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-card">
+                      <div class="activity-item__pj-icon"></div>
+                      <h5 class="activity-card__title"></h5>
+                      <p class="activity-card__description"></p>
+                      <span class="activity-card__meta"></span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <button class="contribution-activity__expand-icon" type="button"></button>
+            <p class="contribution-activity__guide"></p>
+          </section>
+
+        </div>
+
+        <nav class="year-selector">
+          <a class="year-selector__item year-selector__item--active" href="#"></a>
+          <a class="year-selector__item" href="#"></a>
+          <!-- year-selector__item x 5 -->
+        </nav>
+
+      </section>
+
+    </section>
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <a class="footer__logo" href="#"></a>
+      <span class="footer__copyright"></span>
+    </div>
+    <nav class="footer__links">
+      <a class="footer__link" href="#"></a>
+      <!-- footer__link x 9 -->
+    </nav>
+  </footer>
+
+</body>
