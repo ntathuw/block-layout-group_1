@@ -1,3 +1,4 @@
+/* ===== Reset ===== */
 *,
 *::before,
 *::after {
@@ -29,6 +30,7 @@ a {
   text-decoration: none;
 }
 
+/* ===== Dark theme tokens ===== */
 :root {
   --color-bg: #0d1117;
   --color-bg-subtle: #161b22;
@@ -314,7 +316,7 @@ a {
 }
 
 /* ==========================================================================
-   khối achievement trong sidebar
+   Task 2 — khối achievement trong sidebar
    ========================================================================== */
 
 .achievement {
@@ -355,7 +357,7 @@ a {
 }
 
 /* ==========================================================================
-   khối repo pinned
+   Task 3 — khối repo pinned
    ========================================================================== */
 
 /* min-width:0 cho phép cột co lại nhỏ hơn nội dung bên trong.
@@ -466,7 +468,7 @@ a {
 }
 
 /* ==========================================================================
-   khối contribution graph
+   Task 4 — khối contribution graph
    ========================================================================== */
 
 /* contribution chứa 2 con: nội dung bên trái, cột chọn năm bên phải.
@@ -552,3 +554,458 @@ a {
 .contribution-graph__cell--l2 { background: #006d32; }
 .contribution-graph__cell--l3 { background: #26a641; }
 .contribution-graph__cell--l4 { background: #39d353; }
+
+/* ==========================================================================
+   Task 5 — khối contribution activity
+   ========================================================================== */
+
+.contribution-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.contribution-activity__title-icon {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-fg);
+}
+
+.contribution-activity__period {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  /* Đường kẻ dọc nối các activity-item, giống GitHub thật.
+     Vẽ bằng gradient thay vì border để không phải thêm phần tử. */
+  background: linear-gradient(var(--color-border), var(--color-border)) 15px 0 / 1px 100% no-repeat;
+}
+
+.contribution-activity__period-header {
+  margin: 0 0 8px;
+  padding-left: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+/* --- activity-item: khung chung cho cả 3 dạng --- */
+
+.activity-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+  padding: 8px 0;
+  min-width: 0;
+}
+
+.activity-item__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-fg-muted);
+}
+
+.activity-item__icon svg {
+  fill: currentColor;
+}
+
+.activity-item__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.activity-item__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.activity-item__title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+.activity-item__expand-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  padding: 3px 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--color-fg-muted);
+  cursor: pointer;
+}
+
+.activity-item__expand-btn:hover {
+  background: var(--color-hover);
+  border-color: var(--color-border);
+  color: var(--color-fg);
+}
+
+.activity-item__expand-btn svg {
+  fill: currentColor;
+}
+
+.activity-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* Một dòng trong danh sách: repo bên trái, phần phụ đẩy sang phải.
+   Dạng 1 có repo + meta, dạng 2 có repo + language + date — cùng một khung. */
+.activity-item__line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  min-width: 0;
+  font-size: 14px;
+}
+
+.activity-item__repo {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.activity-item__repo:hover {
+  text-decoration: underline;
+}
+
+.activity-item__meta,
+.activity-item__language,
+.activity-item__date {
+  flex: 0 0 auto;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+}
+
+/* --- dạng 3: thẻ repo được star --- */
+
+.activity-card {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 4px 8px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.activity-item__pj-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-fg-muted);
+}
+
+.activity-item__pj-icon svg {
+  fill: currentColor;
+}
+
+.activity-card__title {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.activity-card__description,
+.activity-card__meta {
+  grid-column: 2 / -1;
+  margin: 0;
+  min-width: 0;
+  color: var(--color-fg-muted);
+}
+
+.activity-card__description { font-size: 14px; }
+.activity-card__meta { font-size: 12px; }
+
+/* --- chân khối activity --- */
+
+.contribution-activity__expand-icon {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 5px 16px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-fg);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.contribution-activity__expand-icon:hover {
+  background: var(--color-hover);
+}
+
+.contribution-activity__expand-icon svg {
+  fill: currentColor;
+}
+
+.contribution-activity__guide {
+  margin: 0;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   Task 6 — year-selector và footer
+   ========================================================================== */
+
+/* Cột chọn năm, xếp DỌC bên phải khối contribution — đúng bản vẽ. */
+.year-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.year-selector__item {
+  padding: 4px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--color-fg);
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.year-selector__item:hover {
+  background: var(--color-hover);
+}
+
+.year-selector__item--active {
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.year-selector__item--active:hover {
+  background: var(--color-accent);
+}
+
+/* --- footer --- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-top: 40px;
+  padding: 40px 24px;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.footer__logo {
+  display: inline-flex;
+  color: var(--color-fg-muted);
+}
+
+.footer__logo svg {
+  fill: currentColor;
+}
+
+.footer__copyright {
+  color: var(--color-fg-muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.footer__link {
+  color: var(--color-accent);
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+/* Task 8 — bo sung: so dem canh muc nav, kieu badge tron cua GitHub */
+.profile-nav__count {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 6px;
+  background: var(--color-border-subtle);
+  border-radius: 2em;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* ==========================================================================
+   Task 7 — responsive
+   Hai mốc: 1024px (gộp cột) và 768px (thu gọn cho điện thoại).
+   File gốc chưa có @media nào nên không sợ đè lên rule cũ.
+   ========================================================================== */
+
+/* --- Máy tính bảng và màn hình hẹp --- */
+@media (max-width: 1024px) {
+  /* Nguồn gốc của việc tràn ngang: sidebar cố định 296px.
+     Gộp thành một cột, sidebar lên trên. */
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 16px;
+  }
+
+  .sidebar {
+    /* Danh tính nằm ngang cho đỡ tốn chiều cao */
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 8px 16px;
+    align-items: start;
+  }
+
+  .sidebar__identity {
+    display: contents;
+  }
+
+  .sidebar__avatar {
+    grid-row: span 3;
+    width: 96px;
+    height: 96px;
+  }
+
+  .sidebar__actions,
+  .sidebar__divider,
+  .achievement {
+    grid-column: 1 / -1;
+  }
+
+  .achievement__badge-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  /* Cột chọn năm chuyển từ dọc sang ngang, xuống dưới nội dung */
+  .contribution {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .year-selector {
+    flex-direction: row;
+    flex-wrap: wrap;
+    order: -1;
+  }
+}
+
+/* --- Điện thoại --- */
+@media (max-width: 768px) {
+  .header__top {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  .header__center {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .header__actions {
+    margin-left: auto;
+  }
+
+  /* Bớt vài icon phụ cho đỡ chật */
+  .header__utility-icon:nth-of-type(n + 3) {
+    display: none;
+  }
+
+  .profile-nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .profile-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile-nav__item {
+    white-space: nowrap;
+  }
+
+  /* Repo về một cột */
+  .repo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .repo-spacer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .repo-spacer__customize-btn {
+    justify-self: start;
+  }
+
+  .achievement__badge-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .activity-item {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .activity-item__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contribution-activity__period-header {
+    padding-left: 32px;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 16px;
+  }
+
+  .footer__links {
+    gap: 8px 12px;
+  }
+}

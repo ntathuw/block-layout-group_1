@@ -91,7 +91,11 @@
             <button class="contribution-graph__settings" type="button"></button>
             <div class="contribution-graph__calendar">
               <span class="contribution-graph__cell contribution-graph__cell--l0"></span>
-              <!-- cell x 364 (53 tuan x 7 ngay). Modifier tu l0 den l4 theo muc dam nhat. -->
+              <span class="contribution-graph__cell contribution-graph__cell--l1"></span>
+              <span class="contribution-graph__cell contribution-graph__cell--l2"></span>
+              <span class="contribution-graph__cell contribution-graph__cell--l3"></span>
+              <span class="contribution-graph__cell contribution-graph__cell--l4"></span>
+              <!-- Tong cong 364 cell (52 tuan x 7 ngay). Moi cell mang 1 trong 5 modifier tren. -->
             </div>
           </section>
 
