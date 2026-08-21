@@ -1052,6 +1052,17 @@ a {
   fill: currentColor;
 }
 
+/*
+  Vo boc cac khoi thang. Can mot the rieng vi khi doi nam, JS ve lai TOAN BO
+  danh sach activity — phai co dung mot cho de thay noi dung, khong dung cham
+  toi tieu de va nut "Show more activity" ben ngoai.
+*/
+.contribution-activity__list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .contribution-activity__guide {
   margin: 0;
   color: var(--color-fg-muted);
@@ -1081,11 +1092,19 @@ a {
   flex-direction: column;
   gap: 4px;
   flex: 0 0 auto;
+  width: 116px;
   margin-top: calc(var(--graph-header-height) + var(--graph-header-gap));
 }
 
+/*
+  Moi muc chiem tron be ngang cot nen o mau xanh cua nam dang chon la mot
+  khoi to, thang hang voi cac nam khac — dung GitHub. De padding nho va
+  width theo noi dung thi o mau chi om sat 4 chu so, nhin nho hon han.
+*/
 .year-selector__item {
-  padding: 4px 12px;
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
   border: 1px solid transparent;
   border-radius: 6px;
   color: var(--color-fg);
