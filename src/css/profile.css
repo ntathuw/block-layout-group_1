@@ -40,6 +40,16 @@ a {
   --color-fg-muted: #8b949e;
   --color-accent: #2f81f7;
   --color-hover: #30363d;
+
+  /* Bề ngang cột nhãn thứ (Mon/Wed/Fri) trong contribution graph.
+     Nhãn tháng phải thụt vào đúng bằng nó thì mới thẳng cột với lịch. */
+  --weekday-col: 28px;
+
+  /* Chiều cao hàng tiêu đề của contribution graph (dòng "N contributions..."
+     + nút Contribution settings) và khoảng cách xuống khung lịch.
+     year-selector dùng 2 số này để tụt xuống cho thẳng đỉnh khung lịch. */
+  --graph-header-height: 32px;
+  --graph-header-gap: 12px;
 }
 
 .profile-page {
@@ -53,7 +63,7 @@ a {
 
 /* ===== Header ===== */
 .header {
-  background: var(--color-bg-subtle);
+  background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -316,6 +326,11 @@ a {
   color: var(--color-fg);
 }
 
+/*
+  Xep DOC. Tren trang profile CUA CHINH MINH, GitHub chi co MOT nut
+  "Edit profile" keo dai het chieu ngang cot; ben duoi la dong so nguoi
+  theo doi, khong phai nut Follow.
+*/
 .sidebar__actions {
   display: flex;
   flex-direction: column;
@@ -323,11 +338,17 @@ a {
 }
 
 .sidebar__edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   padding: 6px 16px;
   background: var(--color-bg-subtle);
   border: 1px solid var(--color-border);
   border-radius: 6px;
   color: var(--color-fg);
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -336,20 +357,38 @@ a {
   background: var(--color-hover);
 }
 
+/* Dong "N followers - N following": chu xam, chi rieng CON SO la trang dam */
 .sidebar__follow-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px;
   color: var(--color-fg-muted);
+  font-size: 14px;
 }
 
 .sidebar__follow-icon svg {
-  fill: var(--color-fg-muted);
+  flex-shrink: 0;
+  fill: currentColor;
+}
+
+.sidebar__follow-link {
+  color: var(--color-fg-muted);
+}
+
+.sidebar__follow-link:hover {
+  color: var(--color-accent);
+}
+
+.sidebar__follow-count {
+  color: var(--color-fg);
+  font-weight: 600;
 }
 
 .sidebar__link-icon {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   padding: 2px;
   color: var(--color-fg-muted);
 }
@@ -506,6 +545,15 @@ a {
   line-height: 1.5;
 }
 
+/*
+  [hidden] mac dinh la display:none, NHUNG bat cu rule nao dat display:flex
+  hay display:grid len chinh phan tu do se de len no. Dong nay giu cho thuoc
+  tinh hidden luon thang -> JS chi can bat/tat hidden la du.
+*/
+[hidden] {
+  display: none !important;
+}
+
 /* ==========================================================================
    Task 4 — khối contribution graph
    ========================================================================== */
@@ -530,8 +578,9 @@ a {
 .contribution-graph {
   display: grid;
   grid-template-columns: 1fr auto;
+  grid-template-rows: var(--graph-header-height) auto;
   align-items: center;
-  gap: 12px;
+  gap: var(--graph-header-gap);
   min-width: 0;
 }
 
@@ -573,23 +622,100 @@ a {
 
 /* Lưới 52 tuần × 7 ngày.
    grid-auto-flow: column -> ô điền từ trên xuống rồi mới sang cột kế,
-   đúng thứ tự của GitHub (mỗi cột là một tuần).
-   overflow-x: auto -> màn hình hẹp thì lưới tự cuộn ngang bên trong,
-   không đẩy cả trang tràn ra. */
-.contribution-graph__calendar {
+   đúng thứ tự của GitHub (mỗi cột là một tuần). */
+
+/*
+  Khung bao ngoài. Viền và padding chuyển từ __calendar ra ĐÂY, vì GitHub
+  bọc cả nhãn tháng, nhãn thứ, lưới lịch và chú thích Less/More trong CÙNG
+  một khung. overflow-x cũng nằm ở đây để 4 phần cuộn ngang cùng nhau —
+  để riêng trên __calendar thì nhãn tháng sẽ đứng yên còn lịch chạy, lệch nhau.
+*/
+.contribution-graph__frame {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-rows: repeat(7, 11px);
-  grid-auto-flow: column;
-  grid-auto-columns: 11px;
-  gap: 3px;
   padding: 16px;
   border: 1px solid var(--color-border);
   border-radius: 6px;
   overflow-x: auto;
 }
 
+/*
+  Nhãn tháng. Đặt trên lưới 52 cột trùng với 52 tuần của lịch, mỗi tháng
+  chiếm 4 tuần, 4 tháng dài chiếm 5 tuần (5+4+4 x4 = 52) -> nhãn rơi đúng
+  vào khoảng tuần của tháng đó, không phải chia đều cho có.
+*/
+.contribution-graph__months {
+  display: grid;
+  grid-template-columns: repeat(52, 11px);
+  gap: 3px;
+  margin-left: calc(var(--weekday-col) + 3px);
+  margin-bottom: 4px;
+  width: max-content;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+}
+
+.contribution-graph__month {
+  grid-column: span 4;
+}
+
+.contribution-graph__month--w5 {
+  grid-column: span 5;
+}
+
+.contribution-graph__body {
+  display: flex;
+  gap: 3px;
+  width: max-content;
+}
+
+/* Cột nhãn thứ: 7 hàng trùng 7 ngày, chỉ 3 hàng có chữ (Mon/Wed/Fri) */
+.contribution-graph__weekdays {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  gap: 3px;
+  width: var(--weekday-col);
+  color: var(--color-fg-muted);
+  font-size: 10px;
+  line-height: 11px;
+}
+
+.contribution-graph__weekday {
+  white-space: nowrap;
+}
+
+.contribution-graph__weekday--mon { grid-row: 2; }
+.contribution-graph__weekday--wed { grid-row: 4; }
+.contribution-graph__weekday--fri { grid-row: 6; }
+
+/* Chú thích độ đậm, nằm góc phải dưới khung */
+.contribution-graph__legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 8px;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+}
+
+.contribution-graph__legend-label {
+  margin: 0 4px;
+}
+
+.contribution-graph__calendar {
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-flow: column;
+  grid-auto-columns: 11px;
+  gap: 3px;
+}
+
+/* Đặt kích thước ngay trên ô: trong lịch thì lưới đã định 11px, nhưng ô
+   dùng lại ở chú thích Less/More lại nằm ngoài lưới, không có dòng này
+   sẽ co về 0. */
 .contribution-graph__cell {
+  width: 11px;
+  height: 11px;
   border-radius: 2px;
   outline: 1px solid rgba(255, 255, 255, 0.04);
   outline-offset: -1px;
@@ -689,6 +815,12 @@ a {
   color: var(--color-fg);
 }
 
+/*
+  Nut gap/mo mot muc activity. GitHub dung cap icon fold / unfold chu khong
+  phai mui ten. Ca hai icon deu nam san trong HTML, CSS chon hien cai nao
+  dua tren aria-expanded -> JS chi phai lat DUY NHAT mot thuoc tinh, khong
+  phai ve lai icon. aria-expanded cung la thu trinh doc man hinh doc duoc.
+*/
 .activity-item__expand-btn {
   flex: 0 0 auto;
   display: inline-flex;
@@ -698,6 +830,11 @@ a {
   border-radius: 6px;
   color: var(--color-fg-muted);
   cursor: pointer;
+}
+
+.activity-item__expand-btn[aria-expanded="true"] .activity-item__icon-unfold,
+.activity-item__expand-btn[aria-expanded="false"] .activity-item__icon-fold {
+  display: none;
 }
 
 .activity-item__expand-btn:hover {
@@ -717,37 +854,94 @@ a {
   min-width: 0;
 }
 
-/* Một dòng trong danh sách: repo bên trái, phần phụ đẩy sang phải.
-   Dạng 1 có repo + meta, dạng 2 có repo + language + date — cùng một khung. */
+/*
+  Mot dong trong danh sach, chia 3 cot:
+    1. repo   - rong bang chinh noi dung
+    2. meta / language - DINH LIEN sau ten repo, can le TRAI (khong bi day
+       sang phai nhu ban flex cu)
+    3. thanh tien do hoac ngay - nam sat le phai
+  Cot 2 la minmax(0, 1fr) nen no nuot phan trong con lai, day cot 3 ra bien.
+*/
 .activity-item__line {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 4px 12px;
+  gap: 4px 8px;
   min-width: 0;
   font-size: 14px;
 }
 
+/* GitHub gach chan SAN ca hai link tren dong nay, khong doi hover moi hien */
 .activity-item__repo {
-  flex: 1 1 auto;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--color-accent);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .activity-item__repo:hover {
-  text-decoration: underline;
+  color: var(--color-fg);
+}
+
+/*
+  Dong CO ngon ngu dung cot giua RONG CO DINH. Neu de auto/1fr thi be rong
+  cot 1 phu thuoc do dai ten repo cua tung dong -> cham mau moi dong mot vi
+  tri, nhin rang cua. Co dinh 140px thi cham thang cot nhu GitHub.
+  Dong dang commit KHONG dung modifier nay, vi so commit phai dinh sat ten repo.
+*/
+.activity-item__line--lang {
+  grid-template-columns: minmax(0, 1fr) 140px auto;
 }
 
 .activity-item__meta,
 .activity-item__language,
 .activity-item__date {
-  flex: 0 0 auto;
+  justify-self: start;
   color: var(--color-fg-muted);
   font-size: 12px;
+}
+
+/* So commit la LINK dan toi danh sach commit -> chu xam, gach chan, hover xanh */
+.activity-item__meta {
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.activity-item__meta:hover {
+  color: var(--color-accent);
+}
+
+/* Ngay luon o cot cuoi, sat le phai. min-width de "Aug 8" va "Aug 15"
+   khong lam lech cot dung truoc no. */
+.activity-item__date {
+  justify-self: end;
+  min-width: 48px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/*
+  Thanh tien do so commit. Do dai va mau la DU LIEU nen truyen qua bien
+  --bar-fill / --bar-color dat inline; CSS chi lo hinh dang.
+  min-width giu cho repo it commit van con mot cham nhin thay duoc.
+*/
+.activity-item__bar {
+  justify-self: end;
+  display: block;
+  width: 160px;
+  max-width: 40vw;
+  height: 8px;
+}
+
+.activity-item__bar-fill {
+  display: block;
+  width: var(--bar-fill, 0%);
+  min-width: 8px;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--bar-color, var(--color-accent));
 }
 
 /* Ten ngon ngu di kem mot cham tron mau — dung inline-flex de cham thang hang chu */
@@ -782,25 +976,32 @@ a {
   border-radius: 6px;
 }
 
+/* Icon pull request trong the — GitHub to no mau tim */
 .activity-item__pj-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-fg-muted);
+  color: #a371f7;
 }
 
 .activity-item__pj-icon svg {
   fill: currentColor;
 }
 
+/* Tieu de PR: chu sang, dam, gach chan — khong phai mau xanh link thuong */
 .activity-card__title {
   margin: 0;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+  color: var(--color-fg);
+  text-decoration: underline;
+}
+
+.activity-card__title:hover {
   color: var(--color-accent);
 }
 
@@ -813,7 +1014,50 @@ a {
 }
 
 .activity-card__description { font-size: 14px; }
-.activity-card__meta { font-size: 12px; }
+
+/*
+  Dong cuoi cua the: +40 -33 [o o o o o] lines changed - 3 comments.
+  Dung inline-flex de 5 o vuong nam thang hang voi chu.
+*/
+.activity-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.activity-card__additions {
+  color: #3fb950;
+  font-weight: 600;
+}
+
+.activity-card__deletions {
+  color: #f85149;
+  font-weight: 600;
+}
+
+/* 5 o vuong ti le them/xoa. O khong co modifier = phan con lai, mau xam. */
+.activity-card__diffstat {
+  display: inline-flex;
+  gap: 2px;
+  margin: 0 2px;
+}
+
+.activity-card__diffstat-block {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+
+.activity-card__diffstat-block--add { background: #3fb950; }
+.activity-card__diffstat-block--del { background: #f85149; }
+
+.activity-card__lines {
+  color: var(--color-fg);
+  font-weight: 600;
+}
 
 /* --- chân khối activity --- */
 
@@ -863,11 +1107,19 @@ a {
    ========================================================================== */
 
 /* Cột chọn năm, xếp DỌC bên phải khối contribution — đúng bản vẽ. */
+/*
+  Tụt xuống cho thẳng ĐỈNH KHUNG LỊCH, không phải thẳng đỉnh cả khối.
+  Khối contribution bắt đầu bằng dòng tiêu đề "N contributions in the last
+  year"; year-selector là anh em của khối đó nên mặc định bị kéo lên ngang
+  dòng tiêu đề, lệch xuống dưới ~43px so với khung lịch.
+  Tính bằng biến chứ không gõ số cứng: sửa chiều cao tiêu đề thì đây tự theo.
+*/
 .year-selector {
   display: flex;
   flex-direction: column;
   gap: 4px;
   flex: 0 0 auto;
+  margin-top: calc(var(--graph-header-height) + var(--graph-header-gap));
 }
 
 .year-selector__item {
@@ -1023,6 +1275,8 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     order: -1;
+    /* Một cột thì không còn khung lịch nào để căn theo -> bỏ phần tụt xuống */
+    margin-top: 0;
   }
 }
 
