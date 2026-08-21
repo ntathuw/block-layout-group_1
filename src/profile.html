@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>octocat (The Octocat) · GitHub</title>
+  <link rel="stylesheet" href="css/profile.css" />
+</head>
+<body class="profile-page">
+
+  <header class="header">
+    <div class="header__top">
+
+      <div class="header__brand">
+        <button class="header__menu" type="button" aria-label="Toggle navigation">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12a.75.75 0 0 0 0 1.5h12.5a.75.75 0 0 0 0-1.5H1.75Z"/>
+          </svg>
+        </button>
+        <a class="header__logo" href="#" aria-label="GitHub">
+          <svg height="32" viewBox="0 0 16 16" width="32" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="header__center">
+        <span class="header__username">octocat</span>
+        <div class="header__search-group">
+          <label class="header__search-label" for="global-search">
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M10.25 0a6.25 6.25 0 1 0 3.97 11.09l3.9 3.9a.75.75 0 1 0 1.06-1.06l-3.9-3.9A6.25 6.25 0 0 0 10.25 0Zm0 1.5a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Z"/>
+            </svg>
+          </label>
+          <input class="header__search" id="global-search" type="search" autocomplete="off"
+                 placeholder="Search or jump to..." />
+        </div>
+      </div>
+
+      <div class="header__actions">
+        <button class="header__utility-icon" type="button" aria-label="Copilot">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 0l1.7 6.3L16 8l-6.3 1.7L8 16 6.3 9.7 0 8l6.3-1.7L8 0Z"/>
+          </svg>
+        </button>
+        <button class="header__utility-icon" type="button" aria-label="Create new">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"/>
+          </svg>
+        </button>
+        <button class="header__utility-icon" type="button" aria-label="Issues">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0Zm0 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13Zm0 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"/>
+          </svg>
+        </button>
+        <button class="header__utility-icon" type="button" aria-label="Pull requests">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-2 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354Z"/>
+          </svg>
+        </button>
+        <button class="header__utility-icon" type="button" aria-label="Notifications">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 16a2 2 0 0 0 1.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 0 0 8 16ZM3 5a5 5 0 0 1 10 0v2.947c0 .776.38 1.507 1.002 1.956l.945.685c.171.124.157.366-.027.437A15.96 15.96 0 0 1 8 12.5c-2.568 0-5.045-.682-6.92-1.912-.184-.071-.198-.313-.027-.437l.945-.685C2.62 9.454 3 8.723 3 7.947V5Z"/>
+          </svg>
+        </button>
+        <img class="header__user-avatar" src="https://avatars.githubusercontent.com/u/583231?v=4" alt="octocat" />
+      </div>
+
+    </div>
+
+    <nav class="profile-nav">
+      <a class="profile-nav__item profile-nav__item--overview" href="#">Overview</a>
+      <a class="profile-nav__item profile-nav__item--repositories" href="#">Repositories <span>123</span></a>
+      <a class="profile-nav__item profile-nav__item--projects" href="#">Projects</a>
+      <a class="profile-nav__item profile-nav__item--packages" href="#">Packages</a>
+      <a class="profile-nav__item profile-nav__item--stars" href="#">Stars</a>
+    </nav>
+  </header>
+
+
+  <div class="main">
+
+    <aside class="sidebar">
+
+      <div class="sidebar__identity">
+        <img class="sidebar__avatar" src="https://avatars.githubusercontent.com/u/583231?v=4" alt="octocat" />
+        <h1 class="sidebar__name-bg">The Octocat</h1>
+        <p class="sidebar__username-bg">octocat</p>
+        <p class="sidebar__bio-bg">Your friendly neighborhood GitHub mascot. Creating issues, starring repos, and spreading octo-cheer since 2011.</p>
+      </div>
+
+      <div class="sidebar__actions">
+        <button class="sidebar__edit-btn" type="button">Edit profile</button>
+        <p class="sidebar__follow-icon">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M8 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 1.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2 15a6 6 0 0 1 12 0h-1.5a4.5 4.5 0 0 0-9 0H2Z"/>
+          </svg>
+          Follow
+        </p>
+        <a class="sidebar__link-icon" href="#">
+          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+            <path d="M4.525 2.636a2.5 2.5 0 0 1 3.536 0l2.828 2.828a2.5 2.5 0 0 1 0 3.535l-1.06 1.06a.75.75 0 0 1-1.06-1.06l1.06-1.061a1 1 0 0 0 0-1.414L5.99 4.696a1 1 0 0 0-1.414 0L3.515 5.757a1 1 0 0 0 0 1.414l1.061 1.06a.75.75 0 1 1-1.06 1.061l-1.062-1.06a2.5 2.5 0 0 1 0-3.536l1.071-1.07Zm6.95 8.728a1 1 0 0 0 0-1.414L10.414 8.89a.75.75 0 1 1 1.06-1.06l1.061 1.06a2.5 2.5 0 0 1 0 3.536l-1.07 1.071a2.5 2.5 0 0 1-3.536 0L5.1 10.69a2.5 2.5 0 0 1 0-3.535l1.06-1.06a.75.75 0 1 1 1.061 1.06L6.161 8.216a1 1 0 0 0 0 1.414l2.829 2.828a1 1 0 0 0 1.414 0l1.071-1.07Z"/>
+          </svg>
+          blog.octocat.com
+        </a>
+        <a class="sidebar__link-icon" href="#">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"/>
+          </svg>
+          twitter.com/octocat
+        </a>
+      </div>
+
+      <hr class="sidebar__divider" />
+
+      <section class="achievement">
+        <h2 class="achievement__title-bg">Achievements</h2>
+        <div class="achievement__badge-grid">
+          <img class="achievement__badge" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23b6c3ce'/%3E%3Cstop offset='100%25' stop-color='%236e7781'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)'/%3E%3Ctext x='50' y='63' font-size='42' text-anchor='middle'%3E🦈%3C/text%3E%3C/svg%3E" alt="Pull Shark" />
+          <img class="achievement__badge" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23ff7b72'/%3E%3Cstop offset='100%25' stop-color='%23cf222e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)'/%3E%3Ctext x='50' y='63' font-size='42' text-anchor='middle'%3E⚡%3C/text%3E%3C/svg%3E" alt="Quickdraw" />
+          <img class="achievement__badge" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23f2cc60'/%3E%3Cstop offset='100%25' stop-color='%23d4a72c'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)'/%3E%3Ctext x='50' y='63' font-size='42' text-anchor='middle'%3E🤩%3C/text%3E%3C/svg%3E" alt="Starstruck" />
+          <img class="achievement__badge" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23b088f9'/%3E%3Cstop offset='100%25' stop-color='%237230d9'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)'/%3E%3Ctext x='50' y='63' font-size='42' text-anchor='middle'%3E🧠%3C/text%3E%3C/svg%3E" alt="Galaxy Brain" />
+          <img class="achievement__badge" src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='35%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23f778ba'/%3E%3Cstop offset='100%25' stop-color='%23db3f7e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='47' fill='url(%23g)'/%3E%3Ctext x='50' y='63' font-size='42' text-anchor='middle'%3E💖%3C/text%3E%3C/svg%3E" alt="Public Sponsor" />
+        </div>
+      </section>
+
+    </aside>
+
+
+    <section class="main-content">
+
+      <section class="repo-spacer">
+        <h2 class="repo-spacer__title">Pinned</h2>
+        <button class="repo-spacer__customize-btn" type="button">Customize your pins</button>
+
+        <ul class="repo">
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">Hello-World</a>
+            <span class="repo-card__visibility">Public</span>
+            <span class="repo-card__language" style="--dot-color:#f1e05a">JavaScript</span>
+          </li>
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">Spoon-Knife</a>
+            <span class="repo-card__visibility">Public</span>
+            <span class="repo-card__language" style="--dot-color:#e34c26">HTML</span>
+          </li>
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">octocat.github.io</a>
+            <span class="repo-card__visibility">Public</span>
+            <span class="repo-card__language" style="--dot-color:#663399">CSS</span>
+          </li>
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">dotfiles</a>
+            <span class="repo-card__visibility">Private</span>
+            <span class="repo-card__language" style="--dot-color:#89e051">Shell</span>
+          </li>
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">octo-cyber</a>
+            <span class="repo-card__visibility">Public</span>
+            <span class="repo-card__language" style="--dot-color:#3178c6">TypeScript</span>
+          </li>
+          <li class="repo-card">
+            <a class="repo-card__name" href="#">secret-octo</a>
+            <span class="repo-card__visibility">Private</span>
+            <span class="repo-card__language" style="--dot-color:#00ADD8">Go</span>
+          </li>
+        </ul>
+      </section>
+
+
+      <section class="contribution">
+
+        <div class="contribution__content">
+
+          <section class="contribution-graph">
+            <h2 class="contribution-graph__count">1,847 contributions in the last year</h2>
+            <button class="contribution-graph__settings" type="button" aria-label="Contribution settings">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <circle cx="8" cy="8" r="3.4"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(0 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(45 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(90 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(135 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(180 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(225 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(270 8 8)"/>
+                <rect x="7.3" y="0.6" width="1.4" height="2.6" rx="0.7" transform="rotate(315 8 8)"/>
+              </svg>
+            </button>
+            <div class="contribution-graph__calendar">
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#39d353"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#006d32"></div><div style="background-color:#26a641"></div><div style="background-color:#26a641"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#006d32"></div><div style="background-color:#0e4429"></div><div style="background-color:#0e4429"></div><div style="background-color:#161b22"></div>
+              <div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div><div style="background-color:#161b22"></div></div>
+          </section>
+
+          <section class="contribution-activity">
+            <h2 class="contribution-activity__title-icon">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <path d="M1 9h3l2-5 3 10 2-5h4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Contribution activity
+            </h2>
+
+            <div class="contribution-activity__period">
+              <h3 class="contribution-activity__period-header">August 2026</h3>
+
+              <!-- activity-item dang 1: nhieu dong repo + meta -->
+              <article class="activity-item">
+                <div class="activity-item__icon">
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path d="M7.75 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM1 8a1.5 1.5 0 0 0 1.5 1.5h2.1a4 4 0 0 1 6.8 0h2.1a1.5 1.5 0 1 0 0-3h-2.1a4 4 0 0 1-6.8 0H2.5A1.5 1.5 0 0 0 1 8Z"/>
+                  </svg>
+                </div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title">Created 12 commits in 3 repositories</h4>
+                    <button class="activity-item__expand-btn" type="button" aria-label="Expand activity">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/Hello-World</a>
+                      <span class="activity-item__meta">7 commits</span>
+                    </div>
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/Spoon-Knife</a>
+                      <span class="activity-item__meta">3 commits</span>
+                    </div>
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/test</a>
+                      <span class="activity-item__meta">2 commits</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- activity-item dang 2: dong co them ngon ngu va ngay -->
+              <article class="activity-item">
+                <div class="activity-item__icon">
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-2 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354Z"/>
+                  </svg>
+                </div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title">Opened 3 pull requests in 3 repositories</h4>
+                    <button class="activity-item__expand-btn" type="button" aria-label="Expand activity">
+                      <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                        <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/Hello-World</a>
+                      <span class="activity-item__language" style="--dot-color:#f1e05a">JavaScript</span>
+                      <span class="activity-item__date">Aug 15</span>
+                    </div>
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/octocat.github.io</a>
+                      <span class="activity-item__language" style="--dot-color:#663399">CSS</span>
+                      <span class="activity-item__date">Aug 12</span>
+                    </div>
+                    <div class="activity-item__line">
+                      <a class="activity-item__repo" href="#">octocat/dotfiles</a>
+                      <span class="activity-item__language" style="--dot-color:#89e051">Shell</span>
+                      <span class="activity-item__date">Aug 8</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- activity-item dang 3: chua activity-card -->
+              <article class="activity-item">
+                <div class="activity-item__icon">
+                  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+                  </svg>
+                </div>
+                <div class="activity-item__body">
+                  <div class="activity-item__header">
+                    <h4 class="activity-item__title">Starred 1 repository</h4>
+                    <span class="activity-item__date">Aug 2</span>
+                  </div>
+                  <div class="activity-item__content">
+                    <div class="activity-card">
+                      <div class="activity-item__pj-icon">
+                        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                          <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714.3l-.786.786V2.5Zm2.5-.5A1 1 0 0 0 3.5 3v10.457a2.495 2.495 0 0 1 1-.457h8v-10h-8Z"/>
+                        </svg>
+                      </div>
+                      <h5 class="activity-card__title">torvalds/linux</h5>
+                      <p class="activity-card__description">Linux kernel source tree</p>
+                      <span class="activity-card__meta">197,000 stars · 50,000 forks · C</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <button class="contribution-activity__expand-icon" type="button">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+                <path d="M12.78 5.22a.749.749 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.06 0L3.22 6.28a.749.749 0 1 1 1.06-1.06L8 8.939l3.72-3.719a.749.749 0 0 1 1.06 0Z"/>
+              </svg>
+              Show more activity
+            </button>
+            <p class="contribution-activity__guide">Learn how we count contributions.</p>
+          </section>
+
+        </div>
+
+        <nav class="year-selector">
+          <a class="year-selector__item year-selector__item--active" href="#">2026</a>
+          <a class="year-selector__item" href="#">2025</a>
+          <a class="year-selector__item" href="#">2024</a>
+          <a class="year-selector__item" href="#">2023</a>
+          <a class="year-selector__item" href="#">2022</a>
+        </nav>
+
+      </section>
+
+    </section>
+
+  </div>
+
+
+  <footer class="footer">
+    <div class="footer__brand">
+      <a class="footer__logo" href="#" aria-label="GitHub">
+        <svg height="24" viewBox="0 0 16 16" width="24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+      <span class="footer__copyright">© 2026 GitHub, Inc.</span>
+    </div>
+    <nav class="footer__links">
+      <a class="footer__link" href="#">Terms</a>
+      <a class="footer__link" href="#">Privacy</a>
+      <a class="footer__link" href="#">Security</a>
+      <a class="footer__link" href="#">Status</a>
+      <a class="footer__link" href="#">Docs</a>
+      <a class="footer__link" href="#">Contact</a>
+      <a class="footer__link" href="#">Pricing</a>
+      <a class="footer__link" href="#">Manage cookies</a>
+      <a class="footer__link" href="#">Do not share my personal information</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
