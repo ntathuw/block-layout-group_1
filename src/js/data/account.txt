@@ -1,31 +1,5 @@
-  {
-    "accountId": "acc_001",
-    "password": "Password123!",
-    "role": "user",
-    "userId": "user_001"
-  },
-  {
-    "accountId": "acc_002",
-    "password": "Str0ngPass#22",
-    "role": "user",
-    "userId": "user_002"
-  },
-  {
-    "accountId": "acc_003",
-    "password": "Ch4nge-Me-Pls",
-    "role": "user",
-    "userId": "user_003"
-  },
-  {
-    "accountId": "acc_004",
-    "password": "GitDemo@2024",
-    "role": "user",
-    "userId": "user_004"
-  },
-  {
-    "accountId": "acc_005",
-    "password": "H3lloWorld!!",
-    "role": "user",
-    "userId": "user_005"
-  }
-
+{"accountId":"acc_001","password":"Password123!","role":"user","userId":"user_001"}
+{"accountId":"acc_002","password":"Str0ngPass#22","role":"user","userId":"user_002"}
+{"accountId":"acc_003","password":"Ch4nge-Me-Pls","role":"user","userId":"user_003"}
+{"accountId":"acc_004","password":"GitDemo@2024","role":"user","userId":"user_004"}
+{"accountId":"acc_005","password":"H3lloWorld!!","role":"user","userId":"user_005"}
