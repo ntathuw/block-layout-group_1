@@ -275,7 +275,6 @@ a {
   height: 100%;
   padding: 0 8px;
   font-size: 14px;
-  color: var(--color-fg-muted);
   border-bottom: 2px solid transparent;
   white-space: nowrap;
 }
@@ -1187,7 +1186,6 @@ a {
   padding: 0 6px;
   background: var(--color-border-subtle);
   border-radius: 2em;
-  color: var(--color-fg-muted);
   font-size: 12px;
   line-height: 18px;
 }
