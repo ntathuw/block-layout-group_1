@@ -132,8 +132,11 @@
                   </div>
                   <div class="activity-item__content">
                     <div class="activity-item__line">
-                      <a class="activity-item__repo" href="#"></a>
-                      <span class="activity-item__meta"></span>
+                      <div class="activity-item__detail">
+                        <a class="activity-item__repo" href="#"></a>
+                        <span class="activity-item__commit"></span>
+                      </div>
+                      <div class="activity-item__meta"></div>
                     </div>
                     <!-- activity-item__line x 3 -->
                   </div>
