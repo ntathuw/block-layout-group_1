@@ -143,32 +143,52 @@ a {
   white-space: nowrap;
 }
 
-/* Chi la mot icon co vien, khong phai thanh tim kiem */
 .header__search {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 240px;
   height: 32px;
-  padding: 0;
+  padding: 0 8px;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 6px;
   color: var(--color-fg-muted);
+  font-size: 14px;
+  text-align: left;
   cursor: pointer;
 }
 
 .header__search:hover {
-  background: var(--color-hover);
-  color: var(--color-fg);
+  border-color: var(--color-fg-muted);
 }
 
 .header__search svg {
+  flex-shrink: 0;
   fill: currentColor;
 }
 
 .header__search:focus {
   border-color: var(--color-accent);
+}
+
+.header__search-hint {
+  white-space: nowrap;
+}
+
+.header__search-key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1;
 }
 
 .header__actions {
@@ -178,12 +198,12 @@ a {
   margin-left: auto;
 }
 
-/* Moi nut o header deu la mot o co vien, giong GitHub that */
 .header__utility-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 4px;
+  min-width: 32px;
   height: 32px;
   padding: 0 6px;
   background: var(--color-bg);
@@ -208,29 +228,28 @@ a {
   height: 12px;
 }
 
-/*
-  GitHub gom 4 nut (tao moi, issues, pull requests, inbox) vao CHUNG mot vien,
-  ngan cach nhau bang duong ke doc. Nen vien nam o group, con tung nut ben
-  trong thi bo vien rieng va bo bo goc di.
-*/
+
 .header__utility-group {
   display: inline-flex;
   align-items: center;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  overflow: hidden;
+  gap: 8px;
 }
 
-.header__utility-group .header__utility-icon {
-  background: transparent;
-  border: 0;
+.header__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border);
+}
+
+.header__utility-icon--copilot {
+  padding-right: 0;
+}
+
+.header__utility-icon--copilot .header__utility-caret {
+  box-sizing: content-box;
+  height: 30px;
+  padding: 0 4px;
   border-left: 1px solid var(--color-border);
-  border-radius: 0;
-}
-
-.header__utility-group .header__utility-icon:first-child {
-  border-left: 0;
 }
 
 .header__user-avatar {

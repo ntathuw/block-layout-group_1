@@ -11,13 +11,18 @@
       <div class="header__username"></div>
       <div class="header__search-group">
         <span class="header__search-label" id="global-search-label"></span>
-        <button class="header__search" type="button" aria-labelledby="global-search-label"></button>
+        <button class="header__search" type="button" aria-labelledby="global-search-label">
+          <span class="header__search-hint"></span>
+          <kbd class="header__search-key"></kbd>
+          <span class="header__search-hint"></span>
+        </button>
       </div>
       </div>
       <div class="header__actions">
         <button class="header__utility-icon header__utility-icon--copilot" type="button">
           <svg class="header__utility-caret"></svg>
         </button>
+        <span class="header__divider"></span>
         <div class="header__utility-group">
           <button class="header__utility-icon" type="button">
             <svg class="header__utility-caret"></svg>
