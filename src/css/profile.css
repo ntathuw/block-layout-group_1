@@ -1,4 +1,3 @@
-/* ===== Reset ===== */
 *,
 *::before,
 *::after {
@@ -30,7 +29,6 @@ a {
   text-decoration: none;
 }
 
-/* ===== Dark theme tokens ===== */
 :root {
   --color-bg: #0d1117;
   --color-bg-subtle: #161b22;
@@ -315,6 +313,9 @@ a {
   border-top: 1px solid var(--color-border);
 }
 
+/* ==========================================================================
+   khối achievement trong sidebar
+   ========================================================================== */
 
 .achievement {
   display: flex;
@@ -352,3 +353,202 @@ a {
 .achievement__badge:hover {
   transform: scale(1.06);
 }
+
+/* ==========================================================================
+   khối repo pinned
+   ========================================================================== */
+
+/* min-width:0 cho phép cột co lại nhỏ hơn nội dung bên trong.
+   Không có dòng này thì lưới lịch contribution 53 cột sẽ đẩy tràn ngang. */
+.main-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.repo-spacer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.repo-spacer__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+.repo-spacer__customize-btn {
+  justify-self: end;
+  padding: 3px 12px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-fg);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.repo-spacer__customize-btn:hover {
+  background: var(--color-hover);
+}
+
+/* 2 cột × 3 hàng — đúng bản vẽ. 6 thẻ xếp thành hai cột dọc. */
+.repo {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.repo-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.repo-card__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.repo-card__name:hover {
+  text-decoration: underline;
+}
+
+.repo-card__visibility {
+  justify-self: end;
+  padding: 0 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 2em;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* Chấm màu ngôn ngữ. Màu là DỮ LIỆU nên truyền qua biến --dot-color
+   đặt inline trên từng thẻ; hình dạng và kích thước do CSS quyết định.
+   Sau này JS sẽ lấy màu từ Repository.getBadgeColor(). */
+.repo-card__language {
+  grid-column: 1 / -1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-fg-muted);
+  font-size: 12px;
+}
+
+.repo-card__language::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--dot-color, var(--color-fg-muted));
+}
+
+/* ==========================================================================
+   khối contribution graph
+   ========================================================================== */
+
+/* contribution chứa 2 con: nội dung bên trái, cột chọn năm bên phải.
+   minmax(0, 1fr) cho cột trái được phép co — nếu để 1fr thì lưới lịch
+   sẽ đẩy cả trang tràn ngang. */
+.contribution {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+}
+
+.contribution__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contribution-graph {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.contribution-graph__count {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-fg);
+}
+
+.contribution-graph__settings {
+  justify-self: end;
+  display: inline-flex;
+  padding: 5px;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--color-fg-muted);
+  cursor: pointer;
+}
+
+.contribution-graph__settings:hover {
+  background: var(--color-hover);
+  color: var(--color-fg);
+}
+
+.contribution-graph__settings svg {
+  fill: currentColor;
+}
+
+/* Lưới 52 tuần × 7 ngày.
+   grid-auto-flow: column -> ô điền từ trên xuống rồi mới sang cột kế,
+   đúng thứ tự của GitHub (mỗi cột là một tuần).
+   overflow-x: auto -> màn hình hẹp thì lưới tự cuộn ngang bên trong,
+   không đẩy cả trang tràn ra. */
+.contribution-graph__calendar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: repeat(7, 11px);
+  grid-auto-flow: column;
+  grid-auto-columns: 11px;
+  gap: 3px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.contribution-graph__cell {
+  border-radius: 2px;
+  outline: 1px solid rgba(255, 255, 255, 0.04);
+  outline-offset: -1px;
+}
+
+/* 5 mức đậm nhạt — bảng màu GitHub dark.
+   Đổi bảng màu chỉ cần sửa 5 dòng này, không phải sửa 364 ô trong HTML. */
+.contribution-graph__cell--l0 { background: #161b22; }
+.contribution-graph__cell--l1 { background: #0e4429; }
+.contribution-graph__cell--l2 { background: #006d32; }
+.contribution-graph__cell--l3 { background: #26a641; }
+.contribution-graph__cell--l4 { background: #39d353; }
