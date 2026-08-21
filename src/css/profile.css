@@ -314,3 +314,41 @@ a {
   border: 0;
   border-top: 1px solid var(--color-border);
 }
+
+
+.achievement {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.achievement__title-bg {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-fg);
+}
+
+/* Lưới 3 cột: hàng trên 3 badge, hàng dưới 2 — đúng bản vẽ.
+   Badge tự co theo bề rộng sidebar nhưng không vượt quá 64px. */
+.achievement__badge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  justify-items: start;
+}
+
+.achievement__badge {
+  width: 100%;
+  max-width: 64px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: block;
+  transition: transform 0.1s ease-in-out;
+}
+
+.achievement__badge:hover {
+  transform: scale(1.06);
+}
