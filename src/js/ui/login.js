@@ -12,20 +12,18 @@ let errorBox = document.querySelector('.login-form__error');
 if (!errorBox) {
   errorBox = document.createElement('p');
   errorBox.className = 'login-form__error';
-  errorBox.style.color = '#cf222e';
-  errorBox.style.marginTop = '12px';
-  errorBox.style.display = 'none';
+  errorBox.hidden = true;
   form.appendChild(errorBox);
 }
 
 function showError(message) {
   errorBox.textContent = message;
-  errorBox.style.display = 'block';
+  errorBox.hidden = false;
 }
 
 function clearError() {
   errorBox.textContent = '';
-  errorBox.style.display = 'none';
+  errorBox.hidden = true;
 }
 
 function parseRecords(text) {

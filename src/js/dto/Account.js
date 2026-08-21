@@ -9,7 +9,6 @@
  */
 class Account extends AAccount {
   #userId;
-  #isLoggedIn;
   #lastLoginAt;
 
   /**
@@ -23,7 +22,6 @@ class Account extends AAccount {
     super(accountId, password, role);
 
     this.#userId = options.userId ?? null;
-    this.#isLoggedIn = false;
     this.#lastLoginAt = null;
   }
 
@@ -81,7 +79,6 @@ class Account extends AAccount {
       if (error) {
         return callback(error);
       }
-      this.#isLoggedIn = true;
       this.#lastLoginAt = lastLoginAt;
       callback(null, true);
     });

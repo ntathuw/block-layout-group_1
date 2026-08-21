@@ -138,6 +138,11 @@ img {
   box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.3);
 }
 
+.login-form__error {
+  margin-top: 12px;
+  color: #cf222e;
+}
+
 .login-form__submit {
   width: 100%;
   min-height: 40px;

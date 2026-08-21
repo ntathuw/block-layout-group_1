@@ -17,13 +17,9 @@ class AUser {
     return this.#userId;
   }
 
-
-
   get accountId() {
     return this.#accountId;
   }
-
-
 
   get displayName() {
     return this.#displayName;
