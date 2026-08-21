@@ -239,7 +239,6 @@ a {
   border-radius: 50%;
 }
 
-/* ===== Profile nav ===== */
 .profile-nav {
   display: flex;
   align-items: center;
@@ -267,7 +266,6 @@ a {
   color: var(--color-fg);
 }
 
-/* Icon dan dau moi muc nav (sach, repo, bang, package, sao) */
 .profile-nav__icon {
   flex-shrink: 0;
   fill: currentColor;
@@ -279,7 +277,6 @@ a {
   font-weight: 600;
 }
 
-/* ===== Main layout ===== */
 .main {
   display: grid;
   grid-template-columns: 296px 1fr;
@@ -290,7 +287,6 @@ a {
   align-items: start;
 }
 
-/* ===== Sidebar ===== */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -357,7 +353,6 @@ a {
   background: var(--color-hover);
 }
 
-/* Dong "N followers - N following": chu xam, chi rieng CON SO la trang dam */
 .sidebar__follow-icon {
   display: flex;
   align-items: center;
@@ -402,9 +397,6 @@ a {
   border-top: 1px solid var(--color-border);
 }
 
-/* ==========================================================================
-   Task 2 — khối achievement trong sidebar
-   ========================================================================== */
 
 .achievement {
   display: flex;
@@ -442,10 +434,6 @@ a {
 .achievement__badge:hover {
   transform: scale(1.06);
 }
-
-/* ==========================================================================
-   Task 3 — khối repo pinned
-   ========================================================================== */
 
 /* min-width:0 cho phép cột co lại nhỏ hơn nội dung bên trong.
    Không có dòng này thì lưới lịch contribution 53 cột sẽ đẩy tràn ngang. */
@@ -529,9 +517,7 @@ a {
   line-height: 18px;
 }
 
-/* Mo ta ngan cua repo. Chiem ca 2 cot cua .repo-card, nam duoi ten + badge.
-   Cat con 2 dong: mo ta dai ngan khac nhau, khong cat thi cac the trong luoi
-   se cao thap khong deu. */
+
 .repo-card__description {
   grid-column: 1 / -1;
   margin: 0;
@@ -545,22 +531,11 @@ a {
   line-height: 1.5;
 }
 
-/*
-  [hidden] mac dinh la display:none, NHUNG bat cu rule nao dat display:flex
-  hay display:grid len chinh phan tu do se de len no. Dong nay giu cho thuoc
-  tinh hidden luon thang -> JS chi can bat/tat hidden la du.
-*/
 [hidden] {
   display: none !important;
 }
 
-/* ==========================================================================
-   Task 4 — khối contribution graph
-   ========================================================================== */
 
-/* contribution chứa 2 con: nội dung bên trái, cột chọn năm bên phải.
-   minmax(0, 1fr) cho cột trái được phép co — nếu để 1fr thì lưới lịch
-   sẽ đẩy cả trang tràn ngang. */
 .contribution {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -591,10 +566,6 @@ a {
   color: var(--color-fg);
 }
 
-/*
-  Khong phai nut banh rang. GitHub de nguyen chu "Contribution settings" kem
-  mot mui ten xo xuong, khong vien khong nen — kieu Link--secondary.
-*/
 .contribution-graph__settings {
   justify-self: end;
   align-self: center;
@@ -729,9 +700,6 @@ a {
 .contribution-graph__cell--l3 { background: #26a641; }
 .contribution-graph__cell--l4 { background: #39d353; }
 
-/* ==========================================================================
-   Task 5 — khối contribution activity
-   ========================================================================== */
 
 .contribution-activity {
   display: flex;
@@ -751,8 +719,6 @@ a {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  /* Đường kẻ dọc nối các activity-item, giống GitHub thật.
-     Vẽ bằng gradient thay vì border để không phải thêm phần tử. */
   background: linear-gradient(var(--color-border), var(--color-border)) 15px 0 / 1px 100% no-repeat;
 }
 
@@ -764,7 +730,6 @@ a {
   color: var(--color-fg);
 }
 
-/* --- activity-item: khung chung cho cả 3 dạng --- */
 
 .activity-item {
   display: grid;
@@ -815,12 +780,6 @@ a {
   color: var(--color-fg);
 }
 
-/*
-  Nut gap/mo mot muc activity. GitHub dung cap icon fold / unfold chu khong
-  phai mui ten. Ca hai icon deu nam san trong HTML, CSS chon hien cai nao
-  dua tren aria-expanded -> JS chi phai lat DUY NHAT mot thuoc tinh, khong
-  phai ve lai icon. aria-expanded cung la thu trinh doc man hinh doc duoc.
-*/
 .activity-item__expand-btn {
   flex: 0 0 auto;
   display: inline-flex;
@@ -854,14 +813,6 @@ a {
   min-width: 0;
 }
 
-/*
-  Mot dong trong danh sach, chia 3 cot:
-    1. repo   - rong bang chinh noi dung
-    2. meta / language - DINH LIEN sau ten repo, can le TRAI (khong bi day
-       sang phai nhu ban flex cu)
-    3. thanh tien do hoac ngay - nam sat le phai
-  Cot 2 la minmax(0, 1fr) nen no nuot phan trong con lai, day cot 3 ra bien.
-*/
 .activity-item__line {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
@@ -922,11 +873,6 @@ a {
   white-space: nowrap;
 }
 
-/*
-  Thanh tien do so commit. Do dai va mau la DU LIEU nen truyen qua bien
-  --bar-fill / --bar-color dat inline; CSS chi lo hinh dang.
-  min-width giu cho repo it commit van con mot cham nhin thay duoc.
-*/
 .activity-item__bar {
   justify-self: end;
   display: block;
@@ -1102,9 +1048,6 @@ a {
   text-decoration: underline;
 }
 
-/* ==========================================================================
-   Task 6 — year-selector và footer
-   ========================================================================== */
 
 /* Cột chọn năm, xếp DỌC bên phải khối contribution — đúng bản vẽ. */
 /*
@@ -1147,13 +1090,7 @@ a {
   background: var(--color-accent);
 }
 
-/* --- footer --- */
 
-/*
-  GitHub bo chan trang trong cung mot khung rong toi da 1280px nhu phan main,
-  roi can giua theo chieu ngang. Khong co max-width thi link se dinh sat le
-  trai o man hinh rong -> nhin lech han so voi trang goc.
-*/
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -1194,11 +1131,7 @@ a {
   gap: 8px 16px;
 }
 
-/*
-  Link o chan trang KHONG mau xanh. GitHub dung Link--secondary: chu xam
-  (fgColor-muted), chi doi sang xanh khi hover. De xanh san se hut mat khoi
-  noi dung chinh.
-*/
+
 .footer__link {
   color: var(--color-fg-muted);
   font-size: 12px;
@@ -1211,7 +1144,6 @@ a {
   text-decoration: underline;
 }
 
-/* Task 8 — bo sung: so dem canh muc nav, kieu badge tron cua GitHub */
 .profile-nav__count {
   display: inline-block;
   margin-left: 4px;
@@ -1223,11 +1155,6 @@ a {
   line-height: 18px;
 }
 
-/* ==========================================================================
-   Task 7 — responsive
-   Hai mốc: 1024px (gộp cột) và 768px (thu gọn cho điện thoại).
-   File gốc chưa có @media nào nên không sợ đè lên rule cũ.
-   ========================================================================== */
 
 /* --- Máy tính bảng và màn hình hẹp --- */
 @media (max-width: 1024px) {
