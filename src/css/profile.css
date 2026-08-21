@@ -634,7 +634,7 @@ a {
 .contribution-graph__months {
   display: grid;
   grid-template-columns: repeat(52, 11px);
-  gap: 3px;
+  gap: 2px;
   margin-left: calc(var(--weekday-col) + 3px);
   margin-bottom: 4px;
   width: max-content;
@@ -695,7 +695,7 @@ a {
   grid-template-rows: repeat(7, 11px);
   grid-auto-flow: column;
   grid-auto-columns: 11px;
-  gap: 3px;
+  gap: 2px;
 }
 
 /* Đặt kích thước ngay trên ô: trong lịch thì lưới đã định 11px, nhưng ô
