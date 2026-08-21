@@ -1,43 +1,39 @@
 class AAccount {
-  #accountId;
-  #password;
-  #role;
+  _accountId;
+  _password;
+  _role;
 
-  constructor(accountId, password, role) {
+  constructor() {
     if (new.target === AAccount) {
       throw new TypeError('AAccount is an abstract class and cannot be instantiated directly.');
     }
-
-    this.#accountId = accountId;
-    this.#password = password;
-    this.#role = role;
   }
 
   get accountId() {
-    return this.#accountId;
+    throw new Error('accountId is an abstract getter and must be implemented by a subclass.');
+  }
+
+  get password() {
+    throw new Error('password is an abstract getter and must be implemented by a subclass.');
   }
 
   set password(value) {
-    this.#password = value;
-  }
-
-  matchesPassword(input) {
-    return input === this.#password;
+    throw new Error('password is an abstract setter and must be implemented by a subclass.');
   }
 
   get role() {
-    return this.#role;
+    throw new Error('role is an abstract getter and must be implemented by a subclass.');
   }
 
   set role(value) {
-    this.#role = value;
+    throw new Error('role is an abstract setter and must be implemented by a subclass.');
   }
 
-  isLogin(callback) {
+  isLogin() {
     throw new Error('isLogin() is an abstract method and must be implemented by a subclass.');
   }
 
-  login(password, callback) {
+  login() {
     throw new Error('login() is an abstract method and must be implemented by a subclass.');
   }
 }

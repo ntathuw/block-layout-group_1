@@ -1,11 +1,12 @@
 /**
  * Class `Account` mô tả tài khoản đăng nhập GitDemo, liên kết 1-1 với `User`.
  *
- * Kế thừa `AAccount` để dùng lại `accountId`, `password`, `role`;
- * bắt buộc override 2 abstract method `isLogin()` và `login()`.
+ * Kế thừa `AAccount`: protected fields `_accountId`, `_password`, `_role`;
+ * override getters/setters + 2 abstract method `isLogin()`/`login()`.
+ * Fields riêng (`userId`, `lastLoginAt`) để `#private`.
  *
  * Scope hiện tại chỉ đăng nhập: xác thực password + role `user`,
- * ghi phiên vào bảng `session` trong bộ nhớ. Dùng callback thay async/await.
+ * ghi phiên vào bảng `session`. Dùng callback thay async/await.
  */
 class Account extends AAccount {
   #userId;
@@ -19,13 +20,36 @@ class Account extends AAccount {
    * @param {string} [options.userId] Mã user liên kết.
    */
   constructor(accountId, password, role, options = {}) {
-    super(accountId, password, role);
+    super();
 
+    this._accountId = accountId;
+    this._password = password;
+    this._role = role;
     this.#userId = options.userId ?? null;
     this.#lastLoginAt = null;
   }
 
-  // ==================== Getters ====================
+  // ==================== Getters / Setters ====================
+
+  get accountId() {
+    return this._accountId;
+  }
+
+  get password() {
+    return this._password;
+  }
+
+  set password(value) {
+    this._password = value;
+  }
+
+  get role() {
+    return this._role;
+  }
+
+  set role(value) {
+    this._role = value;
+  }
 
   /** @returns {string|null} userId liên kết. */
   get userId() {
@@ -70,7 +94,7 @@ class Account extends AAccount {
       return callback(new AuthenticationFailedException('chỉ user mới được đăng nhập'));
     }
 
-    if (!this.matchesPassword(passwordInput)) {
+    if (passwordInput !== this.password) {
       return callback(new AuthenticationFailedException('mật khẩu không đúng'));
     }
 

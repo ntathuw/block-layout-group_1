@@ -3,118 +3,98 @@
  * gồm chữ cái, số, `-`, `_`; không bắt đầu bằng `-`/`_`.
  */
 const USERNAME_REGEX = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/;
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Class `User` mô tả một người dùng GitHub.
  *
- * Kế thừa `AUser` để dùng lại `userId`, `accountId`, `displayName`.
- * Các thuộc tính bổ sung chủ yếu dùng để hiển thị lên trang profile.
+ * Kế thừa `AUser`: protected fields `_userId`, `_accountId`, `_displayName`;
+ * override getters/setters. Fields riêng để `#private`.
  */
 class User extends AUser {
+  #pronouns;
   #username;
-  #email;
-  #avatarUrl;
   #bio;
-  #location;
-  #company;
-  #websiteUrl;
   #followersCount;
   #followingCount;
-  #publicReposCount;
-  #createdAt;
-  #updatedAt;
-  #isEmailVerified;
-  #isTwoFactorEnabled;
-  #isActive;
+  #company;
+  #location;
+  #localTime;
+  #timezone;
+  #websiteUrl;
+  #socialAccounts;
 
   /**
    * @param {string} userId Mã định danh duy nhất của user.
    * @param {string} accountId Mã định danh account liên kết.
    * @param {string} displayName Tên hiển thị.
    * @param {object} [options] Các thuộc tính GitHub bổ sung.
-   * @param {string} options.username Tên đăng nhập (username).
-   * @param {string} options.email Email công khai/profile.
-   * @param {string} [options.avatarUrl] URL avatar.
+   * @param {string} [options.pronouns] Đại từ xưng hô.
+   * @param {string} [options.username] Tên đăng nhập (username).
    * @param {string} [options.bio] Tiểu sử.
-   * @param {string} [options.location] Vị trí.
-   * @param {string} [options.company] Công ty.
-   * @param {string} [options.websiteUrl] URL website cá nhân.
    * @param {number} [options.followersCount] Số người theo dõi.
    * @param {number} [options.followingCount] Số người đang theo dõi.
-   * @param {number} [options.publicReposCount] Số repository công khai.
-   * @param {boolean} [options.isEmailVerified] Email đã xác thực.
-   * @param {boolean} [options.isTwoFactorEnabled] Bật xác thực hai yếu tố.
-   * @param {boolean} [options.isActive] Tài khoản còn hoạt động.
-   * @param {Date|string} [options.createdAt] Thời điểm tạo (mặc định hiện tại).
+   * @param {string} [options.company] Công ty.
+   * @param {string} [options.location] Vị trí.
+   * @param {string} [options.localTime] Giờ địa phương.
+   * @param {string} [options.timezone] Múi giờ.
+   * @param {string} [options.websiteUrl] URL website cá nhân.
+   * @param {string[]} [options.socialAccounts] Danh sách mạng xã hội (tối đa 4).
    */
   constructor(userId, accountId, displayName, options = {}) {
-    super(userId, accountId, displayName);
+    super();
 
-    const now = new Date();
-    this.#createdAt = options.createdAt ? new Date(options.createdAt) : now;
-    this.#updatedAt = new Date(this.#createdAt);
+    this._userId = userId;
+    this._accountId = accountId;
+    this._displayName = displayName;
 
-    this.#avatarUrl = options.avatarUrl ?? null;
-    this.#bio = options.bio ?? null;
-    this.#location = options.location ?? null;
-    this.#company = options.company ?? null;
-    this.#followersCount = options.followersCount ?? 0;
-    this.#followingCount = options.followingCount ?? 0;
-    this.#publicReposCount = options.publicReposCount ?? 0;
-    this.#isEmailVerified = options.isEmailVerified ?? false;
-    this.#isTwoFactorEnabled = options.isTwoFactorEnabled ?? false;
-    this.#isActive = options.isActive ?? true;
+    this.#pronouns = options.pronouns ?? null;
 
-    // username: immutable → chỉ gán qua validator trong constructor.
     if (options.username !== undefined && options.username !== null) {
       this.#username = this.#validateUsername(options.username);
     }
 
-    if (options.email !== undefined && options.email !== null) {
-      this.email = options.email; // qua setter để validate
-    }
+    this.#bio = options.bio ?? null;
+    this.#followersCount = options.followersCount ?? 0;
+    this.#followingCount = options.followingCount ?? 0;
+    this.#company = options.company ?? null;
+    this.#location = options.location ?? null;
+    this.#localTime = options.localTime ?? null;
+    this.#timezone = options.timezone ?? null;
 
     if (options.websiteUrl !== undefined && options.websiteUrl !== null) {
       this.websiteUrl = options.websiteUrl; // qua setter để validate
     }
+
+    this.socialAccounts = options.socialAccounts ?? [];
   }
 
   // ==================== Getters ====================
+
+  get userId() {
+    return this._userId;
+  }
+
+  get accountId() {
+    return this._accountId;
+  }
+
+  get displayName() {
+    return this._displayName;
+  }
+
+  /** @returns {string|null} pronouns. */
+  get pronouns() {
+    return this.#pronouns;
+  }
 
   /** @returns {string} username. */
   get username() {
     return this.#username;
   }
 
-  /** @returns {string} email. */
-  get email() {
-    return this.#email;
-  }
-
-  /** @returns {string|null} avatarUrl. */
-  get avatarUrl() {
-    return this.#avatarUrl;
-  }
-
   /** @returns {string|null} bio. */
   get bio() {
     return this.#bio;
-  }
-
-  /** @returns {string|null} location. */
-  get location() {
-    return this.#location;
-  }
-
-  /** @returns {string|null} company. */
-  get company() {
-    return this.#company;
-  }
-
-  /** @returns {string|null} websiteUrl. */
-  get websiteUrl() {
-    return this.#websiteUrl;
   }
 
   /** @returns {number} followersCount. */
@@ -127,76 +107,86 @@ class User extends AUser {
     return this.#followingCount;
   }
 
-  /** @returns {number} publicReposCount. */
-  get publicReposCount() {
-    return this.#publicReposCount;
+  /** @returns {string|null} company. */
+  get company() {
+    return this.#company;
   }
 
-  /** @returns {Date} createdAt. */
-  get createdAt() {
-    return this.#createdAt;
+  /** @returns {string|null} location. */
+  get location() {
+    return this.#location;
   }
 
-  /** @returns {Date} updatedAt. */
-  get updatedAt() {
-    return this.#updatedAt;
+  /** @returns {string|null} localTime. */
+  get localTime() {
+    return this.#localTime;
   }
 
-  /** @returns {boolean} isEmailVerified. */
-  get isEmailVerified() {
-    return this.#isEmailVerified;
+  /** @returns {string|null} timezone. */
+  get timezone() {
+    return this.#timezone;
   }
 
-  /** @returns {boolean} isTwoFactorEnabled. */
-  get isTwoFactorEnabled() {
-    return this.#isTwoFactorEnabled;
+  /** @returns {string|null} websiteUrl. */
+  get websiteUrl() {
+    return this.#websiteUrl;
   }
 
-  /** @returns {boolean} isActive. */
-  get isActive() {
-    return this.#isActive;
+  /** @returns {string[]} socialAccounts (tối đa 4). */
+  get socialAccounts() {
+    return this.#socialAccounts;
   }
 
   // ==================== Setters ====================
 
-  /** @param {string} value Email mới (validate định dạng). */
-  set email(value) {
-    if (typeof value !== 'string' || !EMAIL_REGEX.test(value)) {
-      throw new InvalidEmailException(`email không hợp lệ: ${value}`);
-    }
-    this.#email = value;
-    this.#touch();
+  set displayName(value) {
+    this._displayName = value;
   }
 
-  /** @param {string|null} value Avatar URL. */
-  set avatarUrl(value) {
-    this.#avatarUrl = value ?? null;
-    this.#touch();
+  /** @param {string|null} value Đại từ xưng hô. */
+  set pronouns(value) {
+    this.#pronouns = value ?? null;
   }
 
-  /** @param {string|null} value Bio. */
+  /** @param {string|null} value Tiểu sử. */
   set bio(value) {
     this.#bio = value ?? null;
-    this.#touch();
   }
 
-  /** @param {string|null} value Location. */
-  set location(value) {
-    this.#location = value ?? null;
-    this.#touch();
+  /** @param {number} value Số người theo dõi. */
+  set followersCount(value) {
+    this.#followersCount = Number(value) || 0;
   }
 
-  /** @param {string|null} value Company. */
+  /** @param {number} value Số người đang theo dõi. */
+  set followingCount(value) {
+    this.#followingCount = Number(value) || 0;
+  }
+
+  /** @param {string|null} value Công ty. */
   set company(value) {
     this.#company = value ?? null;
-    this.#touch();
+  }
+
+  /** @param {string|null} value Vị trí. */
+  set location(value) {
+    this.#location = value ?? null;
+  }
+
+  /** @param {string|null} value Giờ địa phương. */
+  set localTime(value) {
+    this.#localTime = value ?? null;
+  }
+
+  /** @param {string|null} value Múi giờ. */
+  set timezone(value) {
+    this.#timezone = value ?? null;
   }
 
   /** @param {string|null} value Website URL (validate nếu không null). */
   set websiteUrl(value) {
     if (value === null || value === undefined || value === '') {
       this.#websiteUrl = null;
-      this.#touch();
       return;
     }
 
@@ -212,38 +202,15 @@ class User extends AUser {
     }
 
     this.#websiteUrl = value;
-    this.#touch();
   }
 
-  /** @param {number} value Số người theo dõi. */
-  set followersCount(value) {
-    this.#followersCount = Number(value) || 0;
-  }
-
-  /** @param {number} value Số người đang theo dõi. */
-  set followingCount(value) {
-    this.#followingCount = Number(value) || 0;
-  }
-
-  /** @param {number} value Số repository công khai. */
-  set publicReposCount(value) {
-    this.#publicReposCount = Number(value) || 0;
-  }
-
-  /** @param {boolean} value Email đã xác thực. */
-  set isEmailVerified(value) {
-    this.#isEmailVerified = Boolean(value);
-  }
-
-  /** @param {boolean} value Bật xác thực hai yếu tố. */
-  set isTwoFactorEnabled(value) {
-    this.#isTwoFactorEnabled = Boolean(value);
-  }
-
-  /** @param {boolean} value Trạng thái hoạt động. */
-  set isActive(value) {
-    this.#isActive = Boolean(value);
-    this.#touch();
+  /** @param {string[]} value Danh sách mạng xã hội (tối đa 4). */
+  set socialAccounts(value) {
+    const accounts = Array.isArray(value) ? value : [];
+    if (accounts.length > 4) {
+      throw new Error('socialAccounts tối đa 4 mục');
+    }
+    this.#socialAccounts = accounts;
   }
 
   // ==================== Public methods ====================
@@ -257,21 +224,18 @@ class User extends AUser {
   getPublicProfile() {
     return {
       userId: this.userId,
-      username: this.#username,
       displayName: this.displayName,
-      email: this.#email,
-      avatarUrl: this.#avatarUrl,
+      pronouns: this.#pronouns,
+      username: this.#username,
       bio: this.#bio,
-      location: this.#location,
-      company: this.#company,
-      websiteUrl: this.#websiteUrl,
       followersCount: this.#followersCount,
       followingCount: this.#followingCount,
-      publicReposCount: this.#publicReposCount,
-      isEmailVerified: this.#isEmailVerified,
-      isTwoFactorEnabled: this.#isTwoFactorEnabled,
-      isActive: this.#isActive,
-      createdAt: this.#createdAt,
+      company: this.#company,
+      location: this.#location,
+      localTime: this.#localTime,
+      timezone: this.#timezone,
+      websiteUrl: this.#websiteUrl,
+      socialAccounts: this.#socialAccounts,
     };
   }
 
@@ -294,10 +258,5 @@ class User extends AUser {
       throw new InvalidUsernameException(`username không hợp lệ: ${value}`);
     }
     return value;
-  }
-
-  /** Cập nhật thời điểm thay đổi gần nhất. */
-  #touch() {
-    this.#updatedAt = new Date();
   }
 }
