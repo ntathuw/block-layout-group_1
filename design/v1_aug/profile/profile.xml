@@ -92,7 +92,7 @@
           <li class="repo-card">
             <a class="repo-card__name" href="#"></a>
             <span class="repo-card__visibility"></span>
-            <span class="repo-card__language"></span>
+            <p class="repo-card__description"></p>
           </li>
           <!-- repo-card x 6 -->
         </ul>

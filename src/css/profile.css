@@ -490,25 +490,20 @@ a {
   line-height: 18px;
 }
 
-/* Chấm màu ngôn ngữ. Màu là DỮ LIỆU nên truyền qua biến --dot-color
-   đặt inline trên từng thẻ; hình dạng và kích thước do CSS quyết định.
-   Sau này JS sẽ lấy màu từ Repository.getBadgeColor(). */
-.repo-card__language {
+/* Mo ta ngan cua repo. Chiem ca 2 cot cua .repo-card, nam duoi ten + badge.
+   Cat con 2 dong: mo ta dai ngan khac nhau, khong cat thi cac the trong luoi
+   se cao thap khong deu. */
+.repo-card__description {
   grid-column: 1 / -1;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: var(--color-fg-muted);
   font-size: 12px;
-}
-
-.repo-card__language::before {
-  content: "";
-  width: 12px;
-  height: 12px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--dot-color, var(--color-fg-muted));
+  line-height: 1.5;
 }
 
 /* ==========================================================================
