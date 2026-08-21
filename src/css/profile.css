@@ -1240,8 +1240,12 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     order: -1;
-    /* Một cột thì không còn khung lịch nào để căn theo -> bỏ phần tụt xuống */
+    width: auto;
     margin-top: 0;
+  }
+
+  .year-selector__item {
+    width: auto;
   }
 }
 
@@ -1262,26 +1266,25 @@ a {
     margin-left: auto;
   }
 
-  /*
-    Bớt vài icon phụ cho đỡ chật: giữ lại đúng cái inbox (nút cuối trong group).
-    Không dùng nth-of-type nữa vì 4 nút giờ nằm trong .header__utility-group,
-    thứ tự đếm đã khác.
-  */
+  .header__search {
+    width: 32px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .header__search-hint,
+  .header__search-key,
+  .header__divider {
+    display: none;
+  }
+
+
   .header__utility-icon--copilot {
     display: none;
   }
 
   .header__utility-group .header__utility-icon:not(:last-child) {
     display: none;
-  }
-
-  .header__utility-group {
-    border: 0;
-  }
-
-  .header__utility-group .header__utility-icon:last-child {
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
   }
 
   .profile-nav {
