@@ -77,8 +77,10 @@
             <span class="sidebar__follow-count"></span>
           </a>
         </p>
-        <a class="sidebar__link-icon" href="#"></a>
-        <a class="sidebar__link-icon" href="#"></a>
+        <div class="sidebar__link-icon"></div>
+        <!-- sidebar__link-icon x 4 -->
+        <a class="sidebar__link-icon sidebar__link-icon--url" href="#"></a>
+        <!-- sidebar__link-icon x 4 -->
       </div>
 
       <hr class="sidebar__divider" />
