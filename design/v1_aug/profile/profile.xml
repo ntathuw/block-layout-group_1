@@ -24,7 +24,9 @@
 
     <nav class="profile-nav">
       <a class="profile-nav__item profile-nav__item--overview" href="#"></a>
-      <a class="profile-nav__item profile-nav__item--repositories" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--repositories" href="#">
+        <span class="profile-nav__count"></span>
+      </a>
       <a class="profile-nav__item profile-nav__item--projects" href="#"></a>
       <a class="profile-nav__item profile-nav__item--packages" href="#"></a>
       <a class="profile-nav__item profile-nav__item--stars" href="#"></a>
@@ -87,7 +89,10 @@
           <section class="contribution-graph">
             <h2 class="contribution-graph__count"></h2>
             <button class="contribution-graph__settings" type="button"></button>
-            <div class="contribution-graph__calendar"></div>
+            <div class="contribution-graph__calendar">
+              <span class="contribution-graph__cell contribution-graph__cell--l0"></span>
+              <!-- cell x 364 (53 tuan x 7 ngay). Modifier tu l0 den l4 theo muc dam nhat. -->
+            </div>
           </section>
 
           <section class="contribution-activity">
@@ -163,7 +168,7 @@
         <nav class="year-selector">
           <a class="year-selector__item year-selector__item--active" href="#"></a>
           <a class="year-selector__item" href="#"></a>
-          <!-- year-selector__item x 5 -->
+          <!-- year-selector__item x 4 nua (tong cong 6 o, ke ca o active) -->
         </nav>
 
       </section>
