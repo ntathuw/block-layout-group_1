@@ -118,36 +118,43 @@ a {
 }
 
 .header__search-group {
-  position: relative;
-  max-width: 320px;
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
 }
 
+/* Nhan chi de doc man hinh, khong hien thi */
 .header__search-label {
   position: absolute;
-  left: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-flex;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.header__search-label svg {
-  fill: var(--color-fg-muted);
-}
-
+/* Chi la mot icon co vien, khong phai thanh tim kiem */
 .header__search {
-  width: 100%;
-  padding: 6px 8px 6px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  color: var(--color-fg);
-  outline: none;
+  color: var(--color-fg-muted);
+  cursor: pointer;
 }
 
-.header__search::placeholder {
-  color: var(--color-fg-muted);
+.header__search:hover {
+  background: var(--color-hover);
+  color: var(--color-fg);
+}
+
+.header__search svg {
+  fill: currentColor;
 }
 
 .header__search:focus {
@@ -161,24 +168,59 @@ a {
   margin-left: auto;
 }
 
+/* Moi nut o header deu la mot o co vien, giong GitHub that */
 .header__utility-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-  background: transparent;
-  border: none;
+  gap: 2px;
+  height: 32px;
+  padding: 0 6px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
-  color: var(--color-fg);
+  color: var(--color-fg-muted);
   cursor: pointer;
 }
 
 .header__utility-icon:hover {
   background: var(--color-hover);
+  color: var(--color-fg);
 }
 
 .header__utility-icon svg {
-  fill: var(--color-fg);
+  fill: currentColor;
+}
+
+/* Mui ten xo xuong, nho hon icon chinh */
+.header__utility-caret {
+  width: 12px;
+  height: 12px;
+}
+
+/*
+  GitHub gom 4 nut (tao moi, issues, pull requests, inbox) vao CHUNG mot vien,
+  ngan cach nhau bang duong ke doc. Nen vien nam o group, con tung nut ben
+  trong thi bo vien rieng va bo bo goc di.
+*/
+.header__utility-group {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.header__utility-group .header__utility-icon {
+  background: transparent;
+  border: 0;
+  border-left: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.header__utility-group .header__utility-icon:first-child {
+  border-left: 0;
 }
 
 .header__user-avatar {
@@ -213,6 +255,12 @@ a {
 
 .profile-nav__item:hover {
   color: var(--color-fg);
+}
+
+/* Icon dan dau moi muc nav (sach, repo, bang, package, sao) */
+.profile-nav__icon {
+  flex-shrink: 0;
+  fill: currentColor;
 }
 
 .profile-nav__item--overview {
@@ -385,17 +433,13 @@ a {
 
 .repo-spacer__customize-btn {
   justify-self: end;
-  padding: 3px 12px;
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  color: var(--color-fg);
+  color: var(--color-accent);
   font-size: 12px;
   cursor: pointer;
 }
 
 .repo-spacer__customize-btn:hover {
-  background: var(--color-hover);
+  text-decoration: underline;
 }
 
 /* 2 cột × 3 hàng — đúng bản vẽ. 6 thẻ xếp thành hai cột dọc. */
@@ -503,23 +547,32 @@ a {
   color: var(--color-fg);
 }
 
+/*
+  Khong phai nut banh rang. GitHub de nguyen chu "Contribution settings" kem
+  mot mui ten xo xuong, khong vien khong nen — kieu Link--secondary.
+*/
 .contribution-graph__settings {
   justify-self: end;
+  align-self: center;
   display: inline-flex;
-  padding: 5px;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 0;
   background: transparent;
   border: 0;
-  border-radius: 6px;
   color: var(--color-fg-muted);
+  font-family: inherit;
+  font-size: 14px;
   cursor: pointer;
 }
 
 .contribution-graph__settings:hover {
-  background: var(--color-hover);
-  color: var(--color-fg);
+  color: var(--color-accent);
 }
 
 .contribution-graph__settings svg {
+  width: 12px;
+  height: 12px;
   fill: currentColor;
 }
 
@@ -702,6 +755,25 @@ a {
   font-size: 12px;
 }
 
+/* Ten ngon ngu di kem mot cham tron mau — dung inline-flex de cham thang hang chu */
+.activity-item__language {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/*
+  Cham mau ngon ngu. Mau khong viet cung trong CSS ma nhan qua bien --dot-color
+  dat trong style cua the cha, vi moi ngon ngu mot mau — sau nay JS render se
+  gan bien nay, khong phai them class moi cho tung ngon ngu.
+*/
+.activity-item__lang-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dot-color, var(--color-fg-muted));
+}
+
 /* --- dạng 3: thẻ repo được star --- */
 
 .activity-card {
@@ -750,18 +822,21 @@ a {
 
 /* --- chân khối activity --- */
 
+/* Keo dai bang dung khoi .contribution-activity, khong co lai o goc trai */
 .contribution-activity__expand-icon {
-  align-self: flex-start;
-  display: inline-flex;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
   align-items: center;
   gap: 6px;
-  margin-top: 8px;
-  padding: 5px 16px;
-  background: var(--color-bg-subtle);
+  width: 100%;
+  padding: 6px;
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  color: var(--color-fg);
+  color: var(--color-accent);
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -777,6 +852,15 @@ a {
   margin: 0;
   color: var(--color-fg-muted);
   font-size: 12px;
+}
+
+.contribution-activity__guide-link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.contribution-activity__guide-link:hover {
+  text-decoration: underline;
 }
 
 /* ==========================================================================
@@ -818,12 +902,19 @@ a {
 
 /* --- footer --- */
 
+/*
+  GitHub bo chan trang trong cung mot khung rong toi da 1280px nhu phan main,
+  roi can giua theo chieu ngang. Khong co max-width thi link se dinh sat le
+  trai o man hinh rong -> nhin lech han so voi trang goc.
+*/
 .footer {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 8px 16px;
-  margin-top: 40px;
+  max-width: 1280px;
+  margin: 40px auto 0;
   padding: 40px 24px;
   border-top: 1px solid var(--color-border);
 }
@@ -856,14 +947,20 @@ a {
   gap: 8px 16px;
 }
 
+/*
+  Link o chan trang KHONG mau xanh. GitHub dung Link--secondary: chu xam
+  (fgColor-muted), chi doi sang xanh khi hover. De xanh san se hut mat khoi
+  noi dung chinh.
+*/
 .footer__link {
-  color: var(--color-accent);
+  color: var(--color-fg-muted);
   font-size: 12px;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .footer__link:hover {
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
@@ -951,9 +1048,26 @@ a {
     margin-left: auto;
   }
 
-  /* Bớt vài icon phụ cho đỡ chật */
-  .header__utility-icon:nth-of-type(n + 3) {
+  /*
+    Bớt vài icon phụ cho đỡ chật: giữ lại đúng cái inbox (nút cuối trong group).
+    Không dùng nth-of-type nữa vì 4 nút giờ nằm trong .header__utility-group,
+    thứ tự đếm đã khác.
+  */
+  .header__utility-icon--copilot {
     display: none;
+  }
+
+  .header__utility-group .header__utility-icon:not(:last-child) {
+    display: none;
+  }
+
+  .header__utility-group {
+    border: 0;
+  }
+
+  .header__utility-group .header__utility-icon:last-child {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
   }
 
   .profile-nav {

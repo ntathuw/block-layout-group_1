@@ -10,26 +10,43 @@
       <div class="header__center">
       <div class="header__username"></div>
       <div class="header__search-group">
-        <label class="header__search-label" for="global-search"></label>
-        <input class="header__search" id="global-search" type="search" autocomplete="off" />
+        <span class="header__search-label" id="global-search-label"></span>
+        <button class="header__search" type="button" aria-labelledby="global-search-label"></button>
       </div>
       </div>
       <div class="header__actions">
-        <button class="header__utility-icon" type="button"></button>
-        <!-- header__utility-icon x 6 -->
+        <button class="header__utility-icon header__utility-icon--copilot" type="button">
+          <svg class="header__utility-caret"></svg>
+        </button>
+        <div class="header__utility-group">
+          <button class="header__utility-icon" type="button">
+            <svg class="header__utility-caret"></svg>
+          </button>
+          <button class="header__utility-icon" type="button"></button>
+          <!-- header__utility-icon x 4 trong group -->
+        </div>
         <img class="header__user-avatar" src="" alt="" />
       </div>
 
     </div>
 
     <nav class="profile-nav">
-      <a class="profile-nav__item profile-nav__item--overview" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--overview" href="#">
+        <svg class="profile-nav__icon"></svg>
+      </a>
       <a class="profile-nav__item profile-nav__item--repositories" href="#">
+        <svg class="profile-nav__icon"></svg>
         <span class="profile-nav__count"></span>
       </a>
-      <a class="profile-nav__item profile-nav__item--projects" href="#"></a>
-      <a class="profile-nav__item profile-nav__item--packages" href="#"></a>
-      <a class="profile-nav__item profile-nav__item--stars" href="#"></a>
+      <a class="profile-nav__item profile-nav__item--projects" href="#">
+        <svg class="profile-nav__icon"></svg>
+      </a>
+      <a class="profile-nav__item profile-nav__item--packages" href="#">
+        <svg class="profile-nav__icon"></svg>
+      </a>
+      <a class="profile-nav__item profile-nav__item--stars" href="#">
+        <svg class="profile-nav__icon"></svg>
+      </a>
     </nav>
   </header>
 
@@ -69,7 +86,7 @@
 
       <section class="repo-spacer">
         <h2 class="repo-spacer__title"></h2>
-        <button class="repo-spacer__customize-btn" type="button"></button>
+        <span class="repo-spacer__customize-btn"></span>
 
         <ul class="repo">
           <li class="repo-card">
@@ -134,7 +151,9 @@
                   <div class="activity-item__content">
                     <div class="activity-item__line">
                       <a class="activity-item__repo" href="#"></a>
-                      <span class="activity-item__language"></span>
+                      <span class="activity-item__language">
+                        <span class="activity-item__lang-dot"></span>
+                      </span>
                       <span class="activity-item__date"></span>
                     </div>
                     <!-- activity-item__line x 3 -->
@@ -164,7 +183,9 @@
             </div>
 
             <button class="contribution-activity__expand-icon" type="button"></button>
-            <p class="contribution-activity__guide"></p>
+            <p class="contribution-activity__guide">
+              <a class="contribution-activity__guide-link" href="#"></a>
+            </p>
           </section>
 
         </div>
