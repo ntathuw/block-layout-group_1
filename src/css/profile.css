@@ -33,6 +33,7 @@ a {
 /* ===== Dark theme tokens ===== */
 :root {
   --color-bg: #0d1117;
+  --color-bg-inset: #010409;
   --color-bg-subtle: #161b22;
   --color-border: #30363d;
   --color-border-subtle: #21262d;
@@ -63,7 +64,7 @@ a {
 
 /* ===== Header ===== */
 .header {
-  background: var(--color-bg);
+  background: var(--color-bg-inset);
   border-bottom: 1px solid var(--color-border);
 }
 
