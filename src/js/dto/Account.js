@@ -9,7 +9,6 @@
  */
 class Account extends AAccount {
   #userId;
-  #password;
   #isLoggedIn;
   #lastLoginAt;
 
@@ -23,9 +22,6 @@ class Account extends AAccount {
   constructor(accountId, password, role, options = {}) {
     super(accountId, password, role);
 
-    // AAccount không có getter cho password (chỉ có setter), nên Account
-    // tự lưu lại mật khẩu để dùng cho việc xác thực.
-    this.#password = password;
     this.#userId = options.userId ?? null;
     this.#isLoggedIn = false;
     this.#lastLoginAt = null;
@@ -76,7 +72,7 @@ class Account extends AAccount {
       return callback(new AuthenticationFailedException('chỉ user mới được đăng nhập'));
     }
 
-    if (passwordInput !== this.#password) {
+    if (!this.matchesPassword(passwordInput)) {
       return callback(new AuthenticationFailedException('mật khẩu không đúng'));
     }
 

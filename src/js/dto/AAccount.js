@@ -21,6 +21,10 @@ class AAccount {
     this.#password = value;
   }
 
+  matchesPassword(input) {
+    return input === this.#password;
+  }
+
   get role() {
     return this.#role;
   }
