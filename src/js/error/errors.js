@@ -20,14 +20,14 @@ class DomainError extends Error {
 
 /** Ném khi username không hợp lệ (quy tắc GitHub). */
 class InvalidUsernameException extends DomainError {
-  constructor(message = 'username không hợp lệ') {
+  constructor(message = 'Username không hợp lệ') {
     super(message, 'INVALID_USERNAME', 400);
   }
 }
 
 /** Ném khi email không đúng định dạng. */
 class InvalidEmailException extends DomainError {
-  constructor(message = 'email không hợp lệ') {
+  constructor(message = 'Email không hợp lệ') {
     super(message, 'INVALID_EMAIL', 400);
   }
 }
@@ -41,14 +41,14 @@ class InvalidUrlException extends DomainError {
 
 /** Ném khi xác thực đăng nhập thất bại. */
 class AuthenticationFailedException extends DomainError {
-  constructor(message = 'xác thực thất bại') {
+  constructor(message = 'Xác thực thất bại') {
     super(message, 'AUTHENTICATION_FAILED', 401);
   }
 }
 
 /** Ném khi không tìm thấy user. */
 class UserNotFoundException extends DomainError {
-  constructor(message = 'không tìm thấy user') {
+  constructor(message = 'Không tìm thấy user') {
     super(message, 'USER_NOT_FOUND', 404);
   }
 }

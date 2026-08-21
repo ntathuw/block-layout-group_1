@@ -34,7 +34,7 @@ function parseRecords(text) {
     .map((line) => {
       const record = JSON.parse(line);
       if (typeof record !== 'object' || record === null || Array.isArray(record)) {
-        throw new Error('record không phải object');
+        throw new Error('Record không phải object');
       }
       return record;
     });
@@ -54,11 +54,11 @@ function readText(url, callback) {
     if (xhr.status >= 200 && xhr.status < 300) {
       callback(null, xhr.responseText);
     } else {
-      callback(new Error(`không đọc được ${url} (status ${xhr.status})`));
+      callback(new Error(`Không đọc được ${url} (status ${xhr.status})`));
     }
   };
-  xhr.onerror = () => callback(new Error(`không đọc được ${url}`));
-  xhr.ontimeout = () => callback(new Error(`đọc ${url} quá thời gian chờ`));
+  xhr.onerror = () => callback(new Error(`Không đọc được ${url}`));
+  xhr.ontimeout = () => callback(new Error(`Đọc ${url} quá thời gian chờ`));
   xhr.send();
 }
 
@@ -92,12 +92,12 @@ function loadDataFiles(callback) {
       try {
         records = parseRecords(text);
       } catch (parseError) {
-        done(new Error(`file ${file.url} không đúng định dạng JSON Lines`));
+        done(new Error(`File ${file.url} không đúng định dạng JSON Lines`));
         return;
       }
 
       if (records.length === 0) {
-        done(new Error(`file ${file.url} rỗng`));
+        done(new Error(`File ${file.url} rỗng`));
         return;
       }
 

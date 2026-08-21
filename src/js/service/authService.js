@@ -25,7 +25,7 @@ const authService = {
       );
 
       if (!userRecord) {
-        return callback(new AuthenticationFailedException('sai username/email hoặc mật khẩu'));
+        return callback(new AuthenticationFailedException('Sai username/email hoặc mật khẩu'));
       }
 
       readRecords(TABLES.account, (error, accounts) => {
@@ -38,7 +38,7 @@ const authService = {
         );
 
         if (!accountRecord) {
-          return callback(new AuthenticationFailedException('sai username/email hoặc mật khẩu'));
+          return callback(new AuthenticationFailedException('Sai username/email hoặc mật khẩu'));
         }
 
         const account = new Account(

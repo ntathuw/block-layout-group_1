@@ -87,11 +87,11 @@ class Account extends AAccount {
    */
   login(passwordInput, callback) {
     if (this.role !== 'user') {
-      return callback(new AuthenticationFailedException('chỉ user mới được đăng nhập'));
+      return callback(new AuthenticationFailedException('Chỉ user mới được đăng nhập'));
     }
 
     if (passwordInput !== this.password) {
-      return callback(new AuthenticationFailedException('mật khẩu không đúng'));
+      return callback(new AuthenticationFailedException('Mật khẩu không đúng'));
     }
 
     const lastLoginAt = new Date();

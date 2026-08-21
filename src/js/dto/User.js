@@ -194,11 +194,11 @@ class User extends AUser {
     try {
       parsed = new URL(value);
     } catch {
-      throw new InvalidUrlException(`websiteUrl không hợp lệ: ${value}`);
+      throw new InvalidUrlException(`WebsiteUrl không hợp lệ: ${value}`);
     }
 
     if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
-      throw new InvalidUrlException(`websiteUrl phải dùng http/https: ${value}`);
+      throw new InvalidUrlException(`WebsiteUrl phải dùng http/https: ${value}`);
     }
 
     this.#websiteUrl = value;
@@ -208,7 +208,7 @@ class User extends AUser {
   set socialAccounts(value) {
     const accounts = Array.isArray(value) ? value : [];
     if (accounts.length > 4) {
-      throw new Error('socialAccounts tối đa 4 mục');
+      throw new Error('SocialAccounts tối đa 4 mục');
     }
     this.#socialAccounts = accounts;
   }
@@ -255,7 +255,7 @@ class User extends AUser {
       value.length > 39 ||
       !USERNAME_REGEX.test(value)
     ) {
-      throw new InvalidUsernameException(`username không hợp lệ: ${value}`);
+      throw new InvalidUsernameException(`Username không hợp lệ: ${value}`);
     }
     return value;
   }

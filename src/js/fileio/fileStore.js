@@ -50,7 +50,7 @@ function loadRecords(table, records, callback) {
     return;
   }
   if (!store[table]) {
-    return callback(new Error(`bảng "${table}" không tồn tại`));
+    return callback(new Error(`Bảng "${table}" không tồn tại`));
   }
   store[table] = records;
   callback(null);
@@ -69,7 +69,7 @@ function readRecords(table, callback) {
   }
   const records = store[table];
   if (!records) {
-    return callback(new Error(`bảng "${table}" không tồn tại`));
+    return callback(new Error(`Bảng "${table}" không tồn tại`));
   }
   callback(null, [...records]);
 }
@@ -89,7 +89,7 @@ function upsertRecord(table, matchFn, record, callback) {
   } else {
     records = store[table];
     if (!records) {
-      return callback(new Error(`bảng "${table}" không tồn tại`));
+      return callback(new Error(`Bảng "${table}" không tồn tại`));
     }
   }
 
