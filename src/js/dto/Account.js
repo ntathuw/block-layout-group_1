@@ -35,10 +35,6 @@ class Account extends AAccount {
     return this._accountId;
   }
 
-  get password() {
-    return this._password;
-  }
-
   set password(value) {
     this._password = value;
   }
