@@ -1,4 +1,4 @@
-export default class AUser {
+class AUser {
   #userId;
   #accountId;
   #displayName;

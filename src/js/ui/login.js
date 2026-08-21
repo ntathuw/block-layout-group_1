@@ -1,6 +1,6 @@
 // Script điều khiển form đăng nhập trên `login.html`.
-// Gọi API `/api/login` (do `src/server.js` xử lý), thành công thì điều hướng
-// về trang chủ `index.html`.
+// Dùng callback: đọc user/account từ file bằng `XMLHttpRequest`,
+// xác thực qua `authService.login`, session lưu localStorage.
 
 const form = document.querySelector('.login-form');
 const usernameInput = document.getElementById('login-username');
@@ -28,9 +28,95 @@ function clearError() {
   errorBox.style.display = 'none';
 }
 
-form.addEventListener('submit', async (event) => {
+function parseRecords(text) {
+  return text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0)
+    .map((line) => {
+      const record = JSON.parse(line);
+      if (typeof record !== 'object' || record === null || Array.isArray(record)) {
+        throw new Error('record không phải object');
+      }
+      return record;
+    });
+}
+
+const FILES = [
+  { url: 'js/data/user.txt', table: TABLES.user },
+  { url: 'js/data/account.txt', table: TABLES.account },
+];
+
+function readText(url, callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.timeout = 10000;
+
+  xhr.onload = () => {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      callback(null, xhr.responseText);
+    } else {
+      callback(new Error(`không đọc được ${url} (status ${xhr.status})`));
+    }
+  };
+  xhr.onerror = () => callback(new Error(`không đọc được ${url}`));
+  xhr.ontimeout = () => callback(new Error(`đọc ${url} quá thời gian chờ`));
+  xhr.send();
+}
+
+function loadDataFiles(callback) {
+  let remaining = FILES.length;
+  let failed = false;
+
+  const done = (error) => {
+    if (failed) {
+      return;
+    }
+    if (error) {
+      failed = true;
+      callback(error);
+      return;
+    }
+    remaining -= 1;
+    if (remaining === 0) {
+      callback(null);
+    }
+  };
+
+  FILES.forEach((file) => {
+    readText(file.url, (error, text) => {
+      if (error) {
+        done(error);
+        return;
+      }
+
+      let records;
+      try {
+        records = parseRecords(text);
+      } catch (parseError) {
+        done(new Error(`file ${file.url} không đúng định dạng JSON Lines`));
+        return;
+      }
+
+      if (records.length === 0) {
+        done(new Error(`file ${file.url} rỗng`));
+        return;
+      }
+
+      loadRecords(file.table, records, done);
+    });
+  });
+}
+
+let loading = false;
+
+form.addEventListener('submit', (event) => {
   event.preventDefault();
   clearError();
+
+  if (loading) {
+    return;
+  }
 
   const identifier = usernameInput.value.trim();
   const password = passwordInput.value;
@@ -40,26 +126,29 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
+  loading = true;
   submitButton.disabled = true;
 
-  try {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ identifier, password }),
-    });
-
-    const result = await response.json();
-
-    if (result.ok) {
-      // Đăng nhập thành công -> điều hướng về trang chủ.
-      window.location.href = '/index.html';
-    } else {
-      showError(result.message || 'Đăng nhập thất bại.');
+  loadDataFiles((error) => {
+    if (error) {
+      loading = false;
+      submitButton.disabled = false;
+      showError(error.message);
+      return;
     }
-  } catch (error) {
-    showError('Không thể kết nối tới server.');
-  } finally {
-    submitButton.disabled = false;
-  }
+
+    authService.login(identifier, password, (error, ok) => {
+      loading = false;
+      submitButton.disabled = false;
+
+      if (error) {
+        showError(error.message || 'Đăng nhập thất bại.');
+        return;
+      }
+
+      if (ok) {
+        window.location.href = 'index.html';
+      }
+    });
+  });
 });

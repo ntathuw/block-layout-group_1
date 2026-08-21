@@ -1,51 +1,60 @@
-import Account from '../dto/Account.js';
-import { AuthenticationFailedException } from '../error/errors.js';
-import { PATHS, readRecords } from '../fileio/fileStore.js';
-
 /**
  * Service xử lý đăng nhập (thuần logic, không phụ thuộc DOM/HTML).
  *
  * Luồng: nhận `identifier` (username hoặc email) + `password`,
- * tra `user.txt` → tìm account tương ứng trong `account.txt`
- * → gọi `account.login(password)`. Thành công → `Account` ghi phiên
- * vào `session.txt`.
+ * tra bảng `user` → tìm account tương ứng trong bảng `account`
+ * → gọi `account.login(password)`. Dùng callback thay async/await.
  */
-export const authService = {
+const authService = {
   /**
    * Đăng nhập bằng username hoặc email kèm password.
    *
    * @param {string} identifier username hoặc email.
    * @param {string} password Mật khẩu.
-   * @returns {Promise<boolean>} `true` khi đăng nhập thành công.
-   * @throws {AuthenticationFailedException} Khi không tìm thấy user/account,
-   *   hoặc sai mật khẩu, hoặc role không phải `user`.
+   * @param {(error: Error|null, ok: boolean) => void} callback
+   *   `ok` là `true` khi đăng nhập thành công; `error` chứa lý do khi thất bại.
    */
-  async login(identifier, password) {
-    const users = await readRecords(PATHS.user);
-    const userRecord = users.find(
-      (record) => record.username === identifier || record.email === identifier,
-    );
+  login(identifier, password, callback) {
+    readRecords(TABLES.user, (error, users) => {
+      if (error) {
+        return callback(error);
+      }
 
-    if (!userRecord) {
-      throw new AuthenticationFailedException('sai username/email hoặc mật khẩu');
-    }
+      const userRecord = users.find(
+        (record) => record.username === identifier || record.email === identifier,
+      );
 
-    const accounts = await readRecords(PATHS.account);
-    const accountRecord = accounts.find(
-      (record) => record.accountId === userRecord.accountId,
-    );
+      if (!userRecord) {
+        return callback(new AuthenticationFailedException('sai username/email hoặc mật khẩu'));
+      }
 
-    if (!accountRecord) {
-      throw new AuthenticationFailedException('sai username/email hoặc mật khẩu');
-    }
+      readRecords(TABLES.account, (error, accounts) => {
+        if (error) {
+          return callback(error);
+        }
 
-    const account = new Account(
-      accountRecord.accountId,
-      accountRecord.password,
-      accountRecord.role,
-      { userId: accountRecord.userId },
-    );
+        const accountRecord = accounts.find(
+          (record) => record.accountId === userRecord.accountId,
+        );
 
-    return account.login(password);
+        if (!accountRecord) {
+          return callback(new AuthenticationFailedException('sai username/email hoặc mật khẩu'));
+        }
+
+        const account = new Account(
+          accountRecord.accountId,
+          accountRecord.password,
+          accountRecord.role,
+          { userId: accountRecord.userId },
+        );
+
+        account.login(password, (error, ok) => {
+          if (error) {
+            return callback(error);
+          }
+          callback(null, ok);
+        });
+      });
+    });
   },
 };

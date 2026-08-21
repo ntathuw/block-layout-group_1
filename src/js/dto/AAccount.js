@@ -1,4 +1,4 @@
-export default class AAccount {
+class AAccount {
   #accountId;
   #password;
   #role;
@@ -29,11 +29,11 @@ export default class AAccount {
     this.#role = value;
   }
 
-  isLogin() {
+  isLogin(callback) {
     throw new Error('isLogin() is an abstract method and must be implemented by a subclass.');
   }
 
-  login() {
+  login(password, callback) {
     throw new Error('login() is an abstract method and must be implemented by a subclass.');
   }
 }

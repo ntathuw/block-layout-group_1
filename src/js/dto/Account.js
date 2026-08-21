@@ -1,11 +1,3 @@
-import AAccount from './AAccount.js';
-import { AuthenticationFailedException } from '../error/errors.js';
-import {
-  PATHS,
-  readRecords,
-  upsertRecord,
-} from '../fileio/fileStore.js';
-
 /**
  * Class `Account` mô tả tài khoản đăng nhập GitDemo, liên kết 1-1 với `User`.
  *
@@ -13,9 +5,9 @@ import {
  * bắt buộc override 2 abstract method `isLogin()` và `login()`.
  *
  * Scope hiện tại chỉ đăng nhập: xác thực password + role `user`,
- * ghi phiên vào `session.txt`.
+ * ghi phiên vào bảng `session` trong bộ nhớ. Dùng callback thay async/await.
  */
-export default class Account extends AAccount {
+class Account extends AAccount {
   #userId;
   #password;
   #isLoggedIn;
@@ -55,61 +47,68 @@ export default class Account extends AAccount {
 
   /**
    * Kiểm tra account hiện tại có đang đăng nhập hay không — dựa trên
-   * `session.txt` (danh sách user đang đăng nhập).
+   * bảng `session` (danh sách user đang đăng nhập).
    * {@inheritdoc}
    *
-   * @returns {Promise<boolean>} `true` nếu có phiên cho `accountId` này.
+   * @param {(error: Error|null, isLogin: boolean) => void} callback
    */
-  async isLogin() {
-    const sessions = await readRecords(PATHS.session);
-    return sessions.some((session) => session.accountId === this.accountId);
+  isLogin(callback) {
+    readRecords(TABLES.session, (error, sessions) => {
+      if (error) {
+        return callback(error);
+      }
+      callback(null, sessions.some((session) => session.accountId === this.accountId));
+    });
   }
 
   /**
    * Đăng nhập cho account hiện tại.
    * {@inheritdoc}
    *
-   * Chỉ cho phép role `user`; sai mật khẩu hoặc sai role → ném lỗi.
-   * Đăng nhập thành công → ghi phiên vào `session.txt`.
+   * Chỉ cho phép role `user`; sai mật khẩu hoặc sai role → trả lỗi qua callback.
+   * Đăng nhập thành công → ghi phiên vào bảng `session`.
    *
    * @param {string} passwordInput Mật khẩu do người dùng nhập.
-   * @returns {Promise<boolean>} `true` khi đăng nhập thành công.
-   * @throws {AuthenticationFailedException} Nếu role khác `user`
-   *   hoặc mật khẩu không đúng.
+   * @param {(error: Error|null, ok: boolean) => void} callback
    */
-  async login(passwordInput) {
+  login(passwordInput, callback) {
     if (this.role !== 'user') {
-      throw new AuthenticationFailedException('chỉ user mới được đăng nhập');
+      return callback(new AuthenticationFailedException('chỉ user mới được đăng nhập'));
     }
 
     if (passwordInput !== this.#password) {
-      throw new AuthenticationFailedException('mật khẩu không đúng');
+      return callback(new AuthenticationFailedException('mật khẩu không đúng'));
     }
 
-    this.#isLoggedIn = true;
-    this.#lastLoginAt = new Date();
-
-    await this.#saveSession();
-
-    return true;
+    const lastLoginAt = new Date();
+    this.#saveSession(lastLoginAt, (error) => {
+      if (error) {
+        return callback(error);
+      }
+      this.#isLoggedIn = true;
+      this.#lastLoginAt = lastLoginAt;
+      callback(null, true);
+    });
   }
 
   // ==================== Private helpers ====================
 
   /**
-   * Ghi (upsert) phiên của account hiện tại vào `session.txt`.
+   * Ghi (upsert) phiên của account hiện tại vào bảng `session`.
    *
-   * @returns {Promise<void>}
+   * @param {Date} lastLoginAt Thời điểm đăng nhập.
+   * @param {(error: Error|null, ok: boolean) => void} callback
    */
-  async #saveSession() {
-    return upsertRecord(
-      PATHS.session,
+  #saveSession(lastLoginAt, callback) {
+    upsertRecord(
+      TABLES.session,
       (session) => session.accountId === this.accountId,
       {
         accountId: this.accountId,
         userId: this.#userId,
-        loginAt: this.#lastLoginAt.toISOString(),
+        loginAt: lastLoginAt.toISOString(),
       },
+      callback,
     );
   }
 }

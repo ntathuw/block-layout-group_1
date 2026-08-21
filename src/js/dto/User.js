@@ -1,10 +1,3 @@
-import AUser from './AUser.js';
-import {
-  InvalidUsernameException,
-  InvalidEmailException,
-  InvalidUrlException,
-} from '../error/errors.js';
-
 /**
  * Regex username theo quy tắc GitHub:
  * gồm chữ cái, số, `-`, `_`; không bắt đầu bằng `-`/`_`.
@@ -18,7 +11,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * Kế thừa `AUser` để dùng lại `userId`, `accountId`, `displayName`.
  * Các thuộc tính bổ sung chủ yếu dùng để hiển thị lên trang profile.
  */
-export default class User extends AUser {
+class User extends AUser {
   #username;
   #email;
   #avatarUrl;
