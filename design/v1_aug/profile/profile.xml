@@ -4,18 +4,19 @@
     <div class="header__top">
 
       <div class="header__brand">
-        <a class="header__logo" href="#"></a>
         <button class="header__menu" type="button"></button>
+        <a class="header__logo" href="#"></a>
       </div>
-
+      <div class="header__center">
+      <div class="header__username"></div>
       <div class="header__search-group">
         <label class="header__search-label" for="global-search"></label>
         <input class="header__search" id="global-search" type="search" autocomplete="off" />
       </div>
-
+      </div>
       <div class="header__actions">
         <button class="header__utility-icon" type="button"></button>
-        <!-- header__utility-icon x 5 -->
+        <!-- header__utility-icon x 6 -->
         <img class="header__user-avatar" src="" alt="" />
       </div>
 
