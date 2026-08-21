@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>octocat (The Octocat) · GitHub</title>
+  <title>Profile · GitHub</title>
   <link rel="stylesheet" href="css/profile.css" />
 </head>
 <body class="profile-page">
@@ -25,7 +25,7 @@
       </div>
 
       <div class="header__center">
-        <span class="header__username">octocat</span>
+        <span class="header__username"></span>
         <div class="header__search-group">
             <span class="header__search-label" id="global-search-label">Search</span>
             <button class="header__search" type="button" aria-labelledby="global-search-label">
@@ -79,7 +79,7 @@
           </button>
         </div>
 
-        <img class="header__user-avatar" src="assets/avatar.svg" alt="octocat" />
+        <img class="header__user-avatar" src="assets/avatar.svg" alt="" />
       </div>
 
     </div>
@@ -114,10 +114,14 @@
     <aside class="sidebar">
 
       <div class="sidebar__identity">
-        <img class="sidebar__avatar" src="assets/avatar.svg" alt="octocat" />
-        <h1 class="sidebar__name-bg">The Octocat</h1>
-        <p class="sidebar__username-bg">octocat</p>
-        <p class="sidebar__bio-bg">Your friendly neighborhood GitHub mascot. Creating issues, starring repos, and spreading octo-cheer since 2011.</p>
+        <img class="sidebar__avatar" src="assets/avatar.svg" alt="" />
+        <h1 class="sidebar__name-bg">
+          <span data-profile="name"></span>
+        </h1>
+        <p class="sidebar__username-bg" data-profile-row="username" hidden>
+          <span data-profile="username"></span><span data-profile="pronouns"></span>
+        </p>
+        <p class="sidebar__bio-bg" data-profile="bio" hidden></p>
       </div>
 
       <div class="sidebar__actions">
@@ -126,22 +130,18 @@
           <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
             <path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"/>
           </svg>
-          <a class="sidebar__follow-link" href="#"><span class="sidebar__follow-count">14</span> followers</a>
+          <a class="sidebar__follow-link" href="#"><span class="sidebar__follow-count"></span> followers</a>
           &middot;
-          <a class="sidebar__follow-link" href="#"><span class="sidebar__follow-count">9</span> following</a>
+          <a class="sidebar__follow-link" href="#"><span class="sidebar__follow-count"></span> following</a>
         </p>
-        <a class="sidebar__link-icon" href="#">
-          <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-            <path d="M4.525 2.636a2.5 2.5 0 0 1 3.536 0l2.828 2.828a2.5 2.5 0 0 1 0 3.535l-1.06 1.06a.75.75 0 0 1-1.06-1.06l1.06-1.061a1 1 0 0 0 0-1.414L5.99 4.696a1 1 0 0 0-1.414 0L3.515 5.757a1 1 0 0 0 0 1.414l1.061 1.06a.75.75 0 1 1-1.06 1.061l-1.062-1.06a2.5 2.5 0 0 1 0-3.536l1.071-1.07Zm6.95 8.728a1 1 0 0 0 0-1.414L10.414 8.89a.75.75 0 1 1 1.06-1.06l1.061 1.06a2.5 2.5 0 0 1 0 3.536l-1.07 1.071a2.5 2.5 0 0 1-3.536 0L5.1 10.69a2.5 2.5 0 0 1 0-3.535l1.06-1.06a.75.75 0 1 1 1.061 1.06L6.161 8.216a1 1 0 0 0 0 1.414l2.829 2.828a1 1 0 0 0 1.414 0l1.071-1.07Z"/>
-          </svg>
-          blog.octocat.com
-        </a>
-        <a class="sidebar__link-icon" href="#">
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z"/>
-          </svg>
-          twitter.com/octocat
-        </a>
+        <p class="sidebar__link-icon" data-profile-link="company" hidden></p>
+        <p class="sidebar__link-icon" data-profile-link="location" hidden></p>
+        <p class="sidebar__link-icon" data-profile-link="time" hidden></p>
+        <a class="sidebar__link-icon" data-profile-link="website" hidden></a>
+        <a class="sidebar__link-icon" data-profile-link="social" hidden></a>
+        <a class="sidebar__link-icon" data-profile-link="social" hidden></a>
+        <a class="sidebar__link-icon" data-profile-link="social" hidden></a>
+        <a class="sidebar__link-icon" data-profile-link="social" hidden></a>
       </div>
 
       <hr class="sidebar__divider" />
@@ -568,6 +568,9 @@
     </nav>
   </footer>
 
-  <script src="js/pages/profile.js"></script>
+  <script src="js/error/errors.js"></script>
+  <script src="js/dto/AUser.js"></script>
+  <script src="js/dto/User.js?v=2"></script>
+  <script src="js/pages/profile.js?v=2"></script>
 </body>
 </html>
