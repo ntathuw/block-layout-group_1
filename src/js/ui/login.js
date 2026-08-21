@@ -145,7 +145,22 @@ form.addEventListener('submit', (event) => {
       }
 
       if (ok) {
-        window.location.href = 'index.html';
+        readRecords(TABLES.user, (error, users) => {
+          if (error) {
+            showError(error.message);
+            return;
+          }
+
+          const userRecord = users.find(
+            (record) => record.username === identifier || record.email === identifier,
+          );
+
+          if (userRecord) {
+            localStorage.setItem('currentUser', JSON.stringify(userRecord));
+          }
+
+          window.location.href = 'profile.html';
+        });
       }
     });
   });
