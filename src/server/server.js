@@ -29,8 +29,9 @@ function readBody(req) {
     req.on('data', (chunk) => {
       data += chunk;
       if (data.length > 1_000_000) {
-        reject(new Error('request body quá lớn'));
-        req.destroy();
+        const err = new Error('request body quá lớn');
+        err.statusCode = 413;
+        reject(err);
       }
     });
     req.on('end', () => {
@@ -41,7 +42,9 @@ function readBody(req) {
       try {
         resolve(JSON.parse(data));
       } catch {
-        reject(new Error('body không phải JSON hợp lệ'));
+        const err = new Error('body không phải JSON hợp lệ');
+        err.statusCode = 400;
+        reject(err);
       }
     });
     req.on('error', reject);
@@ -90,6 +93,10 @@ const server = createServer(async (req, res) => {
       await authService.login(identifier, password);
       sendJson(res, 200, { ok: true });
     } catch (error) {
+      // Nếu response đã bị huỷ/đóng (client ngắt kết nối), không gửi gì thêm.
+      if (res.writableEnded || res.destroyed) {
+        return;
+      }
       const status = error.statusCode || 500;
       sendJson(res, status, { ok: false, message: error.message });
     }
