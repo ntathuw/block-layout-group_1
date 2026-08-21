@@ -403,10 +403,28 @@ a {
   gap: 6px;
   padding: 2px;
   color: var(--color-fg-muted);
+  width: fit-content;
+}
+
+.sidebar__link-icon[hidden] {
+  display: none;
 }
 
 .sidebar__link-icon svg {
   fill: var(--color-fg-muted);
+}
+
+.sidebar__link-icon span {
+  color: var(--color-fg);
+}
+
+a.sidebar__link-icon span {
+  color: var(--color-fg);
+}
+
+a.sidebar__link-icon span:hover{
+  color: var(--color-accent);
+  text-decoration: underline;
 }
 
 .sidebar__divider {
