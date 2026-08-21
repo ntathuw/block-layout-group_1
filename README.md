@@ -54,18 +54,25 @@ Danh sách block và quy ước đặt tên: [`docs/block-list.md`](docs/block-l
 
 ## Cách chạy
 
-Không cần build. Mở trực tiếp:
-
-```
-src/index.html
-```
-
-Hoặc chạy server tĩnh cho tiện:
+Trang `index.html` mở trực tiếp được. Trang **login** lưu dữ liệu + session trong
+`localStorage` → chỉ cần host tĩnh.
 
 ```bash
-cd src && python -m http.server 8000
-# → http://localhost:8000
+npx http-server src -p 8000
+# → http://localhost:8000/login.html
+# → http://localhost:8000/index.html
 ```
+
+> `npx` tải `http-server` một lần (cần internet lần đầu). Không cần server code riêng.
+
+### Login (tái hiện đơn giản)
+
+- **Đọc:** `login.js` dùng `XMLHttpRequest` (callback) đọc `js/data/user.txt`,
+  `js/data/account.txt` (bắt buộc).
+- **Session:** đăng nhập thành công → `Account` lưu session vào `localStorage` (key `session`).
+- **Check:** sau login, `localStorage.getItem('session')` chứa JSON mảng phiên đăng nhập.
+- **Tài khoản test:** `khanh`/`khanh123`, `phuc`/`phuc123` (role `user`).
+  `admin`/`admin123` bị chặn (role `admin`).
 
 ---
 

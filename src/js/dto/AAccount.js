@@ -1,32 +1,28 @@
-export default class AAccount {
-  #accountId;
-  #password;
-  #role;
+class AAccount {
+  _accountId;
+  _password;
+  _role;
 
-  constructor(accountId, password, role) {
+  constructor() {
     if (new.target === AAccount) {
       throw new TypeError('AAccount is an abstract class and cannot be instantiated directly.');
     }
-
-    this.#accountId = accountId;
-    this.#password = password;
-    this.#role = role;
   }
 
   get accountId() {
-    return this.#accountId;
+    throw new Error('accountId is an abstract getter and must be implemented by a subclass.');
   }
 
   set password(value) {
-    this.#password = value;
+    throw new Error('password is an abstract setter and must be implemented by a subclass.');
   }
 
   get role() {
-    return this.#role;
+    throw new Error('role is an abstract getter and must be implemented by a subclass.');
   }
 
   set role(value) {
-    this.#role = value;
+    throw new Error('role is an abstract setter and must be implemented by a subclass.');
   }
 
   isLogin() {

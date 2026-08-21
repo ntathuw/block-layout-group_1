@@ -1,35 +1,27 @@
-export default class AUser {
-  #userId;
-  #accountId;
-  #displayName;
+class AUser {
+  _userId;
+  _accountId;
+  _displayName;
 
-  constructor(userId, accountId, displayName) {
+  constructor() {
     if (new.target === AUser) {
       throw new TypeError('AUser is an abstract class and cannot be instantiated directly.');
     }
-
-    this.#userId = userId;
-    this.#accountId = accountId;
-    this.#displayName = displayName;
   }
 
   get userId() {
-    return this.#userId;
+    throw new Error('userId is an abstract getter and must be implemented by a subclass.');
   }
-
-
 
   get accountId() {
-    return this.#accountId;
+    throw new Error('accountId is an abstract getter and must be implemented by a subclass.');
   }
 
-
-
   get displayName() {
-    return this.#displayName;
+    throw new Error('displayName is an abstract getter and must be implemented by a subclass.');
   }
 
   set displayName(value) {
-    this.#displayName = value;
+    throw new Error('displayName is an abstract setter and must be implemented by a subclass.');
   }
 }
