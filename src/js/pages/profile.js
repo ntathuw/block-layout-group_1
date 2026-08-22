@@ -230,7 +230,11 @@
   var avatars = document.querySelectorAll('.sidebar__avatar, .header__user-avatar');
   Array.prototype.forEach.call(avatars, function (avatar) {
     avatar.alt = user.displayName || user.username || 'User avatar';
-    if (user.avatarUrl) avatar.src = user.avatarUrl;
+    if (user.avatarUrl) {
+      var avatarUrl = user.avatarUrl;
+      if (avatarUrl.indexOf('assets/') === 0) avatarUrl = '../' + avatarUrl;
+      avatar.src = avatarUrl;
+    }
   });
 
   var timeText = user.localTime || user.timezone
