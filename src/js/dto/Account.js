@@ -90,7 +90,7 @@ class Account extends AAccount {
       return callback(new AuthenticationFailedException('Chỉ user mới được đăng nhập'));
     }
 
-    if (passwordInput !== this.password) {
+    if (passwordInput !== this._password) {
       return callback(new AuthenticationFailedException('Mật khẩu không đúng'));
     }
 

@@ -3,6 +3,7 @@
  * gồm chữ cái, số, `-`, `_`; không bắt đầu bằng `-`/`_`.
  */
 const USERNAME_REGEX = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /**
  * Class `User` mô tả một người dùng GitHub.
@@ -13,6 +14,8 @@ const USERNAME_REGEX = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/;
 class User extends AUser {
   #pronouns;
   #username;
+  #email;
+  #avatarUrl;
   #bio;
   #followersCount;
   #followingCount;
@@ -30,6 +33,8 @@ class User extends AUser {
    * @param {object} [options] Các thuộc tính GitHub bổ sung.
    * @param {string} [options.pronouns] Đại từ xưng hô.
    * @param {string} [options.username] Tên đăng nhập (username).
+   * @param {string} [options.email] Email.
+   * @param {string} [options.avatarUrl] URL ảnh đại diện.
    * @param {string} [options.bio] Tiểu sử.
    * @param {number} [options.followersCount] Số người theo dõi.
    * @param {number} [options.followingCount] Số người đang theo dõi.
@@ -51,6 +56,14 @@ class User extends AUser {
 
     if (options.username !== undefined && options.username !== null) {
       this.#username = this.#validateUsername(options.username);
+    }
+
+    if (options.email !== undefined && options.email !== null) {
+      this.email = options.email;
+    }
+
+    if (options.avatarUrl !== undefined && options.avatarUrl !== null) {
+      this.avatarUrl = options.avatarUrl;
     }
 
     this.#bio = options.bio ?? null;
@@ -90,6 +103,16 @@ class User extends AUser {
   /** @returns {string} username. */
   get username() {
     return this.#username;
+  }
+
+  /** @returns {string|null} email. */
+  get email() {
+    return this.#email;
+  }
+
+  /** @returns {string|null} avatarUrl. */
+  get avatarUrl() {
+    return this.#avatarUrl;
   }
 
   /** @returns {string|null} bio. */
@@ -146,6 +169,30 @@ class User extends AUser {
   /** @param {string|null} value Đại từ xưng hô. */
   set pronouns(value) {
     this.#pronouns = value ?? null;
+  }
+
+  /** @param {string|null} value Email. */
+  set email(value) {
+    if (value === null || value === undefined || value === '') {
+      this.#email = null;
+      return;
+    }
+    if (typeof value !== 'string' || !EMAIL_REGEX.test(value)) {
+      throw new InvalidEmailException(`Email không hợp lệ: ${value}`);
+    }
+    this.#email = value;
+  }
+
+  /** @param {string|null} value URL ảnh đại diện. */
+  set avatarUrl(value) {
+    if (value === null || value === undefined || value === '') {
+      this.#avatarUrl = null;
+      return;
+    }
+    if (typeof value !== 'string') {
+      throw new InvalidUrlException(`AvatarUrl không hợp lệ: ${value}`);
+    }
+    this.#avatarUrl = value;
   }
 
   /** @param {string|null} value Tiểu sử. */
@@ -227,6 +274,8 @@ class User extends AUser {
       displayName: this.displayName,
       pronouns: this.#pronouns,
       username: this.#username,
+      email: this.#email,
+      avatarUrl: this.#avatarUrl,
       bio: this.#bio,
       followersCount: this.#followersCount,
       followingCount: this.#followingCount,
